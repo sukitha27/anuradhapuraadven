@@ -129,8 +129,8 @@ const Footer = () => {
                   <MapPin className="w-5 h-5 text-emerald-400 mt-1 flex-shrink-0" />
                   <div>
                     <p className="text-white/80">
-                      Old Town Road<br />
-                      Anuradhapura<br />
+                      Vinandharama mawatha<br />
+                      Pothanegama , Anuradhapura<br />
                       Sri Lanka
                     </p>
                   </div>

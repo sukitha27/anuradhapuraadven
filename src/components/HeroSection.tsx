@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, Play, Star } from 'lucide-react';
 
@@ -6,6 +5,7 @@ const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [scrollY, setScrollY] = useState(0);
   const [typewriterText, setTypewriterText] = useState('');
+  const [counters, setCounters] = useState({ travelers: 0, tours: 0 });
 
   const slides = [
     {
@@ -25,7 +25,7 @@ const HeroSection = () => {
     }
   ];
 
-  // Typewriter effect for TukTuk Hire
+  // Typewriter effect
   useEffect(() => {
     const text = 'TukTuk Hire Available';
     let index = 0;
@@ -39,11 +39,10 @@ const HeroSection = () => {
         }, 2000);
       }
     }, 100);
-
     return () => clearInterval(timer);
   }, []);
 
-  // Parallax scroll effect
+  // Parallax effect
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
@@ -56,6 +55,39 @@ const HeroSection = () => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
     return () => clearInterval(timer);
+  }, []);
+
+  // Counter animation
+  useEffect(() => {
+    const animateCounters = () => {
+      const duration = 2000; // Animation duration in ms
+      const stepTime = 20; // Time per step in ms
+      const travelersTarget = 500;
+      const toursTarget = 50;
+
+      let travelersCount = 0;
+      let toursCount = 0;
+
+      const incrementTravelers = travelersTarget / (duration / stepTime);
+      const incrementTours = toursTarget / (duration / stepTime);
+
+      const interval = setInterval(() => {
+        travelersCount += incrementTravelers;
+        toursCount += incrementTours;
+
+        if (travelersCount >= travelersTarget && toursCount >= toursTarget) {
+          setCounters({ travelers: travelersTarget, tours: toursTarget });
+          clearInterval(interval);
+        } else {
+          setCounters({
+            travelers: Math.min(Math.ceil(travelersCount), travelersTarget),
+            tours: Math.min(Math.ceil(toursCount), toursTarget),
+          });
+        }
+      }, stepTime);
+    };
+
+    animateCounters();
   }, []);
 
   return (
@@ -82,7 +114,6 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 h-full flex items-center justify-center text-center">
         <div className="max-w-4xl mx-auto px-4">
-          {/* Main Title */}
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in">
             Discover
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">
@@ -90,12 +121,10 @@ const HeroSection = () => {
             </span>
           </h1>
 
-          {/* Subtitle */}
           <p className="text-xl md:text-2xl text-white/90 mb-8 animate-fade-in" style={{ animationDelay: '0.5s' }}>
             {slides[currentSlide].subtitle}
           </p>
 
-          {/* Typewriter Text */}
           <div className="mb-8 animate-fade-in" style={{ animationDelay: '1s' }}>
             <p className="text-lg text-emerald-300 font-semibold">
               {typewriterText}
@@ -103,13 +132,11 @@ const HeroSection = () => {
             </p>
           </div>
 
-          {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 animate-fade-in" style={{ animationDelay: '1.5s' }}>
             <button className="group bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-emerald-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center space-x-2">
               <span>Explore Tours</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </button>
-            
             <button className="group bg-white/10 backdrop-blur-md text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/20 transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 border border-white/20">
               <Play className="w-5 h-5" />
               <span>Watch Video</span>
@@ -119,12 +146,11 @@ const HeroSection = () => {
           {/* Stats */}
           <div className="mt-16 grid grid-cols-3 gap-8 animate-fade-in" style={{ animationDelay: '2s' }}>
             <div className="text-center">
-              <div className="text-3xl font-bold text-white counter" data-target="500">100+</div>
+              <div className="text-3xl font-bold text-white">{counters.travelers}+</div>
               <div className="text-white/80">Happy Travelers</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-white counter" data-target="50">50
-              </div>
+              <div className="text-3xl font-bold text-white">{counters.tours}</div>
               <div className="text-white/80">Tours Completed</div>
             </div>
             <div className="text-center">
@@ -135,28 +161,6 @@ const HeroSection = () => {
               <div className="text-white/80">Rating</div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentSlide 
-                ? 'bg-white scale-125' 
-                : 'bg-white/50 hover:bg-white/75'
-            }`}
-          />
-        ))}
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 right-8 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
     </section>

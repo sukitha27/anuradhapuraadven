@@ -128,7 +128,7 @@ const HomestaySection = () => {
             {/* Booking Buttons */}
             <div className="space-y-4">
               <a
-                href="#"
+                href="https://www.booking.com/Share-KzsPpdF"
                 className="group w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-4 px-6 rounded-xl font-semibold text-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2"
               >
                 <ExternalLink className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />

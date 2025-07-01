@@ -9,7 +9,7 @@ const FeaturedTours = () => {
     {
       id: 1,
       title: 'Bicycle Adventure Tour',
-      image: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: '/images/bicycle-tour-lg.jpg',
       duration: '6 hours',
       groupSize: '2-8 people',
       rating: 4.9,
@@ -20,7 +20,7 @@ const FeaturedTours = () => {
     {
       id: 2,
       title: 'Wilpattu Safari Tour',
-      image: 'https://images.unsplash.com/photo-1500673922987-e212871fec22?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: '/images/wilpattu-safari-lg.jpg',
       duration: '8 hours',
       groupSize: '4-10 people',
       rating: 4.8,
@@ -31,7 +31,7 @@ const FeaturedTours = () => {
     {
       id: 3,
       title: 'Cultural TukTuk Tour',
-      image: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: '/images/tuktuk-tour.jpg',
       duration: '4 hours',
       groupSize: '1-3 people',
       rating: 4.7,
