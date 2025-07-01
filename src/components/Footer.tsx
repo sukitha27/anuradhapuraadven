@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ArrowUp, Phone, Mail, MapPin, Facebook, Instagram, Twitter, MessageCircle } from 'lucide-react';
+import { FaGoogle, FaWhatsapp, FaTripadvisor } from 'react-icons/fa'; // Importing icons
 
 const Footer = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -163,7 +164,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-2 bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105"
                 >
-                  <MessageCircle className="w-4 h-4" />
+                  <FaWhatsapp className="w-4 h-4" />
                   <span>WhatsApp Us</span>
                 </a>
               </div>

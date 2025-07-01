@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Clock, Users, ChefHat, Star, Calendar, MapPin } from 'lucide-react';
+import { FaGoogle, FaWhatsapp, FaTripadvisor } from 'react-icons/fa'; // Importing icons
 
 const CookerySection = () => {
   const [selectedClass, setSelectedClass] = useState(0);
@@ -193,21 +194,21 @@ const CookerySection = () => {
                       className="bg-blue-500 text-white p-4 rounded-xl hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
                       title="Share on Google"
                     >
-                      <Star className="w-5 h-5" />
+                      <FaGoogle className="w-5 h-5" />
                     </a>
                     <a
                       href="#"
                       className="bg-green-500 text-white p-4 rounded-xl hover:bg-green-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
                       title="WhatsApp Us"
                     >
-                      <Users className="w-5 h-5" />
+                      <FaWhatsapp className="w-5 h-5" />
                     </a>
                     <a
                       href="#"
                       className="bg-orange-500 text-white p-4 rounded-xl hover:bg-orange-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
                       title="TripAdvisor"
                     >
-                      <MapPin className="w-5 h-5" />
+                      <FaTripadvisor className="w-5 h-5" />
                     </a>
                   </div>
                 </div>
