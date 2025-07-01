@@ -32,20 +32,28 @@ const Navigation = () => {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          {/* Logo */}
+           {/* Logo Section */}
           <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-xl font-bold">A</span>
-            </div>
+            {/* Logo Image */}
+            <img 
+              src="/images/logo.png" // Replace with your logo path
+              alt="Logo"
+              className="w-12 h-12 object-contain rounded-full" // Adjust size as needed
+            />
+            {/* Brand Name */}
             <div>
-              <h1 className={`text-xl font-bold transition-colors duration-300 ${
-                isScrolled ? 'text-gray-800' : 'text-white'
-              }`}>
+              <h1
+                className={`text-xl font-bold transition-colors duration-300 ${
+                  isScrolled ? 'text-gray-800' : 'text-white'
+                }`}
+              >
                 Anuradhapura
               </h1>
-              <p className={`text-sm transition-colors duration-300 ${
-                isScrolled ? 'text-gray-600' : 'text-white/80'
-              }`}>
+              <p
+                className={`text-sm transition-colors duration-300 ${
+                  isScrolled ? 'text-gray-600' : 'text-white/80'
+                }`}
+              >
                 Adventures
               </p>
             </div>

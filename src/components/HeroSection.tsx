@@ -119,11 +119,12 @@ const HeroSection = () => {
           {/* Stats */}
           <div className="mt-16 grid grid-cols-3 gap-8 animate-fade-in" style={{ animationDelay: '2s' }}>
             <div className="text-center">
-              <div className="text-3xl font-bold text-white counter" data-target="500">0</div>
+              <div className="text-3xl font-bold text-white counter" data-target="500">100+</div>
               <div className="text-white/80">Happy Travelers</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-white counter" data-target="50">0</div>
+              <div className="text-3xl font-bold text-white counter" data-target="50">50
+              </div>
               <div className="text-white/80">Tours Completed</div>
             </div>
             <div className="text-center">
