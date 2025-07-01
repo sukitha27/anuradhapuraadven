@@ -172,7 +172,7 @@ const Footer = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
               <p className="text-white/60 text-sm text-center md:text-left">
-                © 2024 Anuradhapura Adventures. All rights reserved. Made with ❤️ in Sri Lanka.
+                © 2024 Anuradhapura Adventures. All rights reserved. Developed by Pearlbay Travels.
               </p>
               
               <div className="flex items-center space-x-6 text-sm text-white/60">
