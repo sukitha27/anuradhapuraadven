@@ -19,7 +19,7 @@ const HeroSection = () => {
       subtitle: 'Wildlife Adventure Awaits'
     },
     {
-      image: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
+      image: '/images/hero3.jpg',
       title: 'TukTuk Cultural Ride',
       subtitle: 'Authentic Local Experience'
     }
