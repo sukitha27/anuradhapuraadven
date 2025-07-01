@@ -1,6 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Star, Clock, MapPin, ExternalLink, MessageCircle, Phone } from 'lucide-react';
+import { FaGoogle, FaWhatsapp, FaTripadvisor } from 'react-icons/fa'; // Importing icons
 
 const RestaurantSection = () => {
   const [activeTab, setActiveTab] = useState('menu');
@@ -9,7 +10,7 @@ const RestaurantSection = () => {
   const menuItems = [
     {
       name: 'Traditional Rice & Curry',
-      image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image: '/images/riceandcurry.jpg',
       price: '$12',
       popularity: 95,
       description: 'Authentic Sri Lankan rice and curry with 8 different curries',
@@ -25,7 +26,7 @@ const RestaurantSection = () => {
     },
     {
       name: 'Kottu Roti',
-      image: 'https://images.unsplash.com/photo-1574653853027-cd0ba82d6ce4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image: '/images/kottu.jpg',
       price: '$10',
       popularity: 92,
       description: 'Chopped flatbread stir-fried with vegetables and egg',
@@ -115,21 +116,21 @@ const RestaurantSection = () => {
                 rel="noopener noreferrer" 
                 className="flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
               >
-                <ExternalLink className="w-4 h-4" />
+                <FaGoogle className="w-4 h-4" />
                 <span>Google</span>
               </a>
               <a
                 href="#"
                 className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
               >
-                <MessageCircle className="w-4 h-4" />
+                <FaWhatsapp className="w-4 h-4" />
                 <span>WhatsApp</span>
               </a>
               <a
                 href="#"
                 className="flex items-center space-x-2 bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
               >
-                <Star className="w-4 h-4" />
+                <FaTripadvisor className="w-4 h-4" />
                 <span>TripAdvisor</span>
               </a>
             </div>
