@@ -105,7 +105,7 @@ const RestaurantSection = () => {
                   <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
-              <span className="text-gray-600 font-medium">4.8/5 (248 reviews)</span>
+              <span className="text-gray-600 font-medium">8.6/5 (27 reviews)</span>
             </div>
 
             <div className="flex items-center space-x-4">

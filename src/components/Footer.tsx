@@ -62,14 +62,18 @@ const Footer = () => {
             {/* Company Info */}
             <div className="space-y-6">
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center">
-                  <span className="text-white text-xl font-bold">A</span>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold">Anuradhapura</h3>
-                  <p className="text-white/80">Adventures</p>
-                </div>
-              </div>
+            {/* Replace the letter A with a logo */}
+              <img 
+                src="/images/logo.png" 
+                alt="Anuradhapura Adventures Logo" 
+                className="w-12 h-12 rounded-full object-cover" 
+              />
+        <div>
+    <h3 className="text-xl font-bold">Anuradhapura</h3>
+    <p className="text-white/80">Adventures</p>
+  </div>
+</div>
+
               
               <p className="text-white/80 leading-relaxed">
                 Discover the ancient wonders of Anuradhapura through authentic experiences, 
