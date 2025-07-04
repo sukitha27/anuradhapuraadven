@@ -142,9 +142,14 @@ const HomestaySection = () => {
                   <Calendar className="w-5 h-5 mx-auto mb-1" />
                   Check Availability
                 </button>
-                <button className="bg-emerald-500 text-white py-3 px-4 rounded-xl font-semibold hover:bg-emerald-600 transition-all duration-300 transform hover:scale-105">
+                <a 
+                  href="https://wa.me/94701234567" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-full bg-emerald-500 text-white py-3 px-4 rounded-xl font-semibold hover:bg-emerald-600 transition-all duration-300 transform hover:scale-105"
+                >
                   Contact Host
-                </button>
+                </a>
               </div>
             </div>
 

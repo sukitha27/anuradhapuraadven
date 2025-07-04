@@ -248,7 +248,7 @@ const InteractiveMap = () => {
                 Get accurate directions using Google Maps for the best navigation experience.
               </p>
               <a
-                href="https://maps.google.com/?q=Anuradhapura,Sri+Lanka"
+                href="https://maps.app.goo.gl/FRjAVZfC6hrLVcnv6"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
