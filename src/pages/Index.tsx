@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin, Clock, Users, Star } from 'lucide-react';
@@ -11,6 +10,7 @@ import CookerySection from '../components/CookerySection';
 import InteractiveMap from '../components/InteractiveMap';
 import Footer from '../components/Footer';
 import LoadingScreen from '../components/LoadingScreen';
+import ChatBot from '../components/ChatBot'; // Import the ChatBot component
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,6 +38,9 @@ const Index = () => {
       <CookerySection />
       <InteractiveMap />
       <Footer />
+      
+      {/* Add the ChatBot component here */}
+      <ChatBot />
     </div>
   );
 };
