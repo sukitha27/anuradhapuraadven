@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MaintenanceProvider, useMaintenanceMode } from "./contexts/MaintenanceContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import Maintenance from "./pages/maintenance";
+import Maintenance from "./pages/Maintenance";
 
 const queryClient = new QueryClient();
 
