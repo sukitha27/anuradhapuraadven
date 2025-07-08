@@ -23,7 +23,7 @@ interface MaintenanceProviderProps {
 
 export const MaintenanceProvider = ({ children }: MaintenanceProviderProps) => {
   // Set to false by default - change to true to enable maintenance mode
-  const [isMaintenanceMode, setIsMaintenanceMode] = useState(false);
+  const [isMaintenanceMode, setIsMaintenanceMode] = useState(true);
 
   const enableMaintenanceMode = () => setIsMaintenanceMode(true);
   const disableMaintenanceMode = () => setIsMaintenanceMode(false);
