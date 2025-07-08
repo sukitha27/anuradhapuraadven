@@ -34,7 +34,7 @@ const Maintenance = () => {
         </div>
 
         {/* Admin control - remove this in production */}
-       { /*/<div className="pt-8 border-t border-border">
+       <div className="pt-8 border-t border-border">
           <p className="text-xs text-muted-foreground mb-2">Admin Control</p>
           <Button 
             onClick={disableMaintenanceMode}
@@ -43,7 +43,7 @@ const Maintenance = () => {
           >
             Exit Maintenance Mode
           </Button>
-        </div>*/}
+        </div>
       </div>
     </div>
   );
