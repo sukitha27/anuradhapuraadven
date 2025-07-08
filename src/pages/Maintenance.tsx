@@ -82,18 +82,7 @@ const Maintenance = () => {
           </div>
         </div>
 
-        {/* Admin control with enhanced styling */}
-        {/*<div className="pt-6 border-t border-border/30">
-          <p className="text-xs text-muted-foreground mb-3">Admin Control</p>
-          <Button 
-            onClick={disableMaintenanceMode}
-            variant="outline"
-            size="sm"
-            className="bg-card/50 backdrop-blur-sm active:bg-card/80 active:scale-105 transition-all duration-300 shadow-md active:shadow-lg touch-manipulation"
-          >
-            Exit Maintenance Mode
-          </Button>
-        </div> */}
+        
       </div>
       
       {/* Footer */}
