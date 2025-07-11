@@ -120,14 +120,14 @@ const RestaurantSection = () => {
                 <span>Google</span>
               </a>
               <a
-                href="#"
+                href="https://wa.me/94701234567"
                 className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
               >
                 <FaWhatsapp className="w-4 h-4" />
                 <span>WhatsApp</span>
               </a>
               <a
-                href="#"
+                href="https://www.tripadvisor.com/Restaurant_Review-g304132-d32985750-Reviews-Green_Chilli_Restaurant_Anuradhapura-Anuradhapura_North_Central_Province.html?m=69573"
                 className="flex items-center space-x-2 bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
               >
                 <FaTripadvisor className="w-4 h-4" />
