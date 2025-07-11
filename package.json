@@ -74,6 +74,7 @@
     "@types/node": "^22.16.0",
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
+    "@types/styled-jsx": "^2.2.9",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.9.0",
