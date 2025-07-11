@@ -122,11 +122,11 @@ export default {
         },
         'pulse-rotate': {
           '0%, 100%': { 
-            transform: 'scale(1) rotate(0deg)',
+            transform: 'translateZ(0) scale(1) rotate(0deg)',
             opacity: '1'
           },
           '50%': { 
-            transform: 'scale(1.05) rotate(5deg)',
+            transform: 'translateZ(0) scale(1.05) rotate(5deg)',
             opacity: '0.9'
           }
         },

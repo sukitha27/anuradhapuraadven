@@ -5,25 +5,18 @@ const LoadingScreenAlt = () => {
     <div className="fixed inset-0 bg-gradient-to-br from-white via-gray-100 to-white flex items-center justify-center z-50">
       <div className="text-center space-y-8">
         
-        {/* GIF Container with Pulse + Rotate Animation */}
-        <div className="relative w-32 h-32 mx-auto">
-          {/* Background layer */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-100 to-white rounded-full"></div>
-          
-          {/* GIF with pulse-rotate animation */}
-          <img 
-            src="/images/elephant.gif"
-            className="w-full h-full object-contain animate-pulse-rotate"
-            style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.7)',
-              borderRadius: '50%',
-              padding: '8px'
-            }}
-          />
-          
-          {/* Pulsing border */}
-          <div className="absolute inset-0 rounded-full border-2 border-orange-400/30 animate-pulse z-20"></div>
-        </div>
+        <div className="relative w-32 h-32 mx-auto transform-gpu"> {/* Added transform-gpu */}
+  <img 
+    src="/images/elephant.gif"
+    className="w-full h-full object-contain animate-pulse-rotate will-change-transform"
+    style={{
+      backgroundColor: 'rgba(255, 255, 255, 0.7)',
+      borderRadius: '60%',
+      padding: '8px',
+      backfaceVisibility: 'hidden' // Helps with mobile rendering
+    }}
+  />
+</div>
 
         {/* Brand Title */}
         <h1 className="text-5xl font-extrabold tracking-tight">
