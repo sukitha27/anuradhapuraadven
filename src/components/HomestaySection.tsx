@@ -1,11 +1,10 @@
 
-import React, { useState, useEffect } from 'react';
-import { Star, Wifi, Car, Coffee, ExternalLink, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Star, Wifi, Car, Coffee, ExternalLink, Calendar } from 'lucide-react';
 
 const HomestaySection = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [currentReview, setCurrentReview] = useState(0);
 
   const images = [
     'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
@@ -29,51 +28,6 @@ const HomestaySection = () => {
     'Bicycle rental available',
     'Guided temple tours'
   ];
-
-  const reviews = [
-    {
-      name: "Sarah M.",
-      rating: 5,
-      text: "Wonderful authentic experience! The family was so welcoming and the food was incredible."
-    },
-    {
-      name: "David L.",
-      rating: 5,
-      text: "Perfect location with amazing hospitality. The traditional Sri Lankan breakfast was a highlight!"
-    },
-    {
-      name: "Emma R.",
-      rating: 5,
-      text: "Beautiful homestay with such warm hosts. Felt like home away from home. Highly recommend!"
-    },
-    {
-      name: "Michael K.",
-      rating: 4,
-      text: "Great cultural experience and comfortable accommodation. The garden is absolutely beautiful."
-    },
-    {
-      name: "Lisa T.",
-      rating: 5,
-      text: "Outstanding service and authentic Sri Lankan hospitality. The guided temple tours were amazing!"
-    }
-  ];
-
-  // Auto-slide reviews every 4 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentReview((prev) => (prev + 1) % reviews.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [reviews.length]);
-
-  const nextReview = () => {
-    setCurrentReview((prev) => (prev + 1) % reviews.length);
-  };
-
-  const prevReview = () => {
-    setCurrentReview((prev) => (prev - 1 + reviews.length) % reviews.length);
-  };
 
   return (
     <section id="homestay" className="py-20 bg-gradient-to-b from-white to-gray-50">
@@ -199,64 +153,23 @@ const HomestaySection = () => {
               </div>
             </div>
 
-            {/* Reviews Preview with Sliding Animation */}
+            {/* Reviews Preview */}
             <div className="bg-gray-50 rounded-xl p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h4 className="font-bold text-gray-800">Recent Reviews</h4>
-                <div className="flex items-center space-x-2">
-                  <button
-                    onClick={prevReview}
-                    className="p-1 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow duration-300"
-                  >
-                    <ChevronLeft className="w-4 h-4 text-gray-600" />
-                  </button>
-                  <button
-                    onClick={nextReview}
-                    className="p-1 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow duration-300"
-                  >
-                    <ChevronRight className="w-4 h-4 text-gray-600" />
-                  </button>
-                </div>
-              </div>
-              
-              <div className="relative overflow-hidden">
-                <div 
-                  className="flex transition-transform duration-500 ease-in-out"
-                  style={{ transform: `translateX(-${currentReview * 100}%)` }}
-                >
-                  {reviews.map((review, index) => (
-                    <div key={index} className="w-full flex-shrink-0">
-                      <div className="bg-white p-4 rounded-lg shadow-sm">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="font-medium text-gray-800">{review.name}</span>
-                          <div className="flex items-center space-x-1">
-                            {[...Array(review.rating)].map((_, i) => (
-                              <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                            ))}
-                          </div>
-                        </div>
-                        <p className="text-gray-600 text-sm leading-relaxed">
-                          "{review.text}"
-                        </p>
-                      </div>
+              <h4 className="font-bold text-gray-800 mb-3">Recent Reviews</h4>
+              <div className="space-y-4">
+                <div className="bg-white p-4 rounded-lg">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-medium text-gray-800">Sarah M.</span>
+                    <div className="flex items-center space-x-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      ))}
                     </div>
-                  ))}
+                  </div>
+                  <p className="text-gray-600 text-sm">
+                    "Wonderful authentic experience! The family was so welcoming and the food was incredible."
+                  </p>
                 </div>
-              </div>
-
-              {/* Review Indicators */}
-              <div className="flex justify-center mt-4 space-x-2">
-                {reviews.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentReview(index)}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      index === currentReview 
-                        ? 'bg-emerald-500 w-6' 
-                        : 'bg-gray-300 hover:bg-gray-400'
-                    }`}
-                  />
-                ))}
               </div>
             </div>
           </div>
