@@ -281,6 +281,15 @@ const HomestaySection = () => {
                   />
                 ))}
               </div>
+              <a
+              href="https://www.booking.com/hotel/lk/chipmunk-home-stay-anuradhapuar-anuradhapura.html?"  // Replace with your actual Booking.com reviews link
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-emerald-600 hover:text-emerald-700 flex items-center"
+            >
+              View All Reviews
+              <ExternalLink className="w-4 h-4 ml-1" />
+            </a>
             </div>
           </div>
         </div>
