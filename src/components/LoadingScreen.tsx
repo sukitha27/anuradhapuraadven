@@ -1,78 +1,107 @@
 import React from 'react';
-import { Compass } from 'lucide-react';
+import { Compass, MapPin, Plane } from 'lucide-react';
 
-const TravelPreloader = () => {
+const TourismPreloader = () => {
   return (
-    <div className="fixed inset-0 bg-gradient-to-br from-sky-100 to-amber-50 flex items-center justify-center z-50">
-      {/* Main compass element */}
-      <div className="relative w-32 h-32">
-        {/* Outer ring with subtle rotation */}
-        <div className="absolute inset-0 border-2 border-amber-200/80 rounded-full animate-spin-slow"></div>
-        
-        {/* Compass icon with gentle pulse */}
-        <div className="absolute inset-6 flex items-center justify-center">
-          <Compass 
-            className="w-16 h-16 text-amber-500 animate-pulse-slow" 
-            strokeWidth={1.5}
-          />
+    <div className="fixed inset-0 bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 flex items-center justify-center z-50 overflow-hidden">
+      
+      {/* Animated background elements */}
+      <div className="absolute inset-0 opacity-20">
+        {/* Floating travel icons */}
+        <div className="absolute top-1/4 left-1/4 animate-float">
+          <MapPin className="w-8 h-8 text-cyan-400" style={{ animationDelay: '0s' }} />
+        </div>
+        <div className="absolute top-1/3 right-1/3 animate-float">
+          <Plane className="w-6 h-6 text-emerald-400" style={{ animationDelay: '1s' }} />
+        </div>
+        <div className="absolute bottom-1/3 left-1/3 animate-float">
+          <Compass className="w-7 h-7 text-amber-400" style={{ animationDelay: '2s' }} />
         </div>
         
-        {/* Direction indicators */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-3 bg-amber-400 rounded-full"></div>
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-3 bg-amber-400 rounded-full"></div>
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-3 h-1 bg-amber-400 rounded-full"></div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-1 bg-amber-400 rounded-full"></div>
+        {/* Pulsing circles */}
+        <div className="absolute top-1/5 right-1/5 w-32 h-32 border border-cyan-400/30 rounded-full animate-ping" style={{ animationDuration: '3s' }}></div>
+        <div className="absolute bottom-1/5 left-1/5 w-24 h-24 border border-emerald-400/30 rounded-full animate-ping" style={{ animationDuration: '4s', animationDelay: '1s' }}></div>
+        <div className="absolute top-2/3 right-2/3 w-20 h-20 border border-amber-400/30 rounded-full animate-ping" style={{ animationDuration: '5s', animationDelay: '2s' }}></div>
+      </div>
+
+      {/* Main preloader */}
+      <div className="relative">
         
-        {/* Floating dots for visual interest */}
-        <div className="absolute top-2 left-2 w-2 h-2 bg-sky-400 rounded-full animate-float"></div>
-        <div className="absolute bottom-2 right-2 w-2 h-2 bg-amber-300 rounded-full animate-float-delay"></div>
+        {/* Outer rotating compass */}
+        <div className="w-40 h-40 relative">
+          
+          {/* Outer ring with gradient */}
+          <div className="absolute inset-0 rounded-full border-4 border-transparent bg-gradient-to-r from-cyan-500 via-emerald-500 to-amber-500 animate-spin p-1" style={{ animationDuration: '3s' }}>
+            <div className="w-full h-full rounded-full bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900"></div>
+          </div>
+          
+          {/* Middle ring */}
+          <div className="absolute inset-4 rounded-full border-4 border-transparent bg-gradient-to-r from-amber-500 via-emerald-500 to-cyan-500 animate-spin p-1" style={{ animationDuration: '2s', animationDirection: 'reverse' }}>
+            <div className="w-full h-full rounded-full bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900"></div>
+          </div>
+          
+          {/* Inner core with pulsing effect */}
+          <div className="absolute inset-12 rounded-full bg-gradient-to-r from-cyan-400 via-emerald-400 to-amber-400 animate-pulse flex items-center justify-center shadow-lg shadow-cyan-500/50">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-white/20 to-transparent animate-pulse"></div>
+          </div>
+          
+          {/* Floating travel elements around compass */}
+          <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+            <div className="w-4 h-4 bg-gradient-to-r from-cyan-400 to-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
+          </div>
+          <div className="absolute top-1/2 -right-3 transform -translate-y-1/2">
+            <div className="w-4 h-4 bg-gradient-to-r from-emerald-400 to-amber-400 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }}></div>
+          </div>
+          <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2">
+            <div className="w-4 h-4 bg-gradient-to-r from-amber-400 to-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '1s' }}></div>
+          </div>
+          <div className="absolute top-1/2 -left-3 transform -translate-y-1/2">
+            <div className="w-4 h-4 bg-gradient-to-r from-cyan-400 to-amber-400 rounded-full animate-bounce" style={{ animationDelay: '1.5s' }}></div>
+          </div>
+          
+          {/* Orbiting dots */}
+          <div className="absolute inset-0 animate-spin" style={{ animationDuration: '4s' }}>
+            <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full shadow-lg"></div>
+          </div>
+          <div className="absolute inset-0 animate-spin" style={{ animationDuration: '4s', animationDelay: '2s' }}>
+            <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full shadow-lg"></div>
+          </div>
+          
+        </div>
+
+        {/* Ripple effect */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-56 h-56 border border-cyan-400/20 rounded-full animate-ping" style={{ animationDuration: '2s' }}></div>
+          <div className="absolute w-64 h-64 border border-emerald-400/20 rounded-full animate-ping" style={{ animationDuration: '2.5s', animationDelay: '0.5s' }}></div>
+          <div className="absolute w-72 h-72 border border-amber-400/20 rounded-full animate-ping" style={{ animationDuration: '3s', animationDelay: '1s' }}></div>
+        </div>
+        
       </div>
       
-      {/* Subtle background elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-16 h-16 border border-amber-200/40 rounded-full animate-fade-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-20 h-20 border border-sky-200/40 rounded-full animate-fade-pulse-delay"></div>
-      </div>
+      {/* Subtle shimmer effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer"></div>
       
-      {/* Custom animations */}
       <style jsx>{`
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @keyframes pulse-slow {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.8; transform: scale(0.98); }
-        }
         @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-6px); }
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
         }
-        @keyframes fade-pulse {
-          0%, 100% { opacity: 0.1; transform: scale(1); }
-          50% { opacity: 0.3; transform: scale(1.05); }
+        
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
         }
-        .animate-spin-slow {
-          animation: spin-slow 8s linear infinite;
-        }
-        .animate-pulse-slow {
-          animation: pulse-slow 3s ease-in-out infinite;
-        }
+        
         .animate-float {
           animation: float 3s ease-in-out infinite;
         }
-        .animate-float-delay {
-          animation: float 3s ease-in-out infinite 1.5s;
-        }
-        .animate-fade-pulse {
-          animation: fade-pulse 4s ease-in-out infinite;
-        }
-        .animate-fade-pulse-delay {
-          animation: fade-pulse 4s ease-in-out infinite 2s;
+        
+        .animate-shimmer {
+          animation: shimmer 3s ease-in-out infinite;
         }
       `}</style>
     </div>
   );
 };
 
-export default TravelPreloader;
+export default TourismPreloader;
