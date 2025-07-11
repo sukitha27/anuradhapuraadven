@@ -1,6 +1,7 @@
 
-import React, { useState } from 'react';
-import { Star, Wifi, Car, Coffee, ExternalLink, Calendar } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Star, Wifi, Car, Coffee, ExternalLink, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 const HomestaySection = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -27,6 +28,34 @@ const HomestaySection = () => {
     'Cultural experience programs',
     'Bicycle rental available',
     'Guided temple tours'
+  ];
+
+  const reviews = [
+    {
+      name: "Sarah M.",
+      rating: 5,
+      text: "Wonderful authentic experience! The family was so welcoming and the food was incredible."
+    },
+    {
+      name: "David L.",
+      rating: 5,
+      text: "Perfect location with amazing hospitality. The traditional Sri Lankan breakfast was a highlight!"
+    },
+    {
+      name: "Emma R.",
+      rating: 5,
+      text: "Beautiful homestay with such warm hosts. Felt like home away from home. Highly recommend!"
+    },
+    {
+      name: "Michael K.",
+      rating: 4,
+      text: "Great cultural experience and comfortable accommodation. The garden is absolutely beautiful."
+    },
+    {
+      name: "Lisa T.",
+      rating: 5,
+      text: "Outstanding service and authentic Sri Lankan hospitality. The guided temple tours were amazing!"
+    }
   ];
 
   return (
@@ -153,24 +182,39 @@ const HomestaySection = () => {
               </div>
             </div>
 
-            {/* Reviews Preview */}
+            {/* Reviews Carousel */}
             <div className="bg-gray-50 rounded-xl p-6">
-              <h4 className="font-bold text-gray-800 mb-3">Recent Reviews</h4>
-              <div className="space-y-4">
-                <div className="bg-white p-4 rounded-lg">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-medium text-gray-800">Sarah M.</span>
-                    <div className="flex items-center space-x-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                      ))}
-                    </div>
-                  </div>
-                  <p className="text-gray-600 text-sm">
-                    "Wonderful authentic experience! The family was so welcoming and the food was incredible."
-                  </p>
-                </div>
-              </div>
+              <h4 className="font-bold text-gray-800 mb-4">Recent Reviews</h4>
+              
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-2 md:-ml-4">
+                  {reviews.map((review, index) => (
+                    <CarouselItem key={index} className="pl-2 md:pl-4 basis-full">
+                      <div className="bg-white p-4 rounded-lg shadow-sm">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="font-medium text-gray-800">{review.name}</span>
+                          <div className="flex items-center space-x-1">
+                            {[...Array(review.rating)].map((_, i) => (
+                              <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                            ))}
+                          </div>
+                        </div>
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          "{review.text}"
+                        </p>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="hidden sm:flex" />
+                <CarouselNext className="hidden sm:flex" />
+              </Carousel>
             </div>
           </div>
         </div>
