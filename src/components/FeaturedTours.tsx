@@ -1,6 +1,6 @@
-
 import React, { useEffect, useRef } from 'react';
 import { Clock, Users, Star, MapPin, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const FeaturedTours = () => {
   const sectionRef = useRef(null);
@@ -100,9 +100,14 @@ const FeaturedTours = () => {
 
                 {/* Quick Action Button */}
                 <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
-                  <button className="bg-white text-emerald-600 p-2 rounded-full hover:bg-emerald-50 transition-colors duration-300">
+                  <Link 
+                    to="/tours" 
+                    state={{ tourId: tour.id }}
+                    className="inline-block bg-white text-emerald-600 p-2 rounded-full hover:bg-emerald-50 transition-colors duration-300"
+                    aria-label={`View details about ${tour.title}`}
+                  >
                     <ArrowRight className="w-5 h-5" />
-                  </button>
+                  </Link>
                 </div>
               </div>
 
@@ -143,9 +148,13 @@ const FeaturedTours = () => {
                 </div>
 
                 {/* Book Button */}
-                <button className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-3 rounded-lg font-semibold hover:from-emerald-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105 group-hover:shadow-lg">
+                <Link 
+                  to="/tours"
+                  state={{ tourId: tour.id }}
+                  className="block w-full text-center bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-3 rounded-lg font-semibold hover:from-emerald-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105 group-hover:shadow-lg"
+                >
                   Book Now
-                </button>
+                </Link>
               </div>
             </div>
           ))}
@@ -153,10 +162,13 @@ const FeaturedTours = () => {
 
         {/* View All Tours Button */}
         <div className="text-center mt-12">
-          <button className="inline-flex items-center space-x-2 bg-white border-2 border-emerald-500 text-emerald-600 px-8 py-3 rounded-full font-semibold hover:bg-emerald-500 hover:text-white transition-all duration-300 transform hover:scale-105">
+          <Link 
+            to="/tours"
+            className="inline-flex items-center space-x-2 bg-white border-2 border-emerald-500 text-emerald-600 px-8 py-3 rounded-full font-semibold hover:bg-emerald-500 hover:text-white transition-all duration-300 transform hover:scale-105"
+          >
             <span>View All Tours</span>
             <ArrowRight className="w-5 h-5" />
-          </button>
+          </Link>
         </div>
       </div>
     </section>
