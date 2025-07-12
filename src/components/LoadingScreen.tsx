@@ -1,42 +1,37 @@
+
 import React from 'react';
 
-const LoadingScreenAlt = () => {
+const LoadingScreen = () => {
   return (
-    <div className="fixed inset-0 bg-gradient-to-br from-white via-gray-100 to-white flex items-center justify-center z-50">
-      <div className="text-center space-y-8">
-        
-        <div className="relative w-32 h-32 mx-auto transform-gpu"> {/* Added transform-gpu */}
-  <img 
-    src="/images/elephant.gif"
-    className="w-full h-full object-contain animate-pulse-rotate will-change-transform"
-    style={{
-      backgroundColor: 'rgba(255, 255, 255, 0.7)',
-      borderRadius: '60%',
-      padding: '8px',
-      backfaceVisibility: 'hidden' // Helps with mobile rendering
-    }}
-  />
-</div>
-
-        {/* Brand Title */}
-        <h1 className="text-5xl font-extrabold tracking-tight">
-          <span className="bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 bg-clip-text text-transparent animate-gradient bg-300%">
-            Anuradhapura Adventures
-          </span>
-        </h1>
-
-        {/* Progress Bar */}
-        <div className="w-64 h-2.5 bg-gray-200 rounded-full mx-auto overflow-hidden">
-          <div className="h-full bg-gradient-to-r from-amber-400 via-orange-400 to-red-500 rounded-full animate-progress"></div>
+     <div className="fixed inset-0 bg-gradient-to-br from-emerald-600 via-teal-500 to-cyan-500 flex items-center justify-center z-50">
+      <div className="text-center">
+        {/* Animated Logo */}
+        <div className="mb-8">
+          <div className="w-24 h-24 mx-auto bg-white rounded-full flex items-center justify-center shadow-2xl relative">
+            {/* Simplified mobile-friendly animation */}
+            <div className="absolute inset-4">
+              <div className="w-full h-full border-2 border-emerald-500 rounded-full animate-spin"></div>
+            </div>
+            <div className="w-4 h-4 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full animate-pulse"></div>
+          </div>
         </div>
-
+        
         {/* Loading Text */}
-        <p className="text-gray-600 text-sm font-mono tracking-widest animate-pulse">
-          LOADING EXPERIENCE...
-        </p>
+        <h1 className="text-4xl font-bold text-white mb-4 animate-pulse">
+          Anuradhapura Adventures
+        </h1>
+        
+        {/* Loading Animation */}
+        <div className="flex justify-center space-x-2">
+          <div className="w-3 h-3 bg-white rounded-full animate-ping"></div>
+          <div className="w-3 h-3 bg-white rounded-full animate-ping" style={{ animationDelay: '0.2s' }}></div>
+          <div className="w-3 h-3 bg-white rounded-full animate-ping" style={{ animationDelay: '0.4s' }}></div>
+        </div>
+        
+        <p className="text-white/80 mt-6 text-lg">Preparing your journey...</p>
       </div>
     </div>
   );
 };
 
-export default LoadingScreenAlt;
+export default LoadingScreen;
