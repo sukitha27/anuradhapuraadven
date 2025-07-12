@@ -1,10 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
-import { ArrowUp, Phone, Mail, MapPin, Facebook, Instagram, Twitter, MessageCircle } from 'lucide-react';
-import { FaGoogle, FaWhatsapp, FaTripadvisor } from 'react-icons/fa'; // Importing icons
+import { ArrowUp, Phone, Mail, MapPin, Facebook, Instagram, Twitter, MessageCircle, Star } from 'lucide-react';
+import { FaGoogle, FaWhatsapp, FaTripadvisor } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,19 +64,16 @@ const Footer = () => {
             {/* Company Info */}
             <div className="space-y-6">
               <div className="flex items-center space-x-3">
-            {/* Replace the letter A with a logo */}
-              <img 
-                src="/images/logo.png" 
-                alt="Anuradhapura Adventures Logo" 
-                className="w-12 h-12 rounded-full object-cover" 
-              />
-        <div>
-    <h3 className="text-xl font-bold">Anuradhapura</h3>
-    <p className="text-white/80">Adventures</p>
-  </div>
-</div>
-
-              
+                <img 
+                  src="/images/logo.png" 
+                  alt="Anuradhapura Adventures Logo" 
+                  className="w-12 h-12 rounded-full object-cover" 
+                />
+                <div>
+                  <h3 className="text-xl font-bold">Anuradhapura</h3>
+                  <p className="text-white/80">Adventures</p>
+                </div>
+              </div> 
               <p className="text-white/80 leading-relaxed">
                 Discover the ancient wonders of Anuradhapura through authentic experiences, 
                 delicious cuisine, and warm Sri Lankan hospitality.
@@ -156,17 +154,25 @@ const Footer = () => {
                 </div>
               </div>
 
-              {/* WhatsApp Quick Contact */}
-              <div className="mt-6">
+              {/* Action Buttons */}
+              <div className="mt-6 space-y-3">
                 <a
                   href="https://wa.me/94701234567"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105"
+                  className="inline-flex items-center space-x-2 bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 w-full justify-center"
                 >
                   <FaWhatsapp className="w-4 h-4" />
                   <span>WhatsApp Us</span>
                 </a>
+                
+                <button
+                  onClick={() => navigate('/reviews')}
+                  className="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 w-full justify-center text-white font-semibold"
+                >
+                  <Star className="w-4 h-4" />
+                  <span>Review Us</span>
+                </button>
               </div>
             </div>
           </div>

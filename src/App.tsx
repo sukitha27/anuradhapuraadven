@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MaintenanceProvider, useMaintenanceMode } from "./contexts/MaintenanceContext";
 import Index from "./pages/Index";
+import Reviews from "./pages/Reviews";
 import Tours from "./pages/Tours";
 import NotFound from "./pages/NotFound";
 import Maintenance from "./pages/Maintenance";
@@ -23,6 +24,7 @@ const AppContent = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Index />} />
+        <Route path="/reviews" element={<Reviews />} />
         <Route path="/tours" element={<Tours />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />

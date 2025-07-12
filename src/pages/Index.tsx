@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin, Clock, Users, Star } from 'lucide-react';
+import ReviewsSection from "@/components/ReviewsSection";
 import Navigation from '../components/Navigation';
 import HeroSection from '../components/HeroSection';
 import FeaturedTours from '../components/FeaturedTours';
@@ -10,6 +11,7 @@ import CookerySection from '../components/CookerySection';
 import InteractiveMap from '../components/InteractiveMap';
 import Footer from '../components/Footer';
 import ChatBot from '../components/ChatBot';
+
 
 const Index = () => {
   return (
@@ -21,10 +23,13 @@ const Index = () => {
       <HomestaySection />
       <CookerySection />
       <InteractiveMap />
+      {/* Reviews Section */}
+      <ReviewsSection />
       <Footer />
       
       {/* ChatBot positioned at the bottom */}
       <ChatBot />
+      
     </div>
   );
 };
