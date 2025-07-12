@@ -3,6 +3,8 @@ import { Star, Send, ArrowLeft, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
+import { db } from '@/lib/firebase';
+import { collection, getDocs, addDoc, Timestamp, query, orderBy, limit } from 'firebase/firestore';
 
 interface Review {
   id: string;
@@ -15,6 +17,7 @@ interface Review {
 
 const Reviews = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
+  const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: '',
     rating: 0,
@@ -25,14 +28,39 @@ const Reviews = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
+  // Fetch reviews from Firebase with localStorage fallback
   useEffect(() => {
-    const savedReviews = localStorage.getItem('anuradhapura-reviews');
-    if (savedReviews) {
-      setReviews(JSON.parse(savedReviews));
-    }
+    const fetchReviews = async () => {
+      try {
+        const q = query(
+          collection(db, 'reviews'),
+          orderBy('date', 'desc'),
+          limit(20)
+        );
+        const querySnapshot = await getDocs(q);
+        
+        const reviewsData = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+          date: doc.data().date?.toDate().toLocaleDateString() || new Date().toLocaleDateString()
+        })) as Review[];
+        
+        setReviews(reviewsData);
+        localStorage.setItem('anuradhapura-reviews', JSON.stringify(reviewsData));
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+        // Fallback to localStorage
+        const localReviews = localStorage.getItem('anuradhapura-reviews');
+        if (localReviews) setReviews(JSON.parse(localReviews));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReviews();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!formData.name || !formData.comment || formData.rating === 0) {
@@ -44,25 +72,42 @@ const Reviews = () => {
       return;
     }
 
-    const newReview: Review = {
-      id: Date.now().toString(),
-      name: formData.name,
-      rating: formData.rating,
-      comment: formData.comment,
-      location: formData.location,
-      date: new Date().toLocaleDateString()
-    };
+    try {
+      const docRef = await addDoc(collection(db, 'reviews'), {
+        name: formData.name,
+        rating: formData.rating,
+        comment: formData.comment,
+        location: formData.location,
+        date: Timestamp.now()
+      });
 
-    const updatedReviews = [newReview, ...reviews];
-    setReviews(updatedReviews);
-    localStorage.setItem('anuradhapura-reviews', JSON.stringify(updatedReviews));
+      const newReview: Review = {
+        id: docRef.id,
+        name: formData.name,
+        rating: formData.rating,
+        comment: formData.comment,
+        location: formData.location,
+        date: new Date().toLocaleDateString()
+      };
 
-    toast({
-      title: "Thank you for your review!",
-      description: "Your review has been submitted successfully.",
-    });
+      const updatedReviews = [newReview, ...reviews];
+      setReviews(updatedReviews);
+      localStorage.setItem('anuradhapura-reviews', JSON.stringify(updatedReviews));
 
-    setFormData({ name: '', rating: 0, comment: '', location: '' });
+      toast({
+        title: "Thank you for your review!",
+        description: "Your review has been submitted successfully.",
+      });
+
+      setFormData({ name: '', rating: 0, comment: '', location: '' });
+    } catch (error) {
+      console.error('Error submitting review:', error);
+      toast({
+        title: "Error submitting review",
+        description: "Please try again later.",
+        variant: "destructive"
+      });
+    }
   };
 
   const renderStars = (rating: number, interactive = false, onStarClick?: (rating: number) => void) => {
@@ -75,7 +120,7 @@ const Reviews = () => {
               star <= (interactive ? (hoveredRating || rating) : rating)
                 ? 'fill-yellow-400 text-yellow-400'
                 : 'text-gray-300'
-            } ${interactive ? 'cursor-pointer transition-colors duration-200' : ''}`}
+            } ${interactive ? 'cursor-pointer hover:scale-110 transition-all duration-200' : ''}`}
             onClick={() => interactive && onStarClick?.(star)}
             onMouseEnter={() => interactive && setHoveredRating(star)}
             onMouseLeave={() => interactive && setHoveredRating(0)}
@@ -93,20 +138,20 @@ const Reviews = () => {
           <Button
             variant="ghost"
             onClick={() => navigate('/')}
-            className="mb-6 text-emerald-600 hover:text-emerald-700"
+            className="mb-6 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Home
           </Button>
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">Share Your Experience</h1>
-          <p className="text-xl text-gray-600">We'd love to hear about your adventure with us!</p>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Share Your Experience</h1>
+          <p className="text-lg sm:text-xl text-gray-600">We'd love to hear about your adventure with us!</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Review Form */}
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-              <Heart className="w-6 h-6 text-red-500 mr-2" />
+          <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6 flex items-center">
+              <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-red-500 mr-2" />
               Write a Review
             </h2>
             
@@ -119,8 +164,9 @@ const Reviews = () => {
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors duration-200"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200"
                   placeholder="Enter your name"
+                  required
                 />
               </div>
 
@@ -132,7 +178,7 @@ const Reviews = () => {
                   type="text"
                   value={formData.location}
                   onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors duration-200"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200"
                   placeholder="Where are you from?"
                 />
               </div>
@@ -141,7 +187,12 @@ const Reviews = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Rating *
                 </label>
-                {renderStars(formData.rating, true, (rating) => setFormData({ ...formData, rating }))}
+                <div className="flex items-center space-x-4">
+                  {renderStars(formData.rating, true, (rating) => setFormData({ ...formData, rating }))}
+                  <span className="text-sm text-gray-500">
+                    {formData.rating > 0 ? `${formData.rating} star${formData.rating !== 1 ? 's' : ''}` : 'Select rating'}
+                  </span>
+                </div>
               </div>
 
               <div>
@@ -152,40 +203,67 @@ const Reviews = () => {
                   value={formData.comment}
                   onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
                   rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors duration-200"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200"
                   placeholder="Tell us about your experience..."
+                  required
                 />
               </div>
 
               <Button
                 type="submit"
-                className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white py-3 px-6 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
+                className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white py-3 px-6 rounded-lg font-semibold transition-all duration-300 transform hover:scale-[1.02]"
+                disabled={loading}
               >
                 <Send className="w-4 h-4 mr-2" />
-                Submit Review
+                {loading ? 'Submitting...' : 'Submit Review'}
               </Button>
             </form>
           </div>
 
           {/* Recent Reviews */}
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Recent Reviews</h2>
+          <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6">Recent Reviews</h2>
             
-            {reviews.length === 0 ? (
-              <p className="text-gray-500 text-center py-8">No reviews yet. Be the first to share your experience!</p>
+            {loading ? (
+              <div className="space-y-6">
+                {[...Array(3)].map((_, i) => (
+                  <div key={i} className="animate-pulse border-b border-gray-200 pb-4 last:border-b-0">
+                    <div className="flex justify-between mb-2">
+                      <div className="h-4 bg-gray-200 rounded w-1/3"></div>
+                      <div className="h-4 bg-gray-200 rounded w-1/4"></div>
+                    </div>
+                    <div className="h-4 bg-gray-200 rounded w-1/2 mb-2"></div>
+                    <div className="h-3 bg-gray-200 rounded w-1/4 mb-2"></div>
+                    <div className="h-3 bg-gray-200 rounded w-full"></div>
+                  </div>
+                ))}
+              </div>
+            ) : reviews.length === 0 ? (
+              <div className="text-center py-8">
+                <p className="text-gray-500 mb-4">No reviews yet.</p>
+                <p className="text-gray-400">Be the first to share your experience!</p>
+              </div>
             ) : (
-              <div className="space-y-6 max-h-96 overflow-y-auto">
-                {reviews.slice(0, 5).map((review) => (
-                  <div key={review.id} className="border-b border-gray-200 pb-4 last:border-b-0">
+              <div className="space-y-6 max-h-[500px] overflow-y-auto pr-2">
+                {reviews.map((review) => (
+                  <div key={review.id} className="border-b border-gray-200 pb-4 last:border-b-0 group">
                     <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-semibold text-gray-800">{review.name}</h3>
-                      <span className="text-sm text-gray-500">{review.date}</span>
+                      <h3 className="font-semibold text-gray-800 group-hover:text-emerald-600 transition-colors">
+                        {review.name}
+                      </h3>
+                      <span className="text-sm text-gray-500">
+                        {review.date}
+                      </span>
                     </div>
                     {renderStars(review.rating)}
                     {review.location && (
-                      <p className="text-sm text-gray-500 mt-1">From: {review.location}</p>
+                      <p className="text-sm text-gray-500 mt-1">
+                        From: <span className="text-gray-600">{review.location}</span>
+                      </p>
                     )}
-                    <p className="text-gray-700 mt-2">{review.comment}</p>
+                    <p className="text-gray-700 mt-2 group-hover:text-gray-800 transition-colors">
+                      {review.comment}
+                    </p>
                   </div>
                 ))}
               </div>
