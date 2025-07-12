@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin, Clock, Users, Star } from 'lucide-react';
 import Navigation from '../components/Navigation';
@@ -9,25 +9,9 @@ import HomestaySection from '../components/HomestaySection';
 import CookerySection from '../components/CookerySection';
 import InteractiveMap from '../components/InteractiveMap';
 import Footer from '../components/Footer';
-import LoadingScreen from '../components/LoadingScreen';
-import ChatBot from '../components/ChatBot'; // Import the ChatBot component
+import ChatBot from '../components/ChatBot';
 
 const Index = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate loading time
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
-
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       <Navigation />
@@ -39,7 +23,7 @@ const Index = () => {
       <InteractiveMap />
       <Footer />
       
-      {/* Add the ChatBot component here */}
+      {/* ChatBot positioned at the bottom */}
       <ChatBot />
     </div>
   );
