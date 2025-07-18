@@ -1,8 +1,9 @@
 
 import React, { useState } from 'react';
 import { MapPin, Phone, Clock, Star, ExternalLink } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
-const InteractiveMap = () => {
+const  InteractiveMap = () => {
   const [selectedLocation, setSelectedLocation] = useState(null);
 
   const locations = [
@@ -55,6 +56,39 @@ const InteractiveMap = () => {
       description: 'Wildlife safari tours',
       hours: '5:00 AM - 6:00 PM',
       phone: '+94 70 123 4570'
+    }
+  ];
+
+  const galleryImages = [
+    {
+      src: 'https://images.unsplash.com/photo-1472396961693-142e6e269027',
+      alt: 'Traditional Sri Lankan temple architecture',
+      title: 'Ancient Temples'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716',
+      alt: 'Beautiful Sri Lankan landscape',
+      title: 'Natural Beauty'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1518877593221-1f28583780b4',
+      alt: 'Wildlife safari experience',
+      title: 'Wildlife Adventures'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9',
+      alt: 'Traditional Sri Lankan cuisine',
+      title: 'Local Cuisine'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9',
+      alt: 'Tropical forest scenery',
+      title: 'Tropical Paradise'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1721322800607-8c38375eef04',
+      alt: 'Comfortable homestay accommodation',
+      title: 'Cozy Stays'
     }
   ];
 
@@ -192,6 +226,39 @@ const InteractiveMap = () => {
                     </div>
                   )}
                 </div>
+              </div>
+
+              {/* Image Gallery */}
+              <div className="p-6 bg-white border-t border-gray-100">
+                <div className="mb-4">
+                  <h3 className="text-lg font-semibold text-gray-800">Experience Gallery</h3>
+                  <p className="text-sm text-gray-600">Discover the beauty of Sri Lanka</p>
+                </div>
+                
+                <Carousel className="w-full">
+                  <CarouselContent className="-ml-2 md:-ml-4">
+                    {galleryImages.map((image, index) => (
+                      <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3">
+                        <div className="relative group cursor-pointer">
+                          <div className="aspect-[4/3] overflow-hidden rounded-lg bg-gray-100">
+                            <img
+                              src={`${image.src}?w=400&h=300&fit=crop`}
+                              alt={image.alt}
+                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                            />
+                            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-end p-3">
+                              <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <p className="text-sm font-medium">{image.title}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-2" />
+                  <CarouselNext className="right-2" />
+                </Carousel>
               </div>
             </div>
           </div>

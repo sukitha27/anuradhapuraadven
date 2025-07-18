@@ -45,7 +45,7 @@ const CookerySection = () => {
       duration: '2 hours',
       participants: '2-10 people',
       price: '$30',
-      nextAvailable: 'This Weekend',
+      nextAvailable: 'Started soon...',
       description: 'Create delicious Sri Lankan sweets and desserts including watalappan and kokis',
       includes: ['Dessert making', 'Decoration techniques', 'Sweet treats', 'Gift box'],
       schedule: [
