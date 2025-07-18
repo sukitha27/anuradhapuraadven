@@ -64,32 +64,32 @@ const  InteractiveMap = () => {
 
   const galleryImages = [
     {
-      src: 'https://images.unsplash.com/photo-1472396961693-142e6e269027',
+      src: '/images/gallery/G1.png',
       alt: 'Traditional Sri Lankan temple architecture',
       title: 'Ancient Temples'
     },
     {
-      src: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716',
+      src: '/images/gallery/G11.png',
       alt: 'Beautiful Sri Lankan landscape',
       title: 'Natural Beauty'
     },
     {
-      src: 'https://images.unsplash.com/photo-1518877593221-1f28583780b4',
+      src: '/images/gallery/G12.png',
       alt: 'Wildlife safari experience',
       title: 'Wildlife Adventures'
     },
     {
-      src: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9',
+      src: '/images/gallery/G10.png',
       alt: 'Traditional Sri Lankan cuisine',
       title: 'Local Cuisine'
     },
     {
-      src: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9',
+      src: '/images/gallery/G13.png',
       alt: 'Tropical forest scenery',
       title: 'Tropical Paradise'
     },
     {
-      src: 'https://images.unsplash.com/photo-1721322800607-8c38375eef04',
+      src: '/images/gallery/G14.png',
       alt: 'Comfortable homestay accommodation',
       title: 'Cozy Stays'
     }

@@ -8,49 +8,49 @@ const AllGallery = () => {
   const galleryImages = [
     {
       id: 1,
-      src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      src: "/images/gallery/G1.png",
       alt: "Mountain landscape hit by sun rays",
       title: "Majestic Mountains"
     },
     {
       id: 2,
-      src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      src: "/images/gallery/G2.jpg",
       alt: "Foggy mountain summit",
       title: "Misty Peaks"
     },
     {
       id: 3,
-      src: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      src: "/images/gallery/G3.jpg",
       alt: "Ocean wave at beach",
       title: "Ocean Waves"
     },
     {
       id: 4,
-      src: "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      src: "/images/gallery/G5.jpg",
       alt: "Trees near rocky mountain under blue skies",
       title: "Natural Wonders"
     },
     {
       id: 5,
-      src: "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      src: "/images/gallery/G6.png",
       alt: "Forest heated by sunbeam",
       title: "Forest Light"
     },
     {
       id: 6,
-      src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      src: "/images/gallery/G7.png",
       alt: "Body of water surrounded by trees",
       title: "Serene Waters"
     },
     {
       id: 7,
-      src: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      src: "/images/gallery/G8.jpg",
       alt: "Bird's eye view of green mountains",
       title: "Aerial Views"
     },
     {
       id: 8,
-      src: "https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      src: "images/gallery/G9.jpg",
       alt: "Green grass and rocky mountain during daytime",
       title: "Mountain Meadows"
     }
