@@ -143,10 +143,13 @@ const HeroSection = () => {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
             
-            <button className="group bg-white/10 backdrop-blur-md text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/20 transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 border border-white/20">
-              <Play className="w-5 h-5" />
-              <span>Watch Video</span>
-            </button>
+            
+            <Link to="/videos">
+              <button className="group bg-white/10 backdrop-blur-md text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/20 transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 border border-white/20">
+                <Play className="w-5 h-5" />
+                <span>Watch Video</span>
+              </button>
+            </Link>
           </div>
 
           {/* Stats */}

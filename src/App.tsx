@@ -7,6 +7,7 @@ import { MaintenanceProvider, useMaintenanceMode } from "./contexts/MaintenanceC
 import Index from "./pages/Index";
 import Reviews from "./pages/Reviews";
 import Tours from "./pages/Tours";
+import Videos from "./pages/Videos";
 import NotFound from "./pages/NotFound";
 import Maintenance from "./pages/Maintenance";
 
@@ -26,6 +27,7 @@ const AppContent = () => {
         <Route path="/" element={<Index />} />
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/tours" element={<Tours />} />
+        <Route path="/videos" element={<Videos />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
