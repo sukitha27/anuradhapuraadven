@@ -11,15 +11,15 @@ const RestaurantSection = () => {
     {
       name: 'Traditional Rice & Curry',
       image: '/images/riceandcurry.jpg',
-      price: '$12',
+      price: '$0',
       popularity: 95,
-      description: 'Authentic Sri Lankan rice and curry with 8 different curries',
+      description: 'Authentic Sri Lankan rice and curry with 5 different curries',
       spiceLevel: 'Medium'
     },
     {
       name: 'Fish Ambul Thiyal',
       image: 'https://images.unsplash.com/photo-1551326844-4df70f78d0e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-      price: '$15',
+      price: '$0',
       popularity: 88,
       description: 'Traditional sour fish curry with gotukola',
       spiceLevel: 'Hot'
@@ -27,7 +27,7 @@ const RestaurantSection = () => {
     {
       name: 'Kottu Roti',
       image: '/images/kottu.jpg',
-      price: '$10',
+      price: '$0',
       popularity: 92,
       description: 'Chopped flatbread stir-fried with vegetables and egg',
       spiceLevel: 'Mild'
@@ -35,7 +35,7 @@ const RestaurantSection = () => {
     {
       name: 'Hoppers with Coconut Sambol',
       image: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-      price: '$8',
+      price: '$0',
       popularity: 90,
       description: 'Bowl-shaped pancakes with spicy coconut relish',
       spiceLevel: 'Medium'
@@ -45,17 +45,17 @@ const RestaurantSection = () => {
   const cookeryClasses = [
     {
       name: 'Traditional Curry Cooking',
-      duration: '3 hours',
-      price: '$35',
-      nextClass: 'Tomorrow 2:00 PM',
+      duration: '3.30 hours (launch/Dinner session)',
+      price: '$16',
+      nextClass: 'Tomorrow 9:00 AM',
       description: 'Learn to make authentic Sri Lankan curries from scratch'
     },
     {
-      name: 'Street Food Masterclass',
-      duration: '2 hours',
-      price: '$25',
-      nextClass: 'Today 6:00 PM',
-      description: 'Master the art of Sri Lankan street food favorites'
+      name: 'Pol Sambol and Coconut Rottie',
+      duration: '3.30 hours',
+      price: '$16',
+      nextClass: 'Tomorrow 5:00 PM',
+      description: 'Master the art of Sri Lankan authentic food favorites'
     }
   ];
 

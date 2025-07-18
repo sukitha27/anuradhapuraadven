@@ -10,21 +10,21 @@ const CookerySection = () => {
     {
       title: 'Traditional Rice & Curry Workshop',
       image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      duration: '3 hours',
-      participants: '2-8 people',
-      price: '$45',
-      nextAvailable: 'Today 2:00 PM',
-      description: 'Learn to prepare authentic Sri Lankan rice and curry with 8 different accompaniments',
-      includes: ['Market tour', 'Spice grinding', 'Cooking session', 'Full meal', 'Recipe book'],
+      duration: '3.30 hours',
+      participants: '2-10 people',
+      price: '$16',
+      nextAvailable: 'Today 9:00 AM',
+      description: 'Learn to prepare authentic Sri Lankan rice and curry with 5 different accompaniments (launch session)',
+      includes: ['Rice', 'Chicken', 'Fried Lake Fish', 'Making Kokis', 'Herbal Juice'],
       schedule: [
-        { time: '2:00 PM', activity: 'Welcome & Market Tour' },
-        { time: '2:30 PM', activity: 'Spice Introduction' },
-        { time: '3:00 PM', activity: 'Curry Preparation' },
-        { time: '4:30 PM', activity: 'Enjoy Your Meal' }
+        { time: '9:00 AM', activity: 'Welcome' },
+        { time: '9:30 AM', activity: 'Spice Introduction' },
+        { time: '12:00 PM', activity: 'Curry Preparation' },
+        { time: '12:30 PM', activity: 'Enjoy Your Meal' }
       ]
     },
     {
-      title: 'Sri Lankan Street Food Masterclass',
+      title: 'Pol Sambol and Coconut Rottie(SPECIAL)',
       image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       duration: '2.5 hours',
       participants: '2-6 people',
@@ -34,9 +34,9 @@ const CookerySection = () => {
       includes: ['Hands-on cooking', 'Technique training', 'Tasting session', 'Take-home snacks'],
       schedule: [
         { time: '5:00 PM', activity: 'Street Food History' },
-        { time: '5:30 PM', activity: 'Hopper Making' },
-        { time: '6:00 PM', activity: 'Kottu Preparation' },
-        { time: '7:00 PM', activity: 'Feast Time' }
+        { time: '6:00 PM', activity: 'Hopper Making' },
+        { time: '7:00 PM', activity: 'Kottu Preparation' },
+        { time: '8:30 PM', activity: 'Feast Time' }
       ]
     },
     {
