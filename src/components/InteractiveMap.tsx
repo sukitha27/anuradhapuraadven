@@ -2,9 +2,12 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Clock, Star, ExternalLink } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 const  InteractiveMap = () => {
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const navigate = useNavigate();
 
   const locations = [
     {
@@ -230,9 +233,19 @@ const  InteractiveMap = () => {
 
               {/* Image Gallery */}
               <div className="p-6 bg-white border-t border-gray-100">
-                <div className="mb-4">
-                  <h3 className="text-lg font-semibold text-gray-800">Experience Gallery</h3>
-                  <p className="text-sm text-gray-600">Discover the beauty of Sri Lanka</p>
+                <div className="mb-4 flex items-center justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800">Experience Gallery</h3>
+                    <p className="text-sm text-gray-600">Discover the beauty of Sri Lanka</p>
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => navigate('/gallery')}
+                    className="hover-scale"
+                  >
+                    View All Gallery
+                  </Button>
                 </div>
                 
                 <Carousel className="w-full">

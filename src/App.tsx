@@ -10,6 +10,7 @@ import Tours from "./pages/Tours";
 import Videos from "./pages/Videos";
 import NotFound from "./pages/NotFound";
 import Maintenance from "./pages/Maintenance";
+import AllGallery from "./pages/AllGallery";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const AppContent = () => {
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/tours" element={<Tours />} />
         <Route path="/videos" element={<Videos />} />
+        <Route path="/gallery" element={<AllGallery />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
