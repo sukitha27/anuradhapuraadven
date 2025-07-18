@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Star, Quote, Users, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { db } from '@/lib/firebase';
 import { collection, getDocs, addDoc, Timestamp } from 'firebase/firestore';
@@ -13,16 +14,12 @@ interface Review {
 }
 
 const ReviewsSection = () => {
+  const navigate = useNavigate();
   const [reviews, setReviews] = useState<Review[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoSliding, setIsAutoSliding] = useState(true);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  // Mock navigation function for demonstration
-  const navigate = (path: string) => {
-    console.log(`Navigating to: ${path}`);
-  };
 
   // Fetch reviews from Firebase with localStorage fallback
   useEffect(() => {

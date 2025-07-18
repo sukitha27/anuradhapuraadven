@@ -281,7 +281,7 @@ const InteractiveChatBot = () => {
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Type your message... (Press Enter to send)"
+                  placeholder="Type your message... "
                   className="w-full px-4 py-3 bg-muted/50 border border-border/50 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-foreground placeholder:text-muted-foreground text-sm resize-none min-h-[44px] max-h-24"
                   rows={1}
                 />
