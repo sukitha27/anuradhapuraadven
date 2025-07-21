@@ -1,15 +1,21 @@
+import { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useNavigate } from "react-router-dom";
 import { Home, Shield, FileText, Map } from "lucide-react";
-import Footer from "@/components/Footer"; // Import your Footer component
+import Footer from "@/components/Footer";
 
 const Sitemap = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  // Scroll to top when the pathname changes (Solution 3)
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const pages = [
-    // ... your existing pages array
-     {
+    {
       title: "Home",
       description: "Main landing page",
       path: "/",
@@ -67,7 +73,10 @@ const Sitemap = () => {
                     <p className="text-muted-foreground mb-4">{page.description}</p>
                     <Button
                       variant="outline"
-                      onClick={() => navigate(page.path)}
+                      onClick={() => {
+                        navigate(page.path);
+                        window.scrollTo(0, 0); // Also scroll to top when navigating to other pages
+                      }}
                       className="w-full"
                     >
                       Visit Page
@@ -79,7 +88,7 @@ const Sitemap = () => {
           </div>
         </div>
       </div>
-      <Footer /> {/* Include the Footer at the bottom */}
+      <Footer />
     </div>
   );
 };

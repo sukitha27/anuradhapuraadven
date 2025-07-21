@@ -1,9 +1,16 @@
+import { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
-import Footer from "@/components/Footer"; // Import your Footer component
+import Footer from "@/components/Footer";
 
 const PrivacyPolicy = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  // Scroll to top when the component mounts or path changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -11,7 +18,10 @@ const PrivacyPolicy = () => {
         <div className="max-w-4xl mx-auto">
           <Button
             variant="outline"
-            onClick={() => navigate("/")}
+            onClick={() => {
+              navigate("/");
+              window.scrollTo(0, 0); // Scroll to top when navigating home
+            }}
             className="mb-8"
           >
             ← Back to Home
@@ -111,20 +121,23 @@ const PrivacyPolicy = () => {
 
             <section>
               <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
-              <p>
-                If you have any questions about this Privacy Policy, please contact us at: 
-                <a href="mailto:privacy@example.com" className="text-primary hover:underline ml-1">
-                  privacy@example.com
+              <p className="mb-2">
+                If you have any questions about this Privacy Policy, please contact us at:
+                <a href="mailto:privacy@anuradhapura-adventures.com" className="text-primary hover:underline ml-1">
+                  privacy@anuradhapura-adventures.com
                 </a>
               </p>
-              <p className="mt-2">
-                Or by mail at: Vinandharama mawatha, Pothanegama , Anuradhapura, Sri Lanka
-              </p>
+              <address className="not-italic">
+                    Vinandharama mawatha<br />
+                    Pothanegama, Anuradhapura<br />
+                    Sri Lanka<br />
+                    +94 70 123 4567
+                  </address>
             </section>
           </div>
         </div>
       </div>
-      <Footer /> {/* Footer added at the bottom */}
+      <Footer />
     </div>
   );
 };

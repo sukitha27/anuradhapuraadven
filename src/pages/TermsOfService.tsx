@@ -1,9 +1,16 @@
+import { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
-import Footer from "@/components/Footer"; // Import your Footer component
+import Footer from "@/components/Footer";
 
 const TermsOfService = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  // Scroll to top when the component mounts or path changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -11,7 +18,10 @@ const TermsOfService = () => {
         <div className="max-w-4xl mx-auto">
           <Button
             variant="outline"
-            onClick={() => navigate("/")}
+            onClick={() => {
+              navigate("/");
+              window.scrollTo(0, 0); // Scroll to top when navigating home
+            }}
             className="mb-8"
           >
             ← Back to Home
