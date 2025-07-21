@@ -33,7 +33,7 @@ const InteractiveMap = () => {
       id: 3,
       name: 'Ruwanwelisaya Stupa',
       type: 'attraction',
-      coords: { x: 48, y: 50 },
+      coords: { x: 53, y: 45 },
       rating: 4.7,
       description: 'Ancient Buddhist stupa',
       hours: '6:00 AM - 6:00 PM',
