@@ -90,12 +90,12 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
            {/* Logo Section */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3">
             {/* Logo Image */}
             <img 
               src="/images/logo.png" // Replace with your logo path
               alt="Logo"
-              className="w-12 h-12 object-contain rounded-full" // Adjust size as needed
+              className="w-16 h-16 object-contain rounded-full" // Adjust size as needed
             />
             {/* Brand Name */}
             <div>
@@ -117,7 +117,7 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
               <a
                 key={item.name}

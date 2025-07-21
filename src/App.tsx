@@ -11,6 +11,9 @@ import Videos from "./pages/Videos";
 import NotFound from "./pages/NotFound";
 import Maintenance from "./pages/Maintenance";
 import AllGallery from "./pages/AllGallery";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import Sitemap from "./pages/Sitemap";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +33,9 @@ const AppContent = () => {
         <Route path="/tours" element={<Tours />} />
         <Route path="/videos" element={<Videos />} />
         <Route path="/gallery" element={<AllGallery />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/sitemap" element={<Sitemap />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>

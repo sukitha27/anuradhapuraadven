@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUp, Phone, Mail, MapPin, Facebook, Instagram, Twitter, MessageCircle, Star } from 'lucide-react';
-import { FaGoogle, FaWhatsapp, FaTripadvisor } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { FaGoogle, FaWhatsapp, FaTripadvisor, FaTwitter, FaInstagram, FaFacebook, FaStar } from 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Footer = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -24,10 +24,10 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: Facebook, href: '#', color: 'hover:text-blue-500' },
-    { icon: Instagram, href: '#', color: 'hover:text-pink-500' },
-    { icon: Twitter, href: '#', color: 'hover:text-blue-400' },
-    { icon: MessageCircle, href: '#', color: 'hover:text-green-500' }
+    { icon: FaFacebook, href: '#', color: 'hover:text-blue-500' },
+    { icon: FaInstagram, href: '#', color: 'hover:text-pink-500' },
+    { icon: FaTwitter, href: '#', color: 'hover:text-blue-400' },
+    { icon: FaWhatsapp, href: '#', color: 'hover:text-green-500' }
   ];
 
   const quickLinks = [
@@ -67,7 +67,7 @@ const Footer = () => {
                 <img 
                   src="/images/logo.png" 
                   alt="Anuradhapura Adventures Logo" 
-                  className="w-12 h-12 rounded-full object-cover" 
+                  className="w-16 h-16 rounded-full object-cover" 
                 />
                 <div>
                   <h3 className="text-xl font-bold">Anuradhapura</h3>
@@ -170,7 +170,7 @@ const Footer = () => {
                   onClick={() => navigate('/reviews')}
                   className="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 w-full justify-center text-white font-semibold"
                 >
-                  <Star className="w-4 h-4" />
+                  <FaStar className="w-4 h-4" />
                   <span>Review Us</span>
                 </button>
               </div>
@@ -187,9 +187,24 @@ const Footer = () => {
               </p>
               
               <div className="flex items-center space-x-6 text-sm text-white/60">
-                <a href="#" className="hover:text-emerald-300 transition-colors duration-300">Privacy Policy</a>
-                <a href="#" className="hover:text-emerald-300 transition-colors duration-300">Terms of Service</a>
-                <a href="#" className="hover:text-emerald-300 transition-colors duration-300">Sitemap</a>
+                <Link 
+                  to="/privacy-policy" 
+                  className="hover:text-primary transition-colors duration-300"
+                >
+                  Privacy Policy
+                </Link>
+                <Link 
+                  to="/terms-of-service" 
+                  className="hover:text-primary transition-colors duration-300"
+                >
+                  Terms of Service
+                </Link>
+                <Link 
+                  to="/sitemap" 
+                  className="hover:text-primary transition-colors duration-300"
+                >
+                  Sitemap
+                </Link>
               </div>
             </div>
           </div>
