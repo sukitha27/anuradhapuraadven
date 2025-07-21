@@ -1,11 +1,10 @@
-
 import React, { useState } from 'react';
 import { MapPin, Phone, Clock, Star, ExternalLink } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 
-const  InteractiveMap = () => {
+const InteractiveMap = () => {
   const [selectedLocation, setSelectedLocation] = useState(null);
   const navigate = useNavigate();
 
@@ -14,7 +13,7 @@ const  InteractiveMap = () => {
       id: 1,
       name: 'Green Chilli Restaurant',
       type: 'restaurant',
-      coords: { x: 45, y: 35 },
+      coords: { x: 45, y: 45},
       rating: 4.8,
       description: 'Authentic Sri Lankan cuisine',
       hours: '11:00 AM - 10:00 PM',
@@ -34,7 +33,7 @@ const  InteractiveMap = () => {
       id: 3,
       name: 'Ruwanwelisaya Stupa',
       type: 'attraction',
-      coords: { x: 30, y: 55 },
+      coords: { x: 48, y: 50 },
       rating: 4.7,
       description: 'Ancient Buddhist stupa',
       hours: '6:00 AM - 6:00 PM',
@@ -54,7 +53,7 @@ const  InteractiveMap = () => {
       id: 5,
       name: 'Wilpattu Safari Pickup',
       type: 'tour',
-      coords: { x: 75, y: 60 },
+      coords: { x: 39, y: 42 },
       rating: 4.8,
       description: 'Wildlife safari tours',
       hours: '5:00 AM - 6:00 PM',
@@ -134,44 +133,25 @@ const  InteractiveMap = () => {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
               <div className="relative">
-                {/* Map Background */}
-                <div 
-                  className="w-full h-96 bg-gradient-to-br from-emerald-100 via-teal-50 to-blue-100 relative overflow-hidden cursor-pointer"
-                  style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2334d399' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-                  }}
-                >
-                  {/* Roads/Paths */}
-                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
-                    <path
-                      d="M10,30 Q30,20 50,30 T90,40"
-                      stroke="#10b981"
-                      strokeWidth="0.5"
-                      fill="none"
-                      opacity="0.3"
-                    />
-                    <path
-                      d="M20,60 Q40,50 60,60 T90,70"
-                      stroke="#10b981"
-                      strokeWidth="0.5"
-                      fill="none"
-                      opacity="0.3"
-                    />
-                    <path
-                      d="M40,10 Q45,30 50,50 Q55,70 60,90"
-                      stroke="#10b981"
-                      strokeWidth="0.5"
-                      fill="none"
-                      opacity="0.3"
-                    />
-                  </svg>
+                {/* Map Background with WebP Image */}
+                <div className="w-full h-96 relative overflow-hidden">
+                  {/* WebP Image Background */}
+                  <img
+                    src="/maps/Anuradhapura.webp" // WebP format for better performance
+                    alt="Anuradhapura District Map"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  
+                  {/* Semi-transparent overlay for better marker visibility */}
+                  <div className="absolute inset-0 bg-black/5"></div>
 
-                  {/* Location Markers */}
+                  {/* Location Markers with Ping Effect */}
                   {locations.map((location) => (
                     <button
                       key={location.id}
                       onClick={() => setSelectedLocation(location.id === selectedLocation ? null : location.id)}
-                      className={`absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${
+                      className={`absolute transform -translate-x-[70%] -translate-y-1/2 transition-all duration-300 ${
                         selectedLocation === location.id ? 'scale-125 z-10' : 'hover:scale-110'
                       }`}
                       style={{
@@ -179,12 +159,19 @@ const  InteractiveMap = () => {
                         top: `${location.coords.y}%`,
                       }}
                     >
-                      <div className={`w-12 h-12 ${getLocationColor(location.type)} rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300 animate-pulse`}>
-                        <span className="text-lg">{getLocationIcon(location.type)}</span>
+                      {/* Ping Effect Container */}
+                      <div className="relative">
+                        {/* Ping Circle */}
+                        <div className={`absolute -inset-0 rounded-full ${getLocationColor(location.type)} opacity-40 animate-ping`}></div>
+                        
+                        {/* Main Marker */}
+                        <div className={`relative w-10 h-10 ${getLocationColor(location.type)} rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300`}>
+                          <span className="text-lg">{getLocationIcon(location.type)}</span>
+                        </div>
+                        
+                        {/* Pointer Tip */}
+                        <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 w-3 h-3 ${getLocationColor(location.type)} rotate-45`}></div>
                       </div>
-                      
-                      {/* Ripple Effect */}
-                      <div className={`absolute inset-0 ${getLocationColor(location.type)} rounded-full animate-ping opacity-20`}></div>
                     </button>
                   ))}
 
