@@ -2,12 +2,12 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { MaintenanceProvider, useMaintenanceMode } from "./contexts/MaintenanceContext";
+import Contact from "./pages/Contact";
 
 // Page imports
 import Index from "./pages/Index";
-import Contact from "./pages/Contact";
 import Reviews from "./pages/Reviews";
 import Tours from "./pages/Tours";
 import Videos from "./pages/Videos";
@@ -20,18 +20,62 @@ import Sitemap from "./pages/Sitemap";
 
 const queryClient = new QueryClient();
 
-// Route configuration - consistent format using objects
+// Enhanced route configuration with additional metadata
 const routes = [
-  { path: "/", element: <Index /> },
-  { path: "/reviews", element: <Reviews /> },
-  { path: "/contact", element: <Contact /> },
-  { path: "/tours", element: <Tours /> },
-  { path: "/videos", element: <Videos /> },
-  { path: "/gallery", element: <AllGallery /> },
-  { path: "/privacy-policy", element: <PrivacyPolicy /> },
-  { path: "/terms-of-service", element: <TermsOfService /> },
-  { path: "/sitemap", element: <Sitemap /> },
+  { 
+    path: "/", 
+    element: <Index />,
+    isIndex: true
+  },
+  { 
+    path: "/reviews", 
+    element: <Reviews />,
+    navItem: { name: "Reviews", href: "/reviews", isHash: false }
+  },
+  { 
+    path: "/contact", 
+    element: <Contact />,
+    navItem: { name: "Contact", href: "/contact", isHash: false }
+  },
+  { 
+    path: "/tours", 
+    element: <Tours />,
+    navItem: { name: "Tours", href: "#tours", isHash: true }
+  },
+  { 
+    path: "/videos", 
+    element: <Videos />,
+    navItem: { name: "Videos", href: "/videos", isHash: false }
+  },
+  { 
+    path: "/gallery", 
+    element: <AllGallery />,
+    navItem: { name: "Gallery", href: "/gallery", isHash: false }
+  },
+  { 
+    path: "/privacy-policy", 
+    element: <PrivacyPolicy />,
+    showInNav: false
+  },
+  { 
+    path: "/terms-of-service", 
+    element: <TermsOfService />,
+    showInNav: false
+  },
+  { 
+    path: "/sitemap", 
+    element: <Sitemap />,
+    showInNav: false
+  },
 ];
+
+// Export navigation items for use in Navigation component
+export const navItems = routes
+  .filter(route => route.navItem || route.isIndex)
+  .map(route => route.isIndex ? 
+    { name: "Home", href: "/", isHash: false } : 
+    route.navItem
+  );
 
 const AppContent = () => {
   const { isMaintenanceMode } = useMaintenanceMode();
@@ -69,4 +113,4 @@ const App = () => (
   </QueryClientProvider>
 );
 
-export default App; 
+export default App;

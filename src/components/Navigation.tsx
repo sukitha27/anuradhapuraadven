@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, MapPin, Phone, Cloud, Sun, CloudRain, CloudSnow, Wind } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,8 +22,7 @@ const Navigation = () => {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        // Using OpenWeatherMap API - you'll need to replace 'YOUR_API_KEY' with actual API key
-        const API_KEY = '08733c51b20691c9d42c17621f7d582b'; // Replace with your OpenWeatherMap API key
+        const API_KEY = '08733c51b20691c9d42c17621f7d582b';
         const response = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?q=Anuradhapura,LK&appid=${API_KEY}&units=metric`
         );
@@ -30,7 +31,6 @@ const Navigation = () => {
           const data = await response.json();
           setWeather(data);
         } else {
-          // Fallback mock data for demonstration
           setWeather({
             main: { temp: 28, humidity: 75 },
             weather: [{ main: 'Clear', description: 'clear sky' }],
@@ -39,7 +39,6 @@ const Navigation = () => {
         }
       } catch (error) {
         console.error('Error fetching weather:', error);
-        // Fallback mock data
         setWeather({
           main: { temp: 28, humidity: 75 },
           weather: [{ main: 'Clear', description: 'clear sky' }],
@@ -51,8 +50,6 @@ const Navigation = () => {
     };
 
     fetchWeather();
-    
-    // Update weather every 10 minutes
     const interval = setInterval(fetchWeather, 600000);
     return () => clearInterval(interval);
   }, []);
@@ -73,13 +70,43 @@ const Navigation = () => {
   };
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'Tours', href: '#tours' },
-    { name: 'Restaurant', href: '#restaurant' },
-    { name: 'Homestay', href: '#homestay' },
-    { name: 'Cookery Classes', href: '#cookery' },
-    { name: 'Contact', href: '/contact' }
+    { name: 'Home', href: '/', isHash: false },
+    { name: 'Tours', href: '#tours', isHash: true },
+    { name: 'Restaurant', href: '#restaurant', isHash: true },
+    { name: 'Homestay', href: '#homestay', isHash: true },
+    { name: 'Cookery Classes', href: '#cookery', isHash: true },
+    { name: 'Contact', href: '/contact', isHash: false }
   ];
+
+  const CustomLink = ({ href, isHash, children, ...props }) => {
+    if (isHash) {
+      return (
+        <a
+          href={href}
+          onClick={() => {
+            if (location.pathname !== '/') {
+              // If not on home page, navigate home first then scroll
+              window.location.href = `/${href}`;
+            } else {
+              setIsOpen(false);
+            }
+          }}
+          {...props}
+        >
+          {children}
+        </a>
+      );
+    }
+    return (
+      <Link
+        to={href}
+        onClick={() => setIsOpen(false)}
+        {...props}
+      >
+        {children}
+      </Link>
+    );
+  };
 
   return (
     <nav className={`fixed top-0 w-full z-40 transition-all duration-500 ${
@@ -89,15 +116,13 @@ const Navigation = () => {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-           {/* Logo Section */}
+          {/* Logo Section */}
           <div className="flex items-center space-x-3">
-            {/* Logo Image */}
             <img 
-              src="/images/logo.png" // Replace with your logo path
+              src="/images/logo.png"
               alt="Logo"
-              className="w-16 h-16 object-contain rounded-full" // Adjust size as needed
+              className="w-16 h-16 object-contain rounded-full"
             />
-            {/* Brand Name */}
             <div>
               <h1
                 className={`text-xl font-bold transition-colors duration-300 ${
@@ -119,22 +144,22 @@ const Navigation = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
-              <a
+              <CustomLink
                 key={item.name}
                 href={item.href}
+                isHash={item.isHash}
                 className={`relative font-medium transition-colors duration-300 hover:text-emerald-500 ${
                   isScrolled ? 'text-gray-700' : 'text-white'
                 } group`}
               >
                 {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
-              </a>
+              </CustomLink>
             ))}
           </div>
 
           {/* Weather Widget & Contact Info */}
           <div className="hidden lg:flex items-center space-x-6">
-            {/* Weather Widget */}
             <div className={`flex items-center space-x-2 px-3 py-1 rounded-full border transition-colors duration-300 ${
               isScrolled 
                 ? 'bg-white/80 border-gray-200 text-gray-700' 
@@ -155,7 +180,6 @@ const Navigation = () => {
               )}
             </div>
 
-            {/* Contact Info */}
             <div className={`flex items-center space-x-1 text-sm ${
               isScrolled ? 'text-gray-600' : 'text-white/80'
             }`}>
@@ -184,14 +208,14 @@ const Navigation = () => {
       } overflow-hidden bg-white/95 backdrop-blur-md`}>
         <div className="px-4 py-4 space-y-4">
           {navItems.map((item) => (
-            <a
+            <CustomLink
               key={item.name}
               href={item.href}
-              onClick={() => setIsOpen(false)}
+              isHash={item.isHash}
               className="block text-gray-700 font-medium hover:text-emerald-500 transition-colors duration-300"
             >
               {item.name}
-            </a>
+            </CustomLink>
           ))}
           
           {/* Mobile Weather Widget */}
@@ -233,4 +257,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation; 
+export default Navigation;
