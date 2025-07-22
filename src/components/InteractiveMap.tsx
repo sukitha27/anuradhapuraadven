@@ -41,7 +41,7 @@ const InteractiveMap = () => {
       id: 2,
       name: 'Chipmunk Homestay',
       type: 'accommodation',
-      coords: { x: 350, y: 200 }, // Adjust these coordinates
+      coords: { x: 300, y: 280 }, // Adjust these coordinates
       rating: 4.9,
       description: 'Traditional family homestay',
       hours: '24/7 Check-in',
@@ -310,7 +310,7 @@ const galleryImages = [
                   className="absolute bg-white rounded-lg shadow-xl p-4 min-w-64 z-20 animate-fade-in"
                   style={{
                     left: `${locations.find(l => l.id === selectedLocation)?.coords.x - 40}px`,
-                    top: `${locations.find(l => l.id === selectedLocation)?.coords.y + 20}px`,
+                    top: `${locations.find(l => l.id === selectedLocation)?.coords.y - 210}px`,
                     transform: 'translateX(-50%)',
                   }}
                 >
