@@ -120,16 +120,17 @@ const Navigation = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className={`relative font-medium transition-colors duration-300 hover:text-emerald-500 ${
-                  isScrolled ? 'text-gray-700' : 'text-white'
-                } group`}
-              >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
-              </a>
+               <Link
+    key={item.name}
+    to={item.href}
+    className={`relative font-medium transition-colors duration-300 hover:text-emerald-500 ${
+      isScrolled ? 'text-gray-700' : 'text-white'
+    } group`}
+  >
+    {item.name}
+    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
+  </Link>
+              
             ))}
           </div>
 
