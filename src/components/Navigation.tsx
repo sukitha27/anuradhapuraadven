@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, MapPin, Phone, Cloud, Sun, CloudRain, CloudSnow, Wind } from 'lucide-react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
-  const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,7 +21,8 @@ const Navigation = () => {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const API_KEY = '08733c51b20691c9d42c17621f7d582b';
+        // Using OpenWeatherMap API - you'll need to replace 'YOUR_API_KEY' with actual API key
+        const API_KEY = '08733c51b20691c9d42c17621f7d582b'; // Replace with your OpenWeatherMap API key
         const response = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?q=Anuradhapura,LK&appid=${API_KEY}&units=metric`
         );
@@ -32,6 +31,7 @@ const Navigation = () => {
           const data = await response.json();
           setWeather(data);
         } else {
+          // Fallback mock data for demonstration
           setWeather({
             main: { temp: 28, humidity: 75 },
             weather: [{ main: 'Clear', description: 'clear sky' }],
@@ -40,6 +40,7 @@ const Navigation = () => {
         }
       } catch (error) {
         console.error('Error fetching weather:', error);
+        // Fallback mock data
         setWeather({
           main: { temp: 28, humidity: 75 },
           weather: [{ main: 'Clear', description: 'clear sky' }],
@@ -51,6 +52,8 @@ const Navigation = () => {
     };
 
     fetchWeather();
+    
+    // Update weather every 10 minutes
     const interval = setInterval(fetchWeather, 600000);
     return () => clearInterval(interval);
   }, []);
@@ -67,23 +70,6 @@ const Navigation = () => {
         return <CloudSnow size={16} className="text-blue-300" />;
       default:
         return <Sun size={16} className="text-yellow-500" />;
-    }
-  };
-
-  const handleNavClick = (href: string) => {
-    setIsOpen(false);
-    
-    if (href.startsWith('#')) {
-      if (location.pathname !== '/') {
-        navigate('/');
-        setTimeout(() => {
-          const element = document.getElementById(href.substring(1));
-          element?.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      } else {
-        const element = document.getElementById(href.substring(1));
-        element?.scrollIntoView({ behavior: 'smooth' });
-      }
     }
   };
 
@@ -104,22 +90,28 @@ const Navigation = () => {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          {/* Logo Section */}
+           {/* Logo Section */}
           <div className="flex items-center space-x-3">
+            {/* Logo Image */}
             <img 
-              src="/images/logo.png"
+              src="/images/logo.png" // Replace with your logo path
               alt="Logo"
-              className="w-16 h-16 object-contain rounded-full"
+              className="w-16 h-16 object-contain rounded-full" // Adjust size as needed
             />
+            {/* Brand Name */}
             <div>
-              <h1 className={`text-xl font-bold transition-colors duration-300 ${
-                isScrolled ? 'text-gray-800' : 'text-white'
-              }`}>
+              <h1
+                className={`text-xl font-bold transition-colors duration-300 ${
+                  isScrolled ? 'text-gray-800' : 'text-white'
+                }`}
+              >
                 Anuradhapura
               </h1>
-              <p className={`text-sm transition-colors duration-300 ${
-                isScrolled ? 'text-gray-600' : 'text-white/80'
-              }`}>
+              <p
+                className={`text-sm transition-colors duration-300 ${
+                  isScrolled ? 'text-gray-600' : 'text-white/80'
+                }`}
+              >
                 Homestay
               </p>
             </div>
@@ -128,38 +120,23 @@ const Navigation = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
-              item.href.startsWith('#') ? (
-                <a
-                  key={item.name}
-                  href={location.pathname === '/' ? item.href : `/${item.href}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(item.href);
-                  }}
-                  className={`relative font-medium transition-colors duration-300 hover:text-emerald-500 ${
-                    isScrolled ? 'text-gray-700' : 'text-white'
-                  } group`}
-                >
-                  {item.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
-                </a>
-              ) : (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={`relative font-medium transition-colors duration-300 hover:text-emerald-500 ${
-                    isScrolled ? 'text-gray-700' : 'text-white'
-                  } group`}
-                >
-                  {item.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-              )
+               <Link
+    key={item.name}
+    to={item.href}
+    className={`relative font-medium transition-colors duration-300 hover:text-emerald-500 ${
+      isScrolled ? 'text-gray-700' : 'text-white'
+    } group`}
+  >
+    {item.name}
+    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
+  </Link>
+              
             ))}
           </div>
 
           {/* Weather Widget & Contact Info */}
           <div className="hidden lg:flex items-center space-x-6">
+            {/* Weather Widget */}
             <div className={`flex items-center space-x-2 px-3 py-1 rounded-full border transition-colors duration-300 ${
               isScrolled 
                 ? 'bg-white/80 border-gray-200 text-gray-700' 
@@ -180,6 +157,7 @@ const Navigation = () => {
               )}
             </div>
 
+            {/* Contact Info */}
             <div className={`flex items-center space-x-1 text-sm ${
               isScrolled ? 'text-gray-600' : 'text-white/80'
             }`}>
@@ -204,32 +182,18 @@ const Navigation = () => {
 
       {/* Mobile Menu */}
       <div className={`md:hidden transition-all duration-300 ${
-        isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-      } overflow-hidden bg-white/95 backdrop-blur-md`}>
-        <div className="px-4 py-4 space-y-4">
-          {navItems.map((item) => (
-            item.href.startsWith('#') ? (
-              <a
-                key={item.name}
-                href={location.pathname === '/' ? item.href : `/${item.href}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item.href);
-                }}
-                className="block text-gray-700 font-medium hover:text-emerald-500 transition-colors duration-300"
-              >
-                {item.name}
-              </a>
-            ) : (
-              <Link
-                key={item.name}
-                to={item.href}
-                onClick={() => setIsOpen(false)}
-                className="block text-gray-700 font-medium hover:text-emerald-500 transition-colors duration-300"
-              >
-                {item.name}
-              </Link>
-            )
+  isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+} overflow-hidden bg-white/95 backdrop-blur-md`}>
+  <div className="px-4 py-4 space-y-4">
+    {navItems.map((item) => (
+      <Link  // Changed from <a> to <Link>
+        key={item.name}
+        to={item.href}
+        onClick={() => setIsOpen(false)}
+        className="block text-gray-700 font-medium hover:text-emerald-500 transition-colors duration-300"
+      >
+        {item.name}
+      </Link>
           ))}
           
           {/* Mobile Weather Widget */}
