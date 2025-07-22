@@ -1,3 +1,4 @@
+import React from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,9 +19,15 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Sitemap from "./pages/Sitemap";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+});
 
-// Route configuration - consistent format using objects
 const routes = [
   { path: "/", element: <Index /> },
   { path: "/reviews", element: <Reviews /> },
@@ -33,7 +40,7 @@ const routes = [
   { path: "/sitemap", element: <Sitemap /> },
 ];
 
-const AppContent = () => {
+const AppRoutes = () => {
   const { isMaintenanceMode } = useMaintenanceMode();
 
   if (isMaintenanceMode) {
@@ -41,30 +48,29 @@ const AppContent = () => {
   }
 
   return (
-    <BrowserRouter>
-      <Routes>
-        {routes.map((route) => (
-          <Route 
-            key={route.path} 
-            path={route.path} 
-            element={route.element} 
-          />
-        ))}
-        {/* Catch-all route should be last */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      {routes.map((route) => (
+        <Route 
+          key={route.path} 
+          path={route.path} 
+          element={route.element} 
+        />
+      ))}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 };
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <BrowserRouter>
+        <MaintenanceProvider>
+          <AppRoutes />
+        </MaintenanceProvider>
+      </BrowserRouter>
       <Toaster />
-      <Sonner />
-      <MaintenanceProvider>
-        <AppContent />
-      </MaintenanceProvider>
+      <Sonner position="top-right" />
     </TooltipProvider>
   </QueryClientProvider>
 );
