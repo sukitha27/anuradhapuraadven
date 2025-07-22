@@ -7,6 +7,7 @@ import { MaintenanceProvider, useMaintenanceMode } from "./contexts/MaintenanceC
 
 // Page imports
 import Index from "./pages/Index";
+import Contact from "./pages/Contact";
 import Reviews from "./pages/Reviews";
 import Tours from "./pages/Tours";
 import Videos from "./pages/Videos";
@@ -17,13 +18,13 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Sitemap from "./pages/Sitemap";
 
-
 const queryClient = new QueryClient();
 
-// Route configuration
+// Route configuration - consistent format using objects
 const routes = [
   { path: "/", element: <Index /> },
   { path: "/reviews", element: <Reviews /> },
+  { path: "/contact", element: <Contact /> },
   { path: "/tours", element: <Tours /> },
   { path: "/videos", element: <Videos /> },
   { path: "/gallery", element: <AllGallery /> },
@@ -43,7 +44,11 @@ const AppContent = () => {
     <BrowserRouter>
       <Routes>
         {routes.map((route) => (
-          <Route key={route.path} path={route.path} element={route.element} />
+          <Route 
+            key={route.path} 
+            path={route.path} 
+            element={route.element} 
+          />
         ))}
         {/* Catch-all route should be last */}
         <Route path="*" element={<NotFound />} />

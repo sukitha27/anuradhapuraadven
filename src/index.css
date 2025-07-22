@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,33 +8,57 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Anuradhapura Homestay inspired color palette */
+    --background: 42 15% 97%;
+    --foreground: 30 25% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 30 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 30 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Teal primary color from the website */
+    --primary: 175 55% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Warm secondary colors */
+    --secondary: 42 35% 92%;
+    --secondary-foreground: 30 25% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 42 25% 94%;
+    --muted-foreground: 30 15% 55%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Warm accent colors */
+    --accent: 35 45% 88%;
+    --accent-foreground: 30 25% 25%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 42 20% 88%;
+    --input: 42 20% 92%;
+    --ring: 175 55% 45%;
+
+    /* Custom design tokens for the homestay theme */
+    --warm-sand: 42 35% 85%;
+    --warm-earth: 30 25% 25%;
+    --soft-teal: 175 45% 60%;
+    --deep-teal: 175 55% 35%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(175 55% 45% / 0.9), hsl(175 45% 35% / 0.8));
+    --gradient-warm: linear-gradient(135deg, hsl(42 35% 92%), hsl(35 45% 88%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(42 15% 98%));
+    --gradient-teal: linear-gradient(135deg, hsl(175 45% 60%), hsl(175 55% 45%));
+    --gradient-accent: linear-gradient(145deg, hsl(35 45% 88%), hsl(42 35% 85%));
+    
+    /* Enhanced Shadows */
+    --shadow-warm: 0 10px 30px -5px hsl(30 25% 15% / 0.1);
+    --shadow-teal: 0 8px 25px -8px hsl(175 55% 45% / 0.3);
+    --shadow-elevated: 0 20px 40px -12px hsl(30 25% 15% / 0.15);
+    --shadow-glow: 0 0 30px hsl(175 55% 45% / 0.2);
+    --shadow-soft: 0 4px 15px -3px hsl(30 25% 15% / 0.08);
 
     --radius: 0.5rem;
 
@@ -50,33 +73,52 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 30 25% 8%;
+    --foreground: 42 35% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 30 25% 12%;
+    --card-foreground: 42 35% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 30 25% 12%;
+    --popover-foreground: 42 35% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 175 55% 50%;
+    --primary-foreground: 30 25% 8%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 30 25% 15%;
+    --secondary-foreground: 42 35% 90%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 30 25% 15%;
+    --muted-foreground: 42 15% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 30 25% 18%;
+    --accent-foreground: 42 35% 90%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 42 35% 95%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 30 25% 20%;
+    --input: 30 25% 18%;
+    --ring: 175 55% 50%;
+    
+    /* Dark mode custom tokens */
+    --warm-sand: 30 25% 20%;
+    --warm-earth: 42 35% 85%;
+    --soft-teal: 175 45% 65%;
+    --deep-teal: 175 55% 40%;
+    
+    --gradient-hero: linear-gradient(135deg, hsl(175 55% 50% / 0.9), hsl(175 45% 40% / 0.8));
+    --gradient-warm: linear-gradient(135deg, hsl(30 25% 15%), hsl(30 25% 18%));
+    --gradient-card: linear-gradient(145deg, hsl(30 25% 12%), hsl(30 25% 10%));
+    --gradient-teal: linear-gradient(135deg, hsl(175 45% 65%), hsl(175 55% 50%));
+    --gradient-accent: linear-gradient(145deg, hsl(30 25% 18%), hsl(30 25% 15%));
+    
+    --shadow-warm: 0 10px 30px -5px hsl(0 0% 0% / 0.3);
+    --shadow-teal: 0 8px 25px -8px hsl(175 55% 50% / 0.4);
+    --shadow-elevated: 0 20px 40px -12px hsl(0 0% 0% / 0.25);
+    --shadow-glow: 0 0 30px hsl(175 55% 50% / 0.3);
+    --shadow-soft: 0 4px 15px -3px hsl(0 0% 0% / 0.15);
+    
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -98,7 +140,7 @@ All colors MUST be HSL.
   }
 }
 
-/* Custom Animations */
+/* Keyframes - consolidated from both files */
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -176,35 +218,156 @@ All colors MUST be HSL.
   }
 }
 
-.animate-fade-in {
-  animation: fade-in 0.8s ease-out forwards;
+@keyframes loading-bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
 }
 
-.animate-slide-in-right {
-  animation: slide-in-right 0.8s ease-out forwards;
+@layer components {
+  /* Animation Classes */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-scale-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .animate-scale-hover:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-elevated);
+  }
+  
+  .glass-card {
+    background: linear-gradient(145deg, 
+      hsl(var(--card) / 0.9), 
+      hsl(var(--card) / 0.7)
+    );
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+  
+  .gradient-text {
+    background: var(--gradient-teal);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Button effects */
+  .btn-ripple {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-ripple::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .btn-ripple:active::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* Card effects */
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-elevated);
+  }
+
+  /* Image overlay */
+  .image-overlay {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .image-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-hero);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .image-overlay:hover::after {
+    opacity: 1;
+  }
+
+  /* Loading dots */
+  .loading-dots {
+    display: inline-flex;
+    gap: 4px;
+  }
+
+  .loading-dots div {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: loading-bounce 1.4s ease-in-out infinite both;
+  }
+
+  .loading-dots div:nth-child(1) { animation-delay: -0.32s; }
+  .loading-dots div:nth-child(2) { animation-delay: -0.16s; }
 }
 
-.animate-bounce-in {
-  animation: bounce-in 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px hsl(var(--foreground) / 0.1);
+  }
+  
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px hsl(var(--foreground) / 0.15);
+  }
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.8s ease-out forwards;
+  }
+
+  .animate-bounce-in {
+    animation: bounce-in 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+
+  .animate-ripple {
+    animation: ripple 0.6s linear;
+  }
+
+  .animate-typewriter {
+    animation: typewriter 3s steps(40) infinite;
+  }
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-.animate-glow {
-  animation: glow 2s ease-in-out infinite;
-}
-
-.animate-ripple {
-  animation: ripple 0.6s linear;
-}
-
-.animate-typewriter {
-  animation: typewriter 3s steps(40) infinite;
-}
-
-/* Smooth scroll behavior */
+/* Global styles */
 html {
   scroll-behavior: smooth;
 }
@@ -215,40 +378,16 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: hsl(var(--background));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #10b981 0%, #0d9488 100%);
+  background: var(--gradient-teal);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #059669 0%, #0f766e 100%);
-}
-
-/* Interactive button effects */
-.btn-ripple {
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-ripple::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
-}
-
-.btn-ripple:active::before {
-  width: 300px;
-  height: 300px;
+  background: hsl(var(--deep-teal));
 }
 
 /* Parallax container */
@@ -259,72 +398,6 @@ html {
 .parallax-element {
   transform: translateZ(0);
   will-change: transform;
-}
-
-/* Loading animations */
-.loading-dots {
-  display: inline-flex;
-  gap: 4px;
-}
-
-.loading-dots div {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: currentColor;
-  animation: loading-bounce 1.4s ease-in-out infinite both;
-}
-
-.loading-dots div:nth-child(1) { animation-delay: -0.32s; }
-.loading-dots div:nth-child(2) { animation-delay: -0.16s; }
-
-@keyframes loading-bounce {
-  0%, 80%, 100% {
-    transform: scale(0);
-  }
-  40% {
-    transform: scale(1);
-  }
-}
-
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, #10b981 0%, #0d9488 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Card hover effects */
-.card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.card-hover:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
-/* Image overlay effects */
-.image-overlay {
-  position: relative;
-  overflow: hidden;
-}
-
-.image-overlay::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, rgba(16, 185, 129, 0.8), rgba(13, 148, 136, 0.8));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.image-overlay:hover::after {
-  opacity: 1;
 }
 
 /* Mobile responsive adjustments */
@@ -352,7 +425,7 @@ html {
 /* Focus styles for better accessibility */
 button:focus,
 a:focus {
-  outline: 2px solid #10b981;
+  outline: 2px solid hsl(var(--primary));
   outline-offset: 2px;
 }
 
@@ -362,4 +435,3 @@ a:focus {
     display: none !important;
   }
 }
-

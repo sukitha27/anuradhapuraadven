@@ -78,7 +78,7 @@ const Navigation = () => {
     { name: 'Restaurant', href: '#restaurant' },
     { name: 'Homestay', href: '#homestay' },
     { name: 'Cookery Classes', href: '#cookery' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Contact', href: '/contact' }
   ];
 
   return (

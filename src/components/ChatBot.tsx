@@ -18,7 +18,7 @@ const InteractiveChatBot = () => {
   const [showQuickReplies, setShowQuickReplies] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const whatsappNumber = "+94701234567";
+  const whatsappNumber = "+94701306430";
   
   const quickReplyOptions = [
     "Tours & Packages",
@@ -30,7 +30,7 @@ const InteractiveChatBot = () => {
 
   const intelligentResponses = {
     welcome: {
-      text: "Welcome to Anuradhapura Adventures! I'm your AI travel assistant. I can help you discover amazing experiences in the ancient city of Anuradhapura.",
+      text: "Welcome to Anuradhapura Homestay! I'm your AI travel assistant. I can help you discover amazing experiences in the ancient city of Anuradhapura.",
       quickReplies: quickReplyOptions
     },
     tours: {

@@ -268,14 +268,14 @@ const galleryImages = [
                     <circle
                       cx="0"
                       cy="0"
-                      r="15"
+                      r="10"
                       className={`${getLocationColor(location.type)} opacity-40 animate-ping`}
                     />
                     {/* Main marker */}
                     <circle
                       cx="0"
                       cy="0"
-                      r="10"
+                      r="7"
                       className={`${getLocationColor(location.type)} shadow-md`}
                     />
                     <text
@@ -283,7 +283,7 @@ const galleryImages = [
                       y="0"
                       textAnchor="middle"
                       dominantBaseline="middle"
-                      className="text-white text-xs font-bold"
+                      className="text-white text-[10px] font-bold"
                     >
                       {getLocationIcon(location.type)}
                     </text>
@@ -304,47 +304,46 @@ const galleryImages = [
                 </div>
               )}
 
-              {/* Location info tooltip */}
-              {selectedLocation && (
-                <div
-                  className="absolute bg-white rounded-lg shadow-xl p-4 min-w-64 z-20 animate-fade-in"
-                  style={{
-                    left: `${locations.find(l => l.id === selectedLocation)?.coords.x - 40}px`,
-                    top: `${locations.find(l => l.id === selectedLocation)?.coords.y - 210}px`,
-                    transform: 'translateX(-50%)',
-                  }}
-                >
-                  {(() => {
-                    const location = locations.find(l => l.id === selectedLocation);
-                    return (
-                      <div>
-                        <h4 className="font-bold text-gray-800 mb-2">{location?.name}</h4>
-                        <p className="text-gray-600 text-sm mb-3">{location?.description}</p>
-                        
-                        <div className="space-y-2 text-xs text-gray-500">
-                          <div className="flex items-center space-x-2">
-                            <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                            <span>{location?.rating}/5</span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <Clock className="w-4 h-4" />
-                            <span>{location?.hours}</span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <Phone className="w-4 h-4" />
-                            <span>{location?.phone}</span>
-                          </div>
-                        </div>
+               {/* Smaller location info tooltip */}
+          {selectedLocation && (
+            <div
+              className="absolute bg-white rounded-md shadow-md p-2 max-w-xs z-50 text-xs"
+              style={{
+                left: `${locations.find(l => l.id === selectedLocation)?.coords.x}px`,
+                top: `${locations.find(l => l.id === selectedLocation)?.coords.y - 80}px`,
+                transform: 'translateX(-50%)',
+                width: '160px' // Fixed smaller width
+              }}
+            >
+              {(() => {
+                const location = locations.find(l => l.id === selectedLocation);
+                return (
+                  <div className="space-y-1">
+                    <h4 className="font-bold text-gray-800 truncate">{location?.name}</h4>
+                    <p className="text-gray-600 truncate">{location?.description}</p>
+                    
+                    <div className="flex items-center space-x-1 text-gray-500">
+                      <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                      <span>{location?.rating}/5</span>
+                    </div>
+                    <div className="flex items-center space-x-1 text-gray-500">
+                      <Clock className="w-3 h-3" />
+                      <span className="truncate">{location?.hours}</span>
+                    </div>
+                    <div className="flex items-center space-x-1 text-gray-500">
+                      <Phone className="w-3 h-3" />
+                      <span className="truncate">{location?.phone}</span>
+                    </div>
 
-                        <button className="mt-3 w-full bg-emerald-500 text-white py-2 rounded-lg text-sm font-medium hover:bg-emerald-600 transition-colors duration-300">
-                          Get Directions
-                        </button>
-                      </div>
-                    );
-                  })()}
-                </div>
-              )}
+                    <button className="mt-1 w-full bg-emerald-500 text-white py-1 rounded text-xs font-medium hover:bg-emerald-600 transition-colors">
+                      Directions
+                    </button>
+                  </div>
+                );
+              })()}
             </div>
+          )}
+        </div>
 
             {/* Image Gallery Section */}
             <div className="mt-8 p-6 bg-white rounded-xl shadow-lg">

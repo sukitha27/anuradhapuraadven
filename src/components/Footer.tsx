@@ -36,7 +36,7 @@ const Footer = () => {
     { name: 'Homestay', href: '#homestay' },
     { name: 'Cookery Classes', href: '#cookery' },
     { name: 'About Us', href: '#about' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Contact', href: '/contact' }
   ];
 
   const services = [
