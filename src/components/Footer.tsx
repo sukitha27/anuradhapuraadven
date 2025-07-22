@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUp, Phone, Mail, MapPin, Facebook, Instagram, Twitter, MessageCircle, Star } from 'lucide-react';
-import { FaGoogle, FaWhatsapp, FaTripadvisor, FaTwitter, FaInstagram, FaFacebook, FaStar } from 'react-icons/fa';
+import { FaGoogle, FaWhatsapp, FaTripadvisor, FaTwitter, FaInstagram, FaFacebook, FaStar, FaPhone } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Footer = () => {
@@ -36,7 +36,7 @@ const Footer = () => {
     { name: 'Homestay', href: '#homestay' },
     { name: 'Cookery Classes', href: '#cookery' },
     { name: 'About Us', href: '#about' },
-    { name: 'Contact', href: '/contact' }
+    { name: 'Contact', href: '#contact' }
   ];
 
   const services = [
@@ -167,11 +167,11 @@ const Footer = () => {
                 </a>
                 
                 <button
-                  onClick={() => navigate('/reviews')}
+                  onClick={() => navigate('/contact')}
                   className="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 w-full justify-center text-white font-semibold"
                 >
-                  <FaStar className="w-4 h-4" />
-                  <span>Review Us</span>
+                  <FaPhone className="w-4 h-4" />
+                  <span>Contact Us</span>
                 </button>
               </div>
             </div>
