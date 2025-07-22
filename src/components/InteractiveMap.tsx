@@ -2,18 +2,62 @@ import React, { useState } from 'react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import { ExternalLink } from 'lucide-react';
-
+import { ExternalLink, Star, Clock, Phone, MapPin } from 'lucide-react';
 type Tooltip = {
   x: number;
   y: number;
   text: string;
 } | null;
 
+type Location = {
+  id: number;
+  name: string;
+  type: string;
+  coords: { x: number; y: number };
+  rating: number;
+  description: string;
+  hours: string;
+  phone: string;
+};
+
 const InteractiveMap = () => {
   const [tooltip, setTooltip] = useState<Tooltip>(null);
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState<number | null>(null);
   const navigate = useNavigate();
+
+  const locations: Location[] = [
+    {
+      id: 1,
+      name: 'Green Chilli Restaurant',
+      type: 'restaurant',
+      coords: { x: 300, y: 250 }, // Adjust these coordinates to place on your SVG map
+      rating: 4.8,
+      description: 'Authentic Sri Lankan cuisine',
+      hours: '11:00 AM - 10:00 PM',
+      phone: '+94 70 123 4567'
+    },
+    {
+      id: 2,
+      name: 'Chipmunk Homestay',
+      type: 'accommodation',
+      coords: { x: 350, y: 200 }, // Adjust these coordinates
+      rating: 4.9,
+      description: 'Traditional family homestay',
+      hours: '24/7 Check-in',
+      phone: '+94 70 123 4568'
+    },
+    {
+      id: 3,
+      name: 'Wilpattu Safari Pickup',
+      type: 'tour',
+      coords: { x: 120, y: 200 }, // Adjust these coordinates
+      rating: 4.8,
+      description: 'Wildlife safari tours',
+      hours: '5:00 AM - 6:00 PM',
+      phone: '+94 70 123 4570'
+    }
+  ];
 
 const galleryImages = [
     {
@@ -48,6 +92,24 @@ const galleryImages = [
     }
   ];
 
+  const getLocationIcon = (type: string) => {
+    switch (type) {
+      case 'restaurant': return '🍽️';
+      case 'accommodation': return '🏠';
+      case 'tour': return '🚴';
+      default: return '📍';
+    }
+  };
+
+  const getLocationColor = (type: string) => {
+    switch (type) {
+      case 'restaurant': return 'bg-orange-500';
+      case 'accommodation': return 'bg-blue-500';
+      case 'tour': return 'bg-emerald-500';
+      default: return 'bg-gray-500';
+    }
+  };
+
   const handleTooltip = (e: React.MouseEvent, text: string) => {
     const svg = (e.target as SVGElement).ownerSVGElement;
     const bounds = svg?.getBoundingClientRect();
@@ -67,6 +129,10 @@ const galleryImages = [
     setSelectedRegion(region === selectedRegion ? null : region);
   };
 
+  const handleLocationClick = (id: number) => {
+    setSelectedLocation(id === selectedLocation ? null : id);
+  };
+
   return (
     <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4">
@@ -77,8 +143,7 @@ const galleryImages = [
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Map and Gallery Column */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2">
             <div className="relative w-full h-[600px] bg-white rounded-xl shadow overflow-hidden">
               <svg
                 viewBox="0 0 600 600"
@@ -190,9 +255,43 @@ const galleryImages = [
                   onMouseEnter={(e) => handleTooltip(e, "Anuradhapura-west")}
                   onMouseLeave={hideTooltip}
                 />
+
+                {/* Location markers */}
+                {locations.map((location) => (
+                  <g
+                    key={location.id}
+                    onClick={() => handleLocationClick(location.id)}
+                    className="cursor-pointer"
+                    transform={`translate(${location.coords.x}, ${location.coords.y})`}
+                  >
+                    {/* Ping animation */}
+                    <circle
+                      cx="0"
+                      cy="0"
+                      r="15"
+                      className={`${getLocationColor(location.type)} opacity-40 animate-ping`}
+                    />
+                    {/* Main marker */}
+                    <circle
+                      cx="0"
+                      cy="0"
+                      r="10"
+                      className={`${getLocationColor(location.type)} shadow-md`}
+                    />
+                    <text
+                      x="0"
+                      y="0"
+                      textAnchor="middle"
+                      dominantBaseline="middle"
+                      className="text-white text-xs font-bold"
+                    >
+                      {getLocationIcon(location.type)}
+                    </text>
+                  </g>
+                ))}
           </svg>
 
-           {/* Tooltip */}
+           {/* Region tooltip */}
               {tooltip && (
                 <div
                   className="absolute bg-white text-sm px-2 py-1 rounded shadow-md z-50 pointer-events-none"
@@ -202,6 +301,47 @@ const galleryImages = [
                   }}
                 >
                   {tooltip.text}
+                </div>
+              )}
+
+              {/* Location info tooltip */}
+              {selectedLocation && (
+                <div
+                  className="absolute bg-white rounded-lg shadow-xl p-4 min-w-64 z-20 animate-fade-in"
+                  style={{
+                    left: `${locations.find(l => l.id === selectedLocation)?.coords.x - 40}px`,
+                    top: `${locations.find(l => l.id === selectedLocation)?.coords.y + 20}px`,
+                    transform: 'translateX(-50%)',
+                  }}
+                >
+                  {(() => {
+                    const location = locations.find(l => l.id === selectedLocation);
+                    return (
+                      <div>
+                        <h4 className="font-bold text-gray-800 mb-2">{location?.name}</h4>
+                        <p className="text-gray-600 text-sm mb-3">{location?.description}</p>
+                        
+                        <div className="space-y-2 text-xs text-gray-500">
+                          <div className="flex items-center space-x-2">
+                            <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                            <span>{location?.rating}/5</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Clock className="w-4 h-4" />
+                            <span>{location?.hours}</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Phone className="w-4 h-4" />
+                            <span>{location?.phone}</span>
+                          </div>
+                        </div>
+
+                        <button className="mt-3 w-full bg-emerald-500 text-white py-2 rounded-lg text-sm font-medium hover:bg-emerald-600 transition-colors duration-300">
+                          Get Directions
+                        </button>
+                      </div>
+                    );
+                  })()}
                 </div>
               )}
             </div>
