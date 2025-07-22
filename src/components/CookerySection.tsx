@@ -197,7 +197,7 @@ const CookerySection = () => {
                       <FaGoogle className="w-5 h-5" />
                     </a>
                     <a
-                      href="#"
+                      href="https://wa.me/94701306430"
                       className="bg-green-500 text-white p-4 rounded-xl hover:bg-green-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
                       title="WhatsApp Us"
                     >

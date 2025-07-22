@@ -160,7 +160,7 @@ const Navigation = () => {
               isScrolled ? 'text-gray-600' : 'text-white/80'
             }`}>
               <Phone size={16} />
-              <span>+94 70 123 4567</span>
+              <span>+94 70 130 6430</span>
             </div>
           </div>
 
@@ -224,7 +224,7 @@ const Navigation = () => {
             
             <div className="flex items-center space-x-2 text-gray-600">
               <Phone size={16} />
-              <span>+94 70 123 4567</span>
+              <span>+94 70 130 6430</span>
             </div>
           </div>
         </div>

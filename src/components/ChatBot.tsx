@@ -50,7 +50,7 @@ const InteractiveChatBot = () => {
       quickReplies: ["Available Times", "Group Bookings", "Spice Levels", "What You'll Learn"]
     },
     contact: {
-      text: "Ready to connect? Here's how:\n\n• Phone: +94 70 123 4567\n• WhatsApp: Available 24/7\n• Email: info@anuradhapura-adventures.com\n• Location: Anuradhapura Ancient City\n\nShall I connect you via WhatsApp for instant support?",
+      text: "Ready to connect? Here's how:\n\n• Phone: +94 70 1306430\n• WhatsApp: Available 24/7\n• Email: info@anuradhapura-adventures.com\n• Location: Anuradhapura Ancient City\n\nShall I connect you via WhatsApp for instant support?",
       quickReplies: ["WhatsApp Now", "Send Email", "Get Directions", "Business Hours"]
     },
     default: {

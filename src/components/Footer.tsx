@@ -71,7 +71,7 @@ const Footer = () => {
                 />
                 <div>
                   <h3 className="text-xl font-bold">Anuradhapura</h3>
-                  <p className="text-white/80">Adventures</p>
+                  <p className="text-white/80">Homestay</p>
                 </div>
               </div> 
               <p className="text-white/80 leading-relaxed">
@@ -142,14 +142,14 @@ const Footer = () => {
                 <div className="flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-emerald-400" />
                   <a href="tel:+94701234567" className="text-white/80 hover:text-emerald-300 transition-colors duration-300">
-                    +94 70 123 4567
+                    +94 70 1306430
                   </a>
                 </div>
 
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-emerald-400" />
-                  <a href="mailto:info@anuradhapura-adventures.com" className="text-white/80 hover:text-emerald-300 transition-colors duration-300">
-                    info@anuradhapura-adventures.com
+                  <a href="mailto:info@anuradhapurahomestay.com" className="text-white/80 hover:text-emerald-300 transition-colors duration-300">
+                    info@anuradhapurahomestay.com
                   </a>
                 </div>
               </div>
@@ -157,7 +157,7 @@ const Footer = () => {
               {/* Action Buttons */}
               <div className="mt-6 space-y-3">
                 <a
-                  href="https://wa.me/94701234567"
+                  href="https://wa.me/94701306430"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-2 bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 w-full justify-center"
@@ -183,7 +183,7 @@ const Footer = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
               <p className="text-white/60 text-sm text-center md:text-left">
-                © 2025 Anuradhapura Adventures. All rights reserved. Developed by Pearlbay Travels.
+                © 2025 Anuradhapura Homestay. All rights reserved. Developed by Pearlbay Travels.
               </p>
               
               <div className="flex items-center space-x-6 text-sm text-white/60">
