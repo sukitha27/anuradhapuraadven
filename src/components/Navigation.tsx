@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, MapPin, Phone, Cloud, Sun, CloudRain, CloudSnow, Wind } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -120,17 +119,16 @@ const Navigation = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
-               <Link
-    key={item.name}
-    to={item.href}
-    className={`relative font-medium transition-colors duration-300 hover:text-emerald-500 ${
-      isScrolled ? 'text-gray-700' : 'text-white'
-    } group`}
-  >
-    {item.name}
-    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
-  </Link>
-              
+              <a
+                key={item.name}
+                href={item.href}
+                className={`relative font-medium transition-colors duration-300 hover:text-emerald-500 ${
+                  isScrolled ? 'text-gray-700' : 'text-white'
+                } group`}
+              >
+                {item.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
+              </a>
             ))}
           </div>
 
@@ -182,18 +180,18 @@ const Navigation = () => {
 
       {/* Mobile Menu */}
       <div className={`md:hidden transition-all duration-300 ${
-  isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-} overflow-hidden bg-white/95 backdrop-blur-md`}>
-  <div className="px-4 py-4 space-y-4">
-    {navItems.map((item) => (
-      <Link  // Changed from <a> to <Link>
-        key={item.name}
-        to={item.href}
-        onClick={() => setIsOpen(false)}
-        className="block text-gray-700 font-medium hover:text-emerald-500 transition-colors duration-300"
-      >
-        {item.name}
-      </Link>
+        isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+      } overflow-hidden bg-white/95 backdrop-blur-md`}>
+        <div className="px-4 py-4 space-y-4">
+          {navItems.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
+              onClick={() => setIsOpen(false)}
+              className="block text-gray-700 font-medium hover:text-emerald-500 transition-colors duration-300"
+            >
+              {item.name}
+            </a>
           ))}
           
           {/* Mobile Weather Widget */}
@@ -235,4 +233,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default Navigation; 
