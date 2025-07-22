@@ -190,7 +190,7 @@ const CookerySection = () => {
                   
                   <div className="flex space-x-3">
                     <a
-                      href="#"
+                      href="https://g.co/kgs/zf56jPY"
                       className="bg-blue-500 text-white p-4 rounded-xl hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
                       title="Share on Google"
                     >
@@ -204,7 +204,7 @@ const CookerySection = () => {
                       <FaWhatsapp className="w-5 h-5" />
                     </a>
                     <a
-                      href="#"
+                      href="https://www.tripadvisor.com/Restaurant_Review-g304132-d32985750-Reviews-Green_Chilli_Restaurant_Anuradhapura-Anuradhapura_North_Central_Province.html?m=69573"
                       className="bg-orange-500 text-white p-4 rounded-xl hover:bg-orange-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
                       title="TripAdvisor"
                     >

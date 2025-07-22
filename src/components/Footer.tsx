@@ -27,7 +27,7 @@ const Footer = () => {
     { icon: FaFacebook, href: '#', color: 'hover:text-blue-500' },
     { icon: FaInstagram, href: '#', color: 'hover:text-pink-500' },
     { icon: FaTwitter, href: '#', color: 'hover:text-blue-400' },
-    { icon: FaWhatsapp, href: '#', color: 'hover:text-green-500' }
+    { icon: FaWhatsapp, href: 'https://wa.me/94701234567', color: 'hover:text-green-500' }
   ];
 
   const quickLinks = [
