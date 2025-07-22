@@ -111,7 +111,7 @@ const Navigation = () => {
                   isScrolled ? 'text-gray-600' : 'text-white/80'
                 }`}
               >
-                Adventures
+                Homestay
               </p>
             </div>
           </div>
