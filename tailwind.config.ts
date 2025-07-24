@@ -55,7 +55,6 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-        /* Custom homestay theme colors */
         'warm-sand': 'hsl(var(--warm-sand))',
         'warm-earth': 'hsl(var(--warm-earth))',
         'soft-teal': 'hsl(var(--soft-teal))',
@@ -148,9 +147,50 @@ export default {
         'bounce-subtle': {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-5px)' }
+        },
+        // New pulse animations
+        'ping': {
+          '75%, 100%': {
+            transform: 'scale(2)',
+            opacity: '0'
+          }
+        },
+        'pulse': {
+          '0%, 100%': {
+            opacity: '0.5'
+          },
+          '50%': {
+            opacity: '0.2'
+          }
+        },
+        'pulse-strong': {
+          '0%': {
+            transform: 'scale(0.95)',
+            opacity: '0.7'
+          },
+          '70%': {
+            transform: 'scale(1.1)',
+            opacity: '0.3'
+          },
+          '100%': {
+            transform: 'scale(0.95)',
+            opacity: '0.7'
+          }
+        },
+        'pulse-map-marker': {
+          '0%': {
+            transform: 'scale(0.9)',
+            opacity: '0.7'
+          },
+          '50%': {
+            transform: 'scale(1.15)',
+            opacity: '0.4'
+          },
+          '100%': {
+            transform: 'scale(0.9)',
+            opacity: '0.7'
+          }
         }
-
-        
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -161,8 +201,12 @@ export default {
         'bounce-in': 'bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
         'float': 'float 3s ease-in-out infinite',
         'scale-in': 'scale-in 0.4s ease-out',
-        'bounce-subtle': 'bounce-subtle 2s infinite'
-        
+        'bounce-subtle': 'bounce-subtle 2s infinite',
+        // New animation utilities
+        'ping': 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite',
+        'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'pulse-strong': 'pulse-strong 1.5s ease-in-out infinite',
+        'pulse-map-marker': 'pulse-map-marker 1.8s ease-in-out infinite'
       },
       backgroundImage: {
         'gradient-hero': 'var(--gradient-hero)',
@@ -182,4 +226,3 @@ export default {
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
-

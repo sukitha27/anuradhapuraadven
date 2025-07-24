@@ -260,9 +260,9 @@ const galleryImages = [
                     {/* Pulse animation - perfectly aligned with marker */}
                     <circle
                       cx="14"
-                      cy="12"
-                      r="16"
-                      className={`${getLocationColor(location.type)} opacity-0 group-hover:opacity-20 animate-ping`}
+                      cy="16"
+                      r="18"
+                      className={`${getLocationColor(location.type)} opacity-40 animate-ping`}
                       style={{
                         transformOrigin: 'center',
                         transformBox: 'fill-box',
