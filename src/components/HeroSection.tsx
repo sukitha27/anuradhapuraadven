@@ -10,7 +10,7 @@ const HeroSection = () => {
 
   const slides = [
     {
-      image: '/images/hero1.jpg',
+      image: '/images/hero1.webp',
       title: 'Bicycle Adventure Tour',
       subtitle: 'Explore Ancient Ruins on Two Wheels'
     },

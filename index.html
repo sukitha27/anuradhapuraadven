@@ -1,66 +1,138 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
   <head>
+    <!-- Primary Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Anuradhapura Homestay - Discover Ancient Sri Lanka</title>
-    <meta name="description" content="Experience authentic Sri Lankan culture with bicycle tours, wildlife safaris, traditional homestays, and cooking classes in historic Anuradhapura." />
+    <meta name="theme-color" content="#f59e0b" />
+    <title>Anuradhapura Homestay | Authentic Sri Lankan Cultural Experience</title>
+    <meta name="description" content="Immerse yourself in Sri Lankan culture with our heritage homestay, bicycle tours, wildlife safaris, and traditional cooking classes in historic Anuradhapura." />
     <meta name="author" content="Anuradhapura Homestay" />
-    <meta name="keywords" content="Sri Lanka tours, Anuradhapura, bicycle tours, wildlife safari, homestay, cooking classes, cultural experiences" />
+    <meta name="keywords" content="Anuradhapura homestay, Sri Lanka cultural tour, ancient city stay, bicycle tours Sri Lanka, wildlife safari, traditional cooking classes" />
+    <meta name="robots" content="index, follow" />
 
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Anuradhapura Homestay - Discover Ancient Sri Lanka" />
-    <meta property="og:description" content="Experience authentic Sri Lankan culture with bicycle tours, wildlife safaris, traditional homestays, and cooking classes in historic Anuradhapura." />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Anuradhapura Homestay | Authentic Sri Lankan Cultural Experience" />
+    <meta property="og:description" content="Immerse yourself in Sri Lankan culture with our heritage homestay, bicycle tours, wildlife safaris, and traditional cooking classes." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/images/hero1.jpg" />
-    <meta property="og:url" content="https://www.anuradhapurahomestay.com" />
+    <meta property="og:url" content="https://www.anuradhapurahomestay.com/" />
+    <meta property="og:image" content="https://www.anuradhapurahomestay.com/images/social-preview.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Traditional Sri Lankan homestay in Anuradhapura" />
     <meta property="og:site_name" content="Anuradhapura Homestay" />
+    <meta property="og:locale" content="en_US" />
 
-    <!-- Twitter Card Meta Tags -->
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@AnuradhapuraHomestay" />
-    <meta name="twitter:title" content="Anuradhapura Homestay - Discover Ancient Sri Lanka" />
-    <meta name="twitter:description" content="Experience authentic Sri Lankan culture with bicycle tours, wildlife safaris, traditional homestays, and cooking classes." />
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1469041797191-50ace28483c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" />
+    <meta name="twitter:creator" content="@AnuradhapuraHomestay" />
+    <meta name="twitter:title" content="Anuradhapura Homestay | Authentic Sri Lankan Cultural Experience" />
+    <meta name="twitter:description" content="Immerse yourself in Sri Lankan culture with our heritage homestay and unique experiences." />
+    <meta name="twitter:image" content="https://www.anuradhapurahomestay.com/images/social-preview.webp" />
+    <meta name="twitter:image:alt" content="Traditional Sri Lankan homestay courtyard" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Favicons (generated via https://realfavicongenerator.net/) -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
 
-    <!-- Preconnect to external domains for performance -->
-    <link rel="preconnect" href="https://images.unsplash.com" />
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/src/main.tsx" as="script" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" />
+    <link rel="preload" href="/images/hero1.webp" as="image" />
+
+    <!-- Preconnect to External Domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://maps.googleapis.com" />
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Google Fonts (with font-display: swap) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-    <!-- Schema.org structured data -->
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.anuradhapurahomestay.com/" />
+
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "TouristAttraction",
+      "@type": ["TouristAttraction", "LodgingBusiness"],
       "name": "Anuradhapura Homestay",
-      "description": "Authentic Sri Lankan cultural experiences in historic Anuradhapura",
+      "description": "Authentic Sri Lankan cultural experiences including heritage stays, bicycle tours, and cooking classes in historic Anuradhapura",
+      "image": "https://www.anuradhapurahomestay.com/images/hero1.webp",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Anuradhapura",
-        "addressCountry": "Sri Lanka"
+        "streetAddress": "Vinandharama mawatha",
+        "addressLocality": "Pothanegama , Anuradhapura",
+        "addressRegion": "North Central Province",
+        "postalCode": "50000",
+        "addressCountry": "LK"
       },
-      "telephone": "+94-70-123-4567",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "8.3356",
+        "longitude": "80.3884"
+      },
+      "telephone": "+94-70-130-6430",
+      "priceRange": "$$",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "09:00",
+        "closes": "23:00"
+      },
       "url": "https://www.anuradhapurahomestay.com/",
       "sameAs": [
         "https://www.facebook.com/anuradhapurahomestay",
         "https://www.instagram.com/anuradhapurahomestay",
-        "https://www.tripadvisor.com/anuradhapurahomestay"
-      ]
+        "https://www.tripadvisor.com/Restaurant_Review-g304132-d32985750"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Tour Packages",
+        "itemListElement": [
+          {
+            "@type": "OfferCatalog",
+            "name": "Cultural Experiences",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "name": "Traditional Cooking Class",
+                "description": "Learn to cook authentic Sri Lankan dishes"
+              },
+              {
+                "@type": "Offer",
+                "name": "Bicycle Heritage Tour",
+                "description": "Explore ancient ruins by bicycle"
+              }
+            ]
+          }
+        ]
+      }
     }
     </script>
   </head>
 
   <body>
+    <noscript>
+      <strong>We're sorry but Anuradhapura Homestay doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <p>For more information about our homestay, please call us at +94 70-130-6430 or email info@anuradhapurahomestay.com</p>
+    </noscript>
+
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Preload the Webpack runtime first -->
+    <script src="/src/main.tsx" type="module" defer></script>
+    
+    <!-- Google Tag Manager (if needed) -->
+    <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXX');</script> -->
   </body>
 </html>
