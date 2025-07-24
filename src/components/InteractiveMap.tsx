@@ -249,32 +249,37 @@ const galleryImages = [
                   onMouseLeave={hideTooltip}
                 />
 
-               {/* Location markers - updated version */}
-                      {locations.map((location) => (
-                        <g
-                          key={location.id}
-                          onClick={() => handleLocationClick(location.id)}
-                          className="cursor-pointer group"
-                          transform={`translate(${location.coords.x}, ${location.coords.y})`}
-                        >
-                          {/* Pulse animation - fixed implementation */}
-                          <circle
-                            cx="9"
-                            cy="14"
-                            r="15"
-                            className={`${getLocationColor(location.type)} opacity-40 animate-ping`}
-                          />
+                {/* Location markers with improved pulse animation */}
+                {locations.map((location) => (
+                  <g
+                    key={location.id}
+                    onClick={() => handleLocationClick(location.id)}
+                    className="cursor-pointer group"
+                    transform={`translate(${location.coords.x}, ${location.coords.y})`}
+                  >
+                    {/* Pulse animation - perfectly aligned with marker */}
+                    <circle
+                      cx="0"
+                      cy="0"
+                      r="16"
+                      className={`${getLocationColor(location.type)} opacity-0 group-hover:opacity-20 animate-ping`}
+                      style={{
+                        transformOrigin: 'center',
+                        transformBox: 'fill-box',
+                        animationDuration: '2s'
+                      }}
+                    />
 
-                          {/* Realistic map pin/marker */}
-                          <g className="transform translate(-15, -30) scale(1.2)">
-                            {/* Pin shadow */}
-                            <circle
-                              cx="15"
-                              cy="28"
-                              r="7"
-                              className="opacity-20"
-                              fill="#000"
-                            />
+                    {/* Realistic map pin/marker - unchanged from your implementation */}
+                    <g className="transform translate(-15, -30) scale(1.2)">
+                      {/* Pin shadow */}
+                      <circle
+                        cx="15"
+                        cy="28"
+                        r="7"
+                        className="opacity-20"
+                        fill="#000"
+                      />
                       {/* Pin body */}
                       <path
                         d="M15 3C10.03 3 6 7.03 6 12c0 7 9 17 9 17s9-10 9-17c0-4.97-4.03-9-9-9z"
@@ -307,6 +312,8 @@ const galleryImages = [
                     </g>
                   </g>
                 ))}
+
+               
           </svg>
 
            {/* Region tooltip */}
