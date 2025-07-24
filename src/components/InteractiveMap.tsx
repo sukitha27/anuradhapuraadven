@@ -92,23 +92,16 @@ const galleryImages = [
     }
   ];
 
-  const getLocationIcon = (type: string) => {
-    switch (type) {
-      case 'restaurant': return '🍽️';
-      case 'accommodation': return '🏠';
-      case 'tour': return '🚴';
-      default: return '📍';
-    }
-  };
+
 
   const getLocationColor = (type: string) => {
-    switch (type) {
-      case 'restaurant': return 'bg-orange-500';
-      case 'accommodation': return 'bg-blue-500';
-      case 'tour': return 'bg-emerald-500';
-      default: return 'bg-gray-500';
-    }
-  };
+  switch (type) {
+    case 'restaurant': return 'text-orange-600';
+    case 'accommodation': return 'text-blue-600'; 
+    case 'tour': return 'text-emerald-600';
+    default: return 'text-gray-600';
+  }
+};
 
   const handleTooltip = (e: React.MouseEvent, text: string) => {
     const svg = (e.target as SVGElement).ownerSVGElement;
@@ -256,37 +249,62 @@ const galleryImages = [
                   onMouseLeave={hideTooltip}
                 />
 
-                {/* Location markers */}
-                {locations.map((location) => (
-                  <g
-                    key={location.id}
-                    onClick={() => handleLocationClick(location.id)}
-                    className="cursor-pointer"
-                    transform={`translate(${location.coords.x}, ${location.coords.y})`}
-                  >
-                    {/* Ping animation */}
-                    <circle
-                      cx="0"
-                      cy="0"
-                      r="10"
-                      className={`${getLocationColor(location.type)} opacity-40 animate-ping`}
-                    />
-                    {/* Main marker */}
-                    <circle
-                      cx="0"
-                      cy="0"
-                      r="7"
-                      className={`${getLocationColor(location.type)} shadow-md`}
-                    />
-                    <text
-                      x="0"
-                      y="0"
-                      textAnchor="middle"
-                      dominantBaseline="middle"
-                      className="text-white text-[10px] font-bold"
-                    >
-                      {getLocationIcon(location.type)}
-                    </text>
+               {/* Location markers - updated version */}
+                      {locations.map((location) => (
+                        <g
+                          key={location.id}
+                          onClick={() => handleLocationClick(location.id)}
+                          className="cursor-pointer group"
+                          transform={`translate(${location.coords.x}, ${location.coords.y})`}
+                        >
+                          {/* Pulse animation - fixed implementation */}
+                          <circle
+                            cx="9"
+                            cy="14"
+                            r="15"
+                            className={`${getLocationColor(location.type)} opacity-40 animate-ping`}
+                          />
+
+                          {/* Realistic map pin/marker */}
+                          <g className="transform translate(-15, -30) scale(1.2)">
+                            {/* Pin shadow */}
+                            <circle
+                              cx="15"
+                              cy="28"
+                              r="7"
+                              className="opacity-20"
+                              fill="#000"
+                            />
+                      {/* Pin body */}
+                      <path
+                        d="M15 3C10.03 3 6 7.03 6 12c0 7 9 17 9 17s9-10 9-17c0-4.97-4.03-9-9-9z"
+                        className={`${getLocationColor(location.type)} drop-shadow-md`}
+                        fill="currentColor"
+                      />
+                      {/* White pin head */}
+                      <circle
+                        cx="15"
+                        cy="12"
+                        r="4"
+                        className="fill-white"
+                      />
+                      {/* Custom SVG icon */}
+                      {location.type === 'restaurant' && (
+                        <svg x="11" y="8" width="8" height="8" viewBox="0 0 24 24" className="fill-current text-white">
+                          <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm-7 7H3v4c0 1.1.9 2 2 2h4v-2H5v-4zM5 5h4V3H5c-1.1 0-2 .9-2 2v4h2V5zm14-2h-4v2h4v4h2V5c0-1.1-.9-2-2-2zm0 16h-4v2h4c1.1 0 2-.9 2-2v-4h-2v4z"/>
+                        </svg>
+                      )}
+                      {location.type === 'accommodation' && (
+                        <svg x="11" y="8" width="8" height="8" viewBox="0 0 24 24" className="fill-current text-white">
+                          <path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+                        </svg>
+                      )}
+                      {location.type === 'tour' && (
+                        <svg x="11" y="8" width="8" height="8" viewBox="0 0 24 24" className="fill-current text-white">
+                          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                      )}
+                    </g>
                   </g>
                 ))}
           </svg>
