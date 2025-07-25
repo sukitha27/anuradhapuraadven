@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: https://ogp.me/ns#">
   <head>
-    <!-- Primary Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self';" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="Strict-Transport-Security" content="max-age=63072000; includeSubDomains; preload" />
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="X-Frame-Options" content="DENY" />
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
-    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=(), fullscreen=()" />
-
     <!-- Primary Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -41,30 +32,26 @@
     <meta name="twitter:image" content="https://www.anuradhapurahomestay.com/images/social-preview.webp" />
     <meta name="twitter:image:alt" content="Traditional Sri Lankan homestay courtyard" />
 
-    <!-- Favicons -->
+    <!-- Favicons (generated via https://realfavicongenerator.net/) -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" crossorigin="use-credentials" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
     <meta name="msapplication-TileColor" content="#da532c" />
 
-    <!-- Resource Hints -->
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/src/main.tsx" as="script" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" />
+    <link rel="preload" href="/images/hero1.webp" as="image" />
+
+    <!-- Preconnect to External Domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://maps.googleapis.com" />
 
-    <!-- Critical CSS (inlined) -->
-    <style>
-      /* Critical CSS rules here */
-      html{scroll-behavior:smooth}body{margin:0;font-family:Poppins,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-    </style>
-
-    <!-- Non-Critical CSS (loaded asynchronously) -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
-    </noscript>
+    <!-- Google Fonts (with font-display: swap) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://www.anuradhapurahomestay.com/" />
@@ -103,36 +90,49 @@
         "https://www.facebook.com/anuradhapurahomestay",
         "https://www.instagram.com/anuradhapurahomestay",
         "https://www.tripadvisor.com/Restaurant_Review-g304132-d32985750"
-      ]
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Tour Packages",
+        "itemListElement": [
+          {
+            "@type": "OfferCatalog",
+            "name": "Cultural Experiences",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "name": "Traditional Cooking Class",
+                "description": "Learn to cook authentic Sri Lankan dishes"
+              },
+              {
+                "@type": "Offer",
+                "name": "Bicycle Heritage Tour",
+                "description": "Explore ancient ruins by bicycle"
+              }
+            ]
+          }
+        ]
+      }
     }
     </script>
   </head>
 
   <body>
     <noscript>
-      <div style="position:fixed;top:0;left:0;right:0;background:#f8d7da;color:#721c24;padding:1rem;text-align:center;z-index:1000;">
-        <strong>We're sorry but Anuradhapura Homestay requires JavaScript to work properly.</strong>
-        <p>Please enable JavaScript or contact us at +94 70-130-6430 / info@anuradhapurahomestay.com</p>
-      </div>
+      <strong>We're sorry but Anuradhapura Homestay doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <p>For more information about our homestay, please call us at +94 70-130-6430 or email info@anuradhapurahomestay.com</p>
     </noscript>
 
     <div id="root"></div>
     
-    <!-- Vite Runtime Script (will be transformed by Vite) -->
-    <script type="module" src="/src/main.tsx"></script>
+    <!-- Preload the Webpack runtime first -->
+    <script src="/src/main.tsx" type="module" defer></script>
     
-    <!-- Fallback for non-JS browsers -->
-    <noscript>
-      <style>#root{display:none}</style>
-      <div style="max-width:800px;margin:2rem auto;padding:1rem;font-family:sans-serif;">
-        <h1>Welcome to Anuradhapura Homestay</h1>
-        <p>To view our website, please enable JavaScript or contact us directly:</p>
-        <ul>
-          <li>Phone: +94 70-130-6430</li>
-          <li>Email: info@anuradhapurahomestay.com</li>
-          <li>Facebook: facebook.com/anuradhapurahomestay</li>
-        </ul>
-      </div>
-    </noscript>
+    <!-- Google Tag Manager (if needed) -->
+    <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXX');</script> -->
   </body>
 </html>
