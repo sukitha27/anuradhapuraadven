@@ -12,11 +12,11 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; media-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+          "value": "default-src 'self' *.vercel.app vercel.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.vercel.app vercel.com; style-src 'self' 'unsafe-inline' *.vercel.app; img-src 'self' data: blob: *.vercel.app vercel.com; font-src 'self' *.vercel.app; connect-src 'self' *.vercel.app vercel.com; media-src 'self' *.vercel.app; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
         },
         {
           "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
+          "value": "DENY"
         },
         {
           "key": "X-Content-Type-Options",
@@ -28,11 +28,19 @@
         },
         {
           "key": "Permissions-Policy",
-          "value": "geolocation=(), microphone=(), camera=(), payment=(), fullscreen=()"
+          "value": "geolocation=(), microphone=(), camera=(), payment=(), fullscreen=(), browsing-topics=()"
         },
         {
           "key": "X-XSS-Protection",
-          "value": "1; mode=block"
+          "value": "0"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        },
+        {
+          "key": "Cross-Origin-Embedder-Policy",
+          "value": "require-corp"
         }
       ]
     }
