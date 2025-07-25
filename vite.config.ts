@@ -7,53 +7,87 @@ import crypto from "crypto";
 // Generate nonce for production
 const nonce = crypto.randomBytes(16).toString('base64');
 
-// Common CSP directives
+// CSP directives with all required domains
 const commonCspDirectives = {
-  defaultSrc: ["'self'"],
-  frameSrc: ["'none'"],
-  objectSrc: ["'none'"],
-  baseUri: ["'self'"],
-  formAction: ["'self'"],
-  upgradeInsecureRequests: []
+  'default-src': ["'self'"],
+  'frame-src': ["'self'", "*.firebaseapp.com", "*.google.com"],
+  'object-src': ["'none'"],
+  'base-uri': ["'self'"],
+  'form-action': ["'self'"],
+  'upgrade-insecure-requests': []
 };
 
-// Development CSP (more permissive)
 const devCsp = {
   ...commonCspDirectives,
-  scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
-  styleSrc: ["'self'", "'unsafe-inline'"],
-  imgSrc: ["'self'", "data:", "blob:"],
-  connectSrc: ["'self'"],
-  fontSrc: ["'self'"]
+  'script-src': ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+  'style-src': ["'self'", "'unsafe-inline'"],
+  'img-src': ["'self'", "data:", "blob:", "*"],
+  'connect-src': ["'self'", "*"],
+  'font-src': ["'self'", "*"],
+  'media-src': ["'self'", "*"]
 };
 
-// Production CSP (strict)
 const prodCsp = {
   ...commonCspDirectives,
-  scriptSrc: [
+  'script-src': [
     "'self'",
     `'nonce-${nonce}'`,
     "'strict-dynamic'",
+    "*.vercel.app",
     "*.vercel.com",
     "*.cloudflare.com",
+    "*.firebaseapp.com",
+    "*.firebaseio.com",
+    "*.googleapis.com",
+    "*.gstatic.com",
     "cdn.jsdelivr.net"
   ],
-  styleSrc: ["'self'", "'unsafe-inline'", "*.vercel.com", "*.cloudflare.com"],
-  imgSrc: [
+  'style-src': [
+    "'self'",
+    "'unsafe-inline'",
+    "*.vercel.app",
+    "*.vercel.com",
+    "fonts.googleapis.com"
+  ],
+  'img-src': [
     "'self'",
     "data:",
     "blob:",
+    "*.vercel.app",
     "*.vercel.com",
     "*.cloudflare.com",
-    "cdn.jsdelivr.net"
+    "*.firebaseapp.com",
+    "*.firebasestorage.googleapis.com",
+    "*.googleapis.com",
+    "*.gstatic.com"
   ],
-  fontSrc: ["'self'", "*.vercel.com", "*.cloudflare.com"],
-  connectSrc: ["'self'", "*.vercel.com", "*.cloudflare.com"],
-  mediaSrc: ["'self'", "*.vercel.com"],
-  upgradeInsecureRequests: []
+  'font-src': [
+    "'self'",
+    "*.vercel.app",
+    "*.vercel.com",
+    "fonts.googleapis.com",
+    "fonts.gstatic.com"
+  ],
+  'connect-src': [
+    "'self'",
+    "*.vercel.app",
+    "*.vercel.com",
+    "*.cloudflare.com",
+    "*.firebaseapp.com",
+    "*.firebaseio.com",
+    "*.firebasestorage.googleapis.com",
+    "*.googleapis.com",
+    "*.gstatic.com",
+    "api.openweathermap.org"
+  ],
+  'media-src': [
+    "'self'",
+    "*.vercel.app",
+    "*.vercel.com",
+    "*.firebasestorage.googleapis.com"
+  ]
 };
 
-// Convert CSP object to header string
 function generateCspHeader(csp: Record<string, string[]>) {
   return Object.entries(csp)
     .map(([directive, sources]) => {
@@ -64,7 +98,6 @@ function generateCspHeader(csp: Record<string, string[]>) {
     .trim();
 }
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
     historyApiFallback: true,
@@ -74,13 +107,9 @@ export default defineConfig(({ mode }) => ({
       "Content-Security-Policy": generateCspHeader(
         mode === 'development' ? devCsp : prodCsp
       ),
-      "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
       "X-Frame-Options": "DENY",
       "X-Content-Type-Options": "nosniff",
-      "Referrer-Policy": "strict-origin-when-cross-origin",
-      "Permissions-Policy": "geolocation=(), microphone=(), camera=(), payment=(), fullscreen=()",
-      "Cross-Origin-Opener-Policy": "same-origin",
-      "Cross-Origin-Embedder-Policy": "require-corp"
+      "Referrer-Policy": "strict-origin-when-cross-origin"
     }
   },
   plugins: [
@@ -91,27 +120,10 @@ export default defineConfig(({ mode }) => ({
       transformIndexHtml(html: string) {
         if (mode === 'production') {
           return html
-            .replace(/<script(?![^>]*nonce)/g, `<script nonce="${nonce}"`)
-            .replace(/<style(?![^>]*nonce)/g, `<style nonce="${nonce}"`)
-            .replace(
-              '</head>',
-              `<meta http-equiv="Content-Security-Policy" content="${generateCspHeader(prodCsp)}" /></head>`
-            );
+            .replace(/<script/g, `<script nonce="${nonce}"`)
+            .replace(/<style/g, `<style nonce="${nonce}"`);
         }
         return html;
-      }
-    },
-    {
-      name: 'html-security-headers',
-      transformIndexHtml(html: string) {
-        return html.replace(
-          '</head>',
-          `
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          </head>
-          `
-        );
       }
     }
   ].filter(Boolean),
@@ -119,22 +131,5 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-  },
-  build: {
-    rollupOptions: {
-      output: {
-        assetFileNames: 'assets/[name]-[hash][extname]',
-        chunkFileNames: 'assets/[name]-[hash].js',
-        entryFileNames: 'assets/[name]-[hash].js'
-      }
-    }
-  },
-  preview: {
-    headers: {
-      "Content-Security-Policy": generateCspHeader(prodCsp),
-      ...(mode === 'production' ? {
-        "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload"
-      } : {})
-    }
   }
 }));
