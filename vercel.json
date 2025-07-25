@@ -1,20 +1,5 @@
 {
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self' *.vercel.app vercel.com *.cloudflare.com *.firebaseapp.com *.firebaseio.com *.firebasestorage.googleapis.com *.googleapis.com *.gstatic.com api.openweathermap.org  vercel.live www.googletagmanager.com www.google-analytics.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.vercel.app vercel.com *.cloudflare.com *.firebaseapp.com *.googleapis.com *.gstatic.com vercel.live www.googletagmanager.com www.google-analytics.com; style-src 'self' 'unsafe-inline' *.vercel.app *.cloudflare.com *.googleapis.com fonts.googleapis.com; img-src 'self' data: blob: *.vercel.app vercel.com *.firebasestorage.googleapis.com *.googleapis.com *.gstatic.com; font-src 'self' *.vercel.app *.cloudflare.com *.googleapis.com *.gstatic.com fonts.googleapis.com fonts.gstatic.com; connect-src 'self' *.vercel.app vercel.com *.cloudflare.com *.firebaseio.com *.firebaseapp.com *.firebasestorage.googleapis.com *.googleapis.com api.openweathermap.org www.google-analytics.com; media-src 'self' *.vercel.app *.firebaseio.com *.firebasestorage.googleapis.com; object-src 'none'; frame-src 'self' *.firebaseapp.com *.google.com vercel.live; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        }
-      ]
-    }
   ]
 }
