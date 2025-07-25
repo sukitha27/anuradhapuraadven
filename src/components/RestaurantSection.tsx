@@ -18,7 +18,7 @@ const RestaurantSection = () => {
     },
     {
       name: 'Fish Ambul Thiyal',
-      image: 'https://images.unsplash.com/photo-1551326844-4df70f78d0e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image: '/images/fisham.jpg',
       price: '$0',
       popularity: 88,
       description: 'Traditional sour fish curry with gotukola',
@@ -34,7 +34,7 @@ const RestaurantSection = () => {
     },
     {
       name: 'Hoppers with Coconut Sambol',
-      image: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image: '/images/egghop.webp',
       price: '$0',
       popularity: 90,
       description: 'Bowl-shaped pancakes with spicy coconut relish',

@@ -79,6 +79,7 @@ const prodCsp = {
     "*.googleapis.com",
     "*.gstatic.com",
     "api.openweathermap.org"
+    
   ],
   'media-src': [
     "'self'",
