@@ -9,10 +9,10 @@ const HomestaySection = () => {
   const [fade, setFade] = useState(true);
 
   const images = [
-    'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    '/images/gallery/G1.png',
+    '/images/gallery/G7.png',
+    '/images/gallery/G10.png',
+    '/images/gallery/G12.png'
   ];
 
   const amenities = [
