@@ -7,12 +7,12 @@
       "source": "/(.*)",
       "headers": [
         {
-          "key": "Strict-Transport-Security",
-          "value": "max-age=63072000; includeSubDomains; preload"
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self' *.vercel.app vercel.com *.cloudflare.com *.firebaseapp.com *.firebaseio.com *.firebasestorage.googleapis.com *.googleapis.com *.gstatic.com api.openweathermap.org vercel.live; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: *.vercel.app vercel.com *.cloudflare.com cdn.jsdelivr.net *.firebaseapp.com *.googleapis.com *.gstatic.com vercel.live; style-src 'self' 'unsafe-inline' *.vercel.app *.cloudflare.com cdn.jsdelivr.net *.googleapis.com; img-src 'self' data: blob: *; font-src 'self' *.vercel.app *.cloudflare.com cdn.jsdelivr.net *.googleapis.com *.gstatic.com; connect-src 'self' *.vercel.app vercel.com *.cloudflare.com *.firebaseio.com *.firebaseapp.com *.firebasestorage.googleapis.com *.googleapis.com api.openweathermap.org; media-src 'self' *.vercel.app *.firebaseio.com *.firebasestorage.googleapis.com; object-src 'none'; frame-src 'self' *.firebaseapp.com *.google.com vercel.live; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content"
         },
         {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self' *.vercel.app vercel.com *.cloudflare.com *.firebaseapp.com *.firebaseio.com *.firebasestorage.googleapis.com *.googleapis.com *.gstatic.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.vercel.app vercel.com *.cloudflare.com cdn.jsdelivr.net *.firebaseapp.com *.googleapis.com *.gstatic.com; style-src 'self' 'unsafe-inline' *.vercel.app *.cloudflare.com cdn.jsdelivr.net *.googleapis.com; img-src 'self' data: blob: *.vercel.app vercel.com *.cloudflare.com cdn.jsdelivr.net *.firebaseio.com *.firebasestorage.googleapis.com *.googleapis.com *.gstatic.com; font-src 'self' *.vercel.app *.cloudflare.com cdn.jsdelivr.net *.googleapis.com *.gstatic.com; connect-src 'self' *.vercel.app vercel.com *.cloudflare.com *.firebaseio.com *.firebaseapp.com *.firebasestorage.googleapis.com *.googleapis.com; media-src 'self' *.vercel.app *.firebaseio.com *.firebasestorage.googleapis.com; object-src 'none'; frame-src 'self' *.firebaseapp.com *.google.com; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content"
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
         },
         {
           "key": "X-Frame-Options",
@@ -41,10 +41,6 @@
         {
           "key": "Cross-Origin-Embedder-Policy",
           "value": "unsafe-none"
-        },
-        {
-          "key": "CF-Cache-Status",
-          "value": "DYNAMIC"
         }
       ]
     }
