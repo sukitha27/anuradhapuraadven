@@ -2,7 +2,7 @@
 /*  Dependencies                                                      */
 /* ------------------------------------------------------------------ */
 import { useState, type FC } from "react";
-import { motion } from "framer-motion";          // <-- added
+import { motion } from "framer-motion";
 import {
   MapPin,
   Phone,
@@ -11,7 +11,6 @@ import {
   MessageCircle,
   Star,
   Send,
-  ExternalLink,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -32,13 +31,11 @@ const scaleIn = { hidden: { scale: 0.95, opacity: 0 }, visible: { scale: 1, opac
 const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
 
 /* ------------------------------------------------------------------ */
-/*  Re-usable icon wrapper                                            */
+/*  Icon wrapper                                                      */
 /* ------------------------------------------------------------------ */
-const IconWrapper: FC<{ icon: React.ElementType; className?: string }> = ({ icon: Icon, className }) => (
-  <div
-    className={`w-14 h-14 rounded-2xl bg-neutral-900 border border-neutral-700 flex items-center justify-center ${className}`}
-  >
-    <Icon className="w-6 h-6 text-orange-400" />
+const IconWrapper: FC<{ icon: React.ElementType }> = ({ icon: Icon }) => (
+  <div className="w-14 h-14 rounded-2xl bg-slate-100 border border-slate-300 flex items-center justify-center">
+    <Icon className="w-6 h-6 text-sky-600" />
   </div>
 );
 
@@ -60,7 +57,7 @@ const Contact: FC = () => {
 
   /* =========================== RENDER =========================== */
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-white text-slate-800 font-sans">
       {/* HERO ---------------------------------------------------- */}
       <motion.section
         className="relative h-[65vh] bg-cover bg-center flex items-center justify-center"
@@ -69,21 +66,21 @@ const Contact: FC = () => {
         animate="visible"
         variants={fadeIn}
       >
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/40" />
         <motion.div
           className="relative z-10 flex flex-col items-center gap-6 text-center px-4"
           variants={stagger}
         >
-          <motion.h1 variants={slideUp(0.2)} className="text-5xl md:text-7xl font-extrabold tracking-tight">
+          <motion.h1 variants={slideUp(0.2)} className="text-5xl md:text-7xl font-extrabold text-white tracking-tight">
             Contact Us
           </motion.h1>
-          <motion.p variants={slideUp(0.3)} className="max-w-2xl text-lg text-neutral-300">
+          <motion.p variants={slideUp(0.3)} className="max-w-2xl text-lg text-white/90">
             Plan your authentic Sri Lankan adventure with us.
           </motion.p>
           <motion.div variants={slideUp(0.4)} className="flex gap-4">
             <Button
               size="lg"
-              className="bg-orange-500 hover:bg-orange-600 text-white font-semibold gap-2"
+              className="bg-sky-600 hover:bg-sky-700 text-white font-semibold gap-2"
               onClick={() => document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" })}
             >
               <Send className="w-4 h-4" />
@@ -91,7 +88,7 @@ const Contact: FC = () => {
             </Button>
 
             <a href="https://wa.me/94701306430" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" variant="outline" className="border-neutral-600 hover:bg-neutral-800 gap-2">
+              <Button size="lg" variant="outline" className="bg-white/20 border-white text-white hover:bg-white/30 gap-2">
                 <MessageCircle className="w-4 h-4" />
                 WhatsApp
               </Button>
@@ -115,12 +112,12 @@ const Contact: FC = () => {
           { icon: Clock, title: "Open Hours", lines: ["Daily: 6 AM – 10 PM", "Tours: 5 AM – 9 PM"] },
         ].map(({ icon, title, lines }, idx) => (
           <motion.div key={idx} variants={scaleIn} whileHover={{ y: -6 }} className="h-full">
-            <Card className="bg-neutral-900/70 backdrop-blur-md border border-neutral-800 rounded-2xl p-6 flex flex-col items-center text-center shadow-lg hover:shadow-orange-500/10 transition-shadow duration-300 h-full">
+            <Card className="bg-white border-slate-200 rounded-2xl p-6 flex flex-col items-center text-center shadow-md hover:shadow-sky-500/10 transition-shadow duration-300 h-full">
               <IconWrapper icon={icon} />
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg font-semibold">{title}</CardTitle>
               </CardHeader>
-              <CardContent className="text-sm text-neutral-400">
+              <CardContent className="text-sm text-slate-600">
                 {lines.map((l) => (
                   <p key={l}>{l}</p>
                 ))}
@@ -140,10 +137,10 @@ const Contact: FC = () => {
       >
         {/* FORM */}
         <motion.div id="contact-form" variants={slideUp()} className="lg:col-span-2">
-          <Card className="bg-neutral-900 border-neutral-800 rounded-2xl">
+          <Card className="bg-white border-slate-200 rounded-2xl shadow-md">
             <CardHeader>
-              <CardTitle className="text-3xl font-bold">Send us a Message</CardTitle>
-              <CardDescription className="text-neutral-400">
+              <CardTitle className="text-3xl font-bold text-slate-800">Send us a Message</CardTitle>
+              <CardDescription className="text-slate-600">
                 Share your travel plans or questions and we’ll craft the perfect itinerary for you.
               </CardDescription>
             </CardHeader>
@@ -157,7 +154,7 @@ const Contact: FC = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="bg-neutral-800 border-neutral-700 focus:border-orange-500"
+                      className="border-slate-300 focus:border-sky-500"
                     />
                   </motion.div>
                   <motion.div whileHover={{ scale: 1.02 }}>
@@ -168,7 +165,7 @@ const Contact: FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="bg-neutral-800 border-neutral-700 focus:border-orange-500"
+                      className="border-slate-300 focus:border-sky-500"
                     />
                   </motion.div>
                 </div>
@@ -178,7 +175,7 @@ const Contact: FC = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="bg-neutral-800 border-neutral-700 focus:border-orange-500"
+                    className="border-slate-300 focus:border-sky-500"
                   />
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.01 }}>
@@ -189,16 +186,12 @@ const Contact: FC = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    className="bg-neutral-800 border-neutral-700 focus:border-orange-500 resize-none"
+                    className="border-slate-300 focus:border-sky-500 resize-none"
                     placeholder="Tell us about your interests, dates, or questions..."
                   />
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="bg-orange-500 hover:bg-orange-600 text-white w-full md:w-auto gap-2"
-                  >
+                  <Button type="submit" size="lg" className="bg-sky-600 hover:bg-sky-700 text-white w-full md:w-auto gap-2">
                     <Send className="w-4 h-4" />
                     Send Message
                   </Button>
@@ -210,9 +203,8 @@ const Contact: FC = () => {
 
         {/* SIDEBAR */}
         <aside className="flex flex-col gap-8">
-          {/* Quick actions */}
           <motion.div variants={slideUp(0.2)}>
-            <Card className="bg-neutral-900 border-neutral-800 rounded-2xl">
+            <Card className="bg-white border-slate-200 rounded-2xl shadow-md">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <IconWrapper icon={MessageCircle} />
@@ -237,7 +229,7 @@ const Contact: FC = () => {
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                 >
-                  <Button variant="outline" className="w-full border-neutral-600 hover:bg-neutral-800 gap-2">
+                  <Button variant="outline" className="w-full border-slate-300 text-slate-700 hover:bg-slate-100 gap-2">
                     <Phone className="w-4 h-4" />
                     Call Now
                   </Button>
@@ -248,7 +240,7 @@ const Contact: FC = () => {
 
           {/* Reviews */}
           <motion.div variants={slideUp(0.3)}>
-            <Card className="bg-neutral-900 border-neutral-800 rounded-2xl">
+            <Card className="bg-white border-slate-200 rounded-2xl shadow-md">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <IconWrapper icon={Star} />
@@ -264,15 +256,15 @@ const Contact: FC = () => {
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ delay: i * 0.1 }}
                     >
-                      <Star className="w-5 h-5 text-orange-400 fill-current" />
+                      <Star className="w-5 h-5 text-amber-500 fill-current" />
                     </motion.div>
                   ))}
                   <span className="ml-2 font-bold text-lg">4.9 / 5</span>
                 </div>
-                <p className="text-sm text-neutral-400 mb-4">Based on 500+ reviews</p>
-                <blockquote className="border-l-2 border-orange-500 pl-4 text-sm italic text-neutral-300">
+                <p className="text-sm text-slate-600 mb-4">Based on 500+ reviews</p>
+                <blockquote className="border-l-2 border-amber-500 pl-4 text-sm italic text-slate-700">
                   “Authentic experience with incredible hospitality!”
-                  <span className="block not-italic mt-2 text-neutral-400">– Sarah M., Australia</span>
+                  <span className="block not-italic mt-2 text-slate-600">– Sarah M., Australia</span>
                 </blockquote>
               </CardContent>
             </Card>
@@ -280,7 +272,7 @@ const Contact: FC = () => {
         </aside>
       </motion.section>
 
-      {/* MAP ----------------------------------------------------- */}
+      {/* EMBEDDED GOOGLE MAP ------------------------------------- */}
       <motion.section
         className="container mx-auto px-4 pb-20"
         initial="hidden"
@@ -288,32 +280,29 @@ const Contact: FC = () => {
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeIn}
       >
-        <Card className="bg-neutral-900 border-neutral-800 rounded-2xl overflow-hidden">
+        <Card className="bg-white border-slate-200 rounded-2xl shadow-md overflow-hidden">
           <CardHeader>
             <CardTitle className="flex items-center gap-3">
               <IconWrapper icon={MapPin} />
               <span>Find Us</span>
             </CardTitle>
-            <CardDescription className="text-neutral-400">
+            <CardDescription className="text-slate-600">
               Centrally located in the cultural triangle – minutes away from Anuradhapura’s UNESCO sites.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <motion.div
-              className="aspect-video bg-neutral-800 flex items-center justify-center rounded-xl"
-              whileHover={{ scale: 1.01 }}
-            >
-              <a
-                href="https://maps.google.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center gap-4 text-neutral-400 hover:text-orange-400 transition"
-              >
-                <MapPin className="w-12 h-12" />
-                <span className="font-semibold">Open Google Maps</span>
-                <ExternalLink className="w-5 h-5" />
-              </a>
-            </motion.div>
+            <div className="aspect-video w-full rounded-xl overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3947.7659447821884!2d80.3677777750108!3d8.326040691709865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afcf5a121d2413b%3A0x1efaa81e9aca52f0!2sChipmunk%20Home%20Stay!5e0!3m2!1sen!2slk!4v1754155251225!5m2!1sen!2slk"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Anuradhapura Homestay Map"
+              />
+            </div>
           </CardContent>
         </Card>
       </motion.section>
