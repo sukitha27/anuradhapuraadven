@@ -1,5 +1,18 @@
-import { useState } from "react";
-import { MapPin, Phone, Mail, Clock, MessageCircle, Star } from "lucide-react";
+/* ------------------------------------------------------------------ */
+/*  Dependencies                                                      */
+/* ------------------------------------------------------------------ */
+import { useState, type FC } from "react";
+import { motion } from "framer-motion";          // <-- added
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  MessageCircle,
+  Star,
+  Send,
+  ExternalLink,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -7,306 +20,303 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 
+/* ------------------------------------------------------------------ */
+/*  Animation helpers                                                 */
+/* ------------------------------------------------------------------ */
+const fadeIn = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.6 } } };
+const slideUp = (delay = 0) => ({
+  hidden: { y: 40, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.6, delay } },
+});
+const scaleIn = { hidden: { scale: 0.95, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { duration: 0.5 } } };
+const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
 
-const Contact = () => {
+/* ------------------------------------------------------------------ */
+/*  Re-usable icon wrapper                                            */
+/* ------------------------------------------------------------------ */
+const IconWrapper: FC<{ icon: React.ElementType; className?: string }> = ({ icon: Icon, className }) => (
+  <div
+    className={`w-14 h-14 rounded-2xl bg-neutral-900 border border-neutral-700 flex items-center justify-center ${className}`}
+  >
+    <Icon className="w-6 h-6 text-orange-400" />
+  </div>
+);
+
+/* ------------------------------------------------------------------ */
+/*  Main component                                                    */
+/* ------------------------------------------------------------------ */
+const Contact: FC = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for contacting us. We'll get back to you within 24 hours.",
-    });
+    toast({ title: "Message Sent!", description: "We’ll get back to you within 24 hours." });
     setFormData({ name: "", email: "", phone: "", message: "" });
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
+  /* =========================== RENDER =========================== */
   return (
-    <div className="min-h-screen bg-background">
-      {/* Enhanced Hero Section */}
-      <div 
-        className="relative h-[70vh] bg-cover bg-center flex items-center justify-center overflow-hidden"
+    <div className="min-h-screen bg-neutral-950 text-neutral-100 font-sans overflow-x-hidden">
+      {/* HERO ---------------------------------------------------- */}
+      <motion.section
+        className="relative h-[65vh] bg-cover bg-center flex items-center justify-center"
         style={{ backgroundImage: "url(/images/cbanner.jpg)" }}
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
       >
-        <div className="absolute inset-0 bg-gradient-hero"></div>
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative z-10 text-center text-white animate-fade-in max-w-4xl mx-auto px-4">
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 text-shadow-lg animate-scale-in">
+        <div className="absolute inset-0 bg-black/60" />
+        <motion.div
+          className="relative z-10 flex flex-col items-center gap-6 text-center px-4"
+          variants={stagger}
+        >
+          <motion.h1 variants={slideUp(0.2)} className="text-5xl md:text-7xl font-extrabold tracking-tight">
             Contact Us
-          </h1>
-          <p className="text-xl md:text-2xl opacity-95 mb-8 text-shadow animate-slide-up" style={{ animationDelay: "0.2s" }}>
-            Get in touch for your authentic Sri Lankan experience
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: "0.4s" }}>
-            <Button variant="premium" size="xl" asChild>
-              <a href="#contact-form">
-                <MessageCircle className="w-5 h-5 mr-2" />
-                Send Message
-              </a>
+          </motion.h1>
+          <motion.p variants={slideUp(0.3)} className="max-w-2xl text-lg text-neutral-300">
+            Plan your authentic Sri Lankan adventure with us.
+          </motion.p>
+          <motion.div variants={slideUp(0.4)} className="flex gap-4">
+            <Button
+              size="lg"
+              className="bg-orange-500 hover:bg-orange-600 text-white font-semibold gap-2"
+              onClick={() => document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              <Send className="w-4 h-4" />
+              Send Message
             </Button>
-            <Button variant="glass" size="xl" asChild>
-              <a href="https://wa.me/94701306430" target="_blank" rel="noopener noreferrer">
-                <Phone className="w-5 h-5 mr-2" />
-                Call Now
-              </a>
-            </Button>
-          </div>
-        </div>
-      </div>
 
-      {/* Enhanced Contact Information Cards */}
-      <div className="container mx-auto px-4 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20 -mt-20 relative z-20">
-          <Card className="text-center shadow-elevated animate-slide-up animate-scale-hover glass-card group" style={{ animationDelay: "0.1s" }}>
-            <CardHeader>
-              <div className="mx-auto w-16 h-16 bg-gradient-teal rounded-2xl flex items-center justify-center mb-6 shadow-glow group-hover:animate-bounce-subtle">
-                <MapPin className="w-8 h-8 text-white" />
-              </div>
-              <CardTitle className="text-xl gradient-text">Visit Us</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground leading-relaxed">
-                123 Heritage Road<br />
-                Anuradhapura<br />
-                Sri Lanka
-              </p>
-            </CardContent>
-          </Card>
+            <a href="https://wa.me/94701306430" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" variant="outline" className="border-neutral-600 hover:bg-neutral-800 gap-2">
+                <MessageCircle className="w-4 h-4" />
+                WhatsApp
+              </Button>
+            </a>
+          </motion.div>
+        </motion.div>
+      </motion.section>
 
-          <Card className="text-center shadow-elevated animate-slide-up animate-scale-hover glass-card group" style={{ animationDelay: "0.2s" }}>
-            <CardHeader>
-              <div className="mx-auto w-16 h-16 bg-gradient-teal rounded-2xl flex items-center justify-center mb-6 shadow-glow group-hover:animate-bounce-subtle">
-                <Phone className="w-8 h-8 text-white" />
-              </div>
-              <CardTitle className="text-xl gradient-text">Call Us</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground leading-relaxed">
-                +94 70 130 6430<br />
-                +94 25 222 3456
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="text-center shadow-elevated animate-slide-up animate-scale-hover glass-card group" style={{ animationDelay: "0.3s" }}>
-            <CardHeader>
-              <div className="mx-auto w-16 h-16 bg-gradient-teal rounded-2xl flex items-center justify-center mb-6 shadow-glow group-hover:animate-bounce-subtle">
-                <Mail className="w-8 h-8 text-white" />
-              </div>
-              <CardTitle className="text-xl gradient-text">Email Us</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground leading-relaxed">
-                info@anuradhapurahomestay.com<br />
-                tours@anuradhapurahomestay.com
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="text-center shadow-elevated animate-slide-up animate-scale-hover glass-card group" style={{ animationDelay: "0.4s" }}>
-            <CardHeader>
-              <div className="mx-auto w-16 h-16 bg-gradient-teal rounded-2xl flex items-center justify-center mb-6 shadow-glow group-hover:animate-bounce-subtle">
-                <Clock className="w-8 h-8 text-white" />
-              </div>
-              <CardTitle className="text-xl gradient-text">Open Hours</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground leading-relaxed">
-                Daily: 6:00 AM - 10:00 PM<br />
-                Tours: 5:00 AM - 9:00 PM
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Enhanced Contact Form and Quick Contact */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Contact Form */}
-          <div className="lg:col-span-2" id="contact-form">
-            <Card className="shadow-elevated glass-card animate-scale-hover">
-              <CardHeader className="pb-8">
-                <CardTitle className="text-3xl gradient-text mb-2">Send us a Message</CardTitle>
-                <CardDescription className="text-lg text-muted-foreground">
-                  Planning your visit to Anuradhapura? We'd love to help you create an unforgettable experience.
-                </CardDescription>
+      {/* QUICK INFO CARDS ---------------------------------------- */}
+      <motion.section
+        className="container mx-auto px-4 -mt-16 relative z-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={stagger}
+      >
+        {[
+          { icon: MapPin, title: "Visit Us", lines: ["123 Heritage Road", "Anuradhapura, Sri Lanka"] },
+          { icon: Phone, title: "Call Us", lines: ["+94 70 130 6430", "+94 25 222 3456"] },
+          { icon: Mail, title: "Email Us", lines: ["info@anuradhapurahomestay.com", "tours@anuradhapurahomestay.com"] },
+          { icon: Clock, title: "Open Hours", lines: ["Daily: 6 AM – 10 PM", "Tours: 5 AM – 9 PM"] },
+        ].map(({ icon, title, lines }, idx) => (
+          <motion.div key={idx} variants={scaleIn} whileHover={{ y: -6 }} className="h-full">
+            <Card className="bg-neutral-900/70 backdrop-blur-md border border-neutral-800 rounded-2xl p-6 flex flex-col items-center text-center shadow-lg hover:shadow-orange-500/10 transition-shadow duration-300 h-full">
+              <IconWrapper icon={icon} />
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg font-semibold">{title}</CardTitle>
               </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-8">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-3">
-                      <Label htmlFor="name" className="text-sm font-semibold text-foreground">Full Name</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        placeholder="Your full name"
-                        className="h-12 border-2 focus:border-soft-teal transition-all duration-300"
-                        required
-                      />
-                    </div>
-                    <div className="space-y-3">
-                      <Label htmlFor="email" className="text-sm font-semibold text-foreground">Email Address</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        placeholder="your.email@example.com"
-                        className="h-12 border-2 focus:border-soft-teal transition-all duration-300"
-                        required
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <Label htmlFor="phone" className="text-sm font-semibold text-foreground">Phone Number</Label>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      placeholder="+94 70 XXX XXXX"
-                      className="h-12 border-2 focus:border-soft-teal transition-all duration-300"
-                    />
-                  </div>
-
-                  <div className="space-y-3">
-                    <Label htmlFor="message" className="text-sm font-semibold text-foreground">Message</Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      placeholder="Tell us about your travel plans, interests, or any questions you have..."
-                      className="min-h-[140px] border-2 focus:border-soft-teal transition-all duration-300 resize-none"
-                      required
-                    />
-                  </div>
-
-                  <div className="pt-4">
-                    <Button type="submit" variant="premium" size="xl" className="w-full md:w-auto min-w-[200px]">
-                      <Mail className="w-5 h-5 mr-2" />
-                      Send Message
-                    </Button>
-                  </div>
-                </form>
+              <CardContent className="text-sm text-neutral-400">
+                {lines.map((l) => (
+                  <p key={l}>{l}</p>
+                ))}
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
+        ))}
+      </motion.section>
 
-          {/* Enhanced Quick Contact & Reviews */}
-          <div className="space-y-8">
-            {/* Quick Contact */}
-            <Card className="shadow-elevated glass-card animate-scale-hover">
-              <CardHeader className="pb-6">
-                <CardTitle className="text-2xl flex items-center gap-3">
-                  <div className="w-10 h-10 bg-gradient-teal rounded-xl flex items-center justify-center shadow-glow">
-                    <MessageCircle className="w-6 h-6 text-white" />
-                  </div>
-                  <span className="gradient-text">Quick Contact</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <p className="text-muted-foreground text-lg leading-relaxed">
-                  Need immediate assistance? Contact us directly for instant replies and personalized support.
-                </p>
-                <div className="space-y-4">
-                  <Button variant="premium" size="xl" className="w-full" asChild>
-                    <a href="https://wa.me/94701306430" target="_blank" rel="noopener noreferrer">
-                      <MessageCircle className="w-5 h-5 mr-2" />
-                      WhatsApp Us
-                    </a>
-                  </Button>
-                  <Button variant="warm" size="xl" className="w-full" asChild>
-                    <a href="tel:+94701306430">
-                      <Phone className="w-5 h-5 mr-2" />
-                      Call Now
-                    </a>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Enhanced Reviews Summary */}
-            <Card className="shadow-elevated glass-card animate-scale-hover">
-              <CardHeader className="pb-6">
-                <CardTitle className="text-2xl gradient-text flex items-center gap-3">
-                  <div className="w-10 h-10 bg-gradient-teal rounded-xl flex items-center justify-center shadow-glow">
-                    <Star className="w-6 h-6 text-white" />
-                  </div>
-                  What Guests Say
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center mb-8">
-                  <div className="flex items-center justify-center gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-7 h-7 fill-soft-teal text-soft-teal animate-float" style={{ animationDelay: `${i * 0.1}s` }} />
-                    ))}
-                  </div>
-                  <p className="text-4xl font-bold gradient-text mb-2">4.9/5</p>
-                  <p className="text-muted-foreground text-lg">Based on 500+ reviews</p>
-                </div>
-                <div className="space-y-4">
-                  <div className="bg-gradient-card p-5 rounded-2xl shadow-soft border border-border/50">
-                    <p className="italic text-foreground text-lg mb-3">"Authentic experience with incredible hospitality!"</p>
-                    <p className="text-sm text-muted-foreground font-medium">- Sarah M., Australia</p>
-                  </div>
-                  <div className="bg-gradient-card p-5 rounded-2xl shadow-soft border border-border/50">
-                    <p className="italic text-foreground text-lg mb-3">"Best cultural tours in Sri Lanka. Highly recommended!"</p>
-                    <p className="text-sm text-muted-foreground font-medium">- David K., Germany</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        {/* Enhanced Map Section */}
-        <div className="mt-20">
-          <Card className="shadow-elevated glass-card animate-scale-hover">
-            <CardHeader className="pb-8">
-              <CardTitle className="text-3xl gradient-text mb-4 flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-teal rounded-2xl flex items-center justify-center shadow-glow">
-                  <MapPin className="w-7 h-7 text-white" />
-                </div>
-                Find Us
-              </CardTitle>
-              <CardDescription className="text-lg text-muted-foreground">
-                Located in the heart of Anuradhapura's cultural triangle, we're easily accessible from all major attractions and historical sites.
+      {/* MAIN GRID: FORM + SIDEBAR ------------------------------- */}
+      <motion.section
+        className="container mx-auto px-4 py-20 grid lg:grid-cols-3 gap-12"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={stagger}
+      >
+        {/* FORM */}
+        <motion.div id="contact-form" variants={slideUp()} className="lg:col-span-2">
+          <Card className="bg-neutral-900 border-neutral-800 rounded-2xl">
+            <CardHeader>
+              <CardTitle className="text-3xl font-bold">Send us a Message</CardTitle>
+              <CardDescription className="text-neutral-400">
+                Share your travel plans or questions and we’ll craft the perfect itinerary for you.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="aspect-video w-full bg-gradient-card rounded-2xl flex items-center justify-center shadow-soft border border-border/50">
-                <div className="text-center text-muted-foreground">
-                  <div className="w-20 h-20 bg-gradient-teal rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-glow animate-bounce-subtle">
-                    <MapPin className="w-10 h-10 text-white" />
-                  </div>
-                  <p className="text-2xl font-semibold mb-2 gradient-text">Interactive Map</p>
-                  <p className="text-lg text-muted-foreground mb-6">Anuradhapura Heritage Location</p>
-                  <Button variant="premium" size="xl" asChild>
-                    <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">
-                      <MapPin className="w-5 h-5 mr-2" />
-                      View on Google Maps
-                    </a>
-                  </Button>
+              <form onSubmit={handleSubmit} className="grid gap-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <motion.div whileHover={{ scale: 1.02 }}>
+                    <Label className="text-sm font-medium">Full Name</Label>
+                    <Input
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="bg-neutral-800 border-neutral-700 focus:border-orange-500"
+                    />
+                  </motion.div>
+                  <motion.div whileHover={{ scale: 1.02 }}>
+                    <Label className="text-sm font-medium">Email</Label>
+                    <Input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="bg-neutral-800 border-neutral-700 focus:border-orange-500"
+                    />
+                  </motion.div>
                 </div>
-              </div>
+                <motion.div whileHover={{ scale: 1.02 }}>
+                  <Label className="text-sm font-medium">Phone (optional)</Label>
+                  <Input
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="bg-neutral-800 border-neutral-700 focus:border-orange-500"
+                  />
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.01 }}>
+                  <Label className="text-sm font-medium">Message</Label>
+                  <Textarea
+                    name="message"
+                    rows={5}
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    className="bg-neutral-800 border-neutral-700 focus:border-orange-500 resize-none"
+                    placeholder="Tell us about your interests, dates, or questions..."
+                  />
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="bg-orange-500 hover:bg-orange-600 text-white w-full md:w-auto gap-2"
+                  >
+                    <Send className="w-4 h-4" />
+                    Send Message
+                  </Button>
+                </motion.div>
+              </form>
             </CardContent>
           </Card>
-        </div>
-      </div>
+        </motion.div>
+
+        {/* SIDEBAR */}
+        <aside className="flex flex-col gap-8">
+          {/* Quick actions */}
+          <motion.div variants={slideUp(0.2)}>
+            <Card className="bg-neutral-900 border-neutral-800 rounded-2xl">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-3">
+                  <IconWrapper icon={MessageCircle} />
+                  <span>Quick Contact</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <motion.a
+                  href="https://wa.me/94701306430"
+                  target="_blank"
+                  rel="noreferrer"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  <Button className="w-full bg-green-600 hover:bg-green-700 gap-2">
+                    <MessageCircle className="w-4 h-4" />
+                    WhatsApp
+                  </Button>
+                </motion.a>
+                <motion.a
+                  href="tel:+94701306430"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  <Button variant="outline" className="w-full border-neutral-600 hover:bg-neutral-800 gap-2">
+                    <Phone className="w-4 h-4" />
+                    Call Now
+                  </Button>
+                </motion.a>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Reviews */}
+          <motion.div variants={slideUp(0.3)}>
+            <Card className="bg-neutral-900 border-neutral-800 rounded-2xl">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-3">
+                  <IconWrapper icon={Star} />
+                  <span>Guest Reviews</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center gap-2 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: i * 0.1 }}
+                    >
+                      <Star className="w-5 h-5 text-orange-400 fill-current" />
+                    </motion.div>
+                  ))}
+                  <span className="ml-2 font-bold text-lg">4.9 / 5</span>
+                </div>
+                <p className="text-sm text-neutral-400 mb-4">Based on 500+ reviews</p>
+                <blockquote className="border-l-2 border-orange-500 pl-4 text-sm italic text-neutral-300">
+                  “Authentic experience with incredible hospitality!”
+                  <span className="block not-italic mt-2 text-neutral-400">– Sarah M., Australia</span>
+                </blockquote>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </aside>
+      </motion.section>
+
+      {/* MAP ----------------------------------------------------- */}
+      <motion.section
+        className="container mx-auto px-4 pb-20"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
+      >
+        <Card className="bg-neutral-900 border-neutral-800 rounded-2xl overflow-hidden">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-3">
+              <IconWrapper icon={MapPin} />
+              <span>Find Us</span>
+            </CardTitle>
+            <CardDescription className="text-neutral-400">
+              Centrally located in the cultural triangle – minutes away from Anuradhapura’s UNESCO sites.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <motion.div
+              className="aspect-video bg-neutral-800 flex items-center justify-center rounded-xl"
+              whileHover={{ scale: 1.01 }}
+            >
+              <a
+                href="https://maps.google.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center gap-4 text-neutral-400 hover:text-orange-400 transition"
+              >
+                <MapPin className="w-12 h-12" />
+                <span className="font-semibold">Open Google Maps</span>
+                <ExternalLink className="w-5 h-5" />
+              </a>
+            </motion.div>
+          </CardContent>
+        </Card>
+      </motion.section>
     </div>
   );
 };
