@@ -35,7 +35,7 @@ const Footer = () => {
     { name: 'Restaurant', href: '#restaurant' },
     { name: 'Homestay', href: '#homestay' },
     { name: 'Cookery Classes', href: '#cookery' },
-    { name: 'About Us', href: '#about' },
+    { name: 'About Us', href: '/about' },
     { name: 'Contact', href: '#contact' }
   ];
 

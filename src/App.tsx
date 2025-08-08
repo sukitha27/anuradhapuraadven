@@ -10,6 +10,7 @@ import Contact from "./pages/Contact";
 import Index from "./pages/Index";
 import Reviews from "./pages/Reviews";
 import Tours from "./pages/Tours";
+import AboutUs from './pages/AboutUs';
 import Videos from "./pages/Videos";
 import NotFound from "./pages/NotFound";
 import Maintenance from "./pages/Maintenance";
@@ -17,6 +18,7 @@ import AllGallery from "./pages/AllGallery";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Sitemap from "./pages/Sitemap";
+import path from "path";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +27,7 @@ const routes = [
   { path: "/", element: <Index /> },
   { path: "/reviews", element: <Reviews /> },
   { path: "/contact", element: <Contact /> },
+  { path: "/about", element: <AboutUs /> },
   { path: "/tours", element: <Tours /> },
   { path: "/videos", element: <Videos /> },
   { path: "/gallery", element: <AllGallery /> },
