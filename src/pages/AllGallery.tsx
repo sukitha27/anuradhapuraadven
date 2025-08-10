@@ -9,50 +9,50 @@ const AllGallery = () => {
     {
       id: 1,
       src: "/images/gallery/G1.png",
-      alt: "Mountain landscape hit by sun rays",
-      title: "Majestic Mountains"
+      alt: "",
+      title: "Front View"
     },
     {
       id: 2,
       src: "/images/gallery/G2.jpg",
-      alt: "Foggy mountain summit",
-      title: "Misty Peaks"
+      alt: "",
+      title: "Dining Area"
     },
     {
       id: 3,
       src: "/images/gallery/G3.jpg",
-      alt: "Ocean wave at beach",
-      title: "Ocean Waves"
+      alt: "",
+      title: "Dining with a View"
     },
     {
       id: 4,
       src: "/images/gallery/G5.jpg",
-      alt: "Trees near rocky mountain under blue skies",
-      title: "Natural Wonders"
+      alt: "",
+      title: "Restaurant View"
     },
     {
       id: 5,
       src: "/images/gallery/G6.png",
-      alt: "Forest heated by sunbeam",
-      title: "Forest Light"
+      alt: "",
+      title: "Delicious Sri Lankan Food"
     },
     {
       id: 6,
       src: "/images/gallery/G7.png",
-      alt: "Body of water surrounded by trees",
-      title: "Serene Waters"
+      alt: "",
+      title: "Night View"
     },
     {
       id: 7,
       src: "/images/gallery/G8.jpg",
-      alt: "Bird's eye view of green mountains",
-      title: "Aerial Views"
+      alt: "",
+      title: "Traditional Sri Lankan Kettle"
     },
     {
       id: 8,
       src: "images/gallery/G9.jpg",
-      alt: "Green grass and rocky mountain during daytime",
-      title: "Mountain Meadows"
+      alt: "",
+      title: "Traditional Sri Lankan Homestay Courtyard"
     }
   ];
 
@@ -73,7 +73,7 @@ const AllGallery = () => {
             </Button>
             <div>
               <h1 className="text-2xl font-bold">All Gallery</h1>
-              <p className="text-muted-foreground">Discover the beauty of Sri Lanka</p>
+              <p className="text-muted-foreground">Discover the beauty of Homestay</p>
             </div>
           </div>
         </div>
