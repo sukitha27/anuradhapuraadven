@@ -19,16 +19,47 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 
+// Firebase imports
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '@/lib/firebase'; // Your firebase.js file
+
+/* ------------------------------------------------------------------ */
+/*  Types                                                             */
+/* ------------------------------------------------------------------ */
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
+interface ContactSubmission extends FormData {
+  timestamp: any;
+  status: string;
+  source: string;
+}
+
 /* ------------------------------------------------------------------ */
 /*  Animation helpers                                                 */
 /* ------------------------------------------------------------------ */
-const fadeIn = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.6 } } };
+const fadeIn = { 
+  hidden: { opacity: 0 }, 
+  visible: { opacity: 1, transition: { duration: 0.6 } } 
+};
+
 const slideUp = (delay = 0) => ({
   hidden: { y: 40, opacity: 0 },
   visible: { y: 0, opacity: 1, transition: { duration: 0.6, delay } },
 });
-const scaleIn = { hidden: { scale: 0.95, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { duration: 0.5 } } };
-const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
+
+const scaleIn = { 
+  hidden: { scale: 0.95, opacity: 0 }, 
+  visible: { scale: 1, opacity: 1, transition: { duration: 0.5 } } 
+};
+
+const stagger = { 
+  visible: { transition: { staggerChildren: 0.1 } } 
+};
 
 /* ------------------------------------------------------------------ */
 /*  Icon wrapper                                                      */
@@ -44,12 +75,65 @@ const IconWrapper: FC<{ icon: React.ElementType }> = ({ icon: Icon }) => (
 /* ------------------------------------------------------------------ */
 const Contact: FC = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
+  const [formData, setFormData] = useState<FormData>({ 
+    name: "", 
+    email: "", 
+    phone: "", 
+    message: "" 
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({ title: "Message Sent!", description: "We’ll get back to you within 24 hours." });
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    
+    // Basic validation
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      toast({
+        title: "Validation Error",
+        description: "Please fill in all required fields (Name, Email, and Message).",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      // Create submission object for Firebase
+      const submission: ContactSubmission = {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        message: formData.message.trim(),
+        timestamp: serverTimestamp(),
+        status: 'new',
+        source: 'website_contact_form'
+      };
+      
+      // Submit to Firebase Firestore
+      await addDoc(collection(db, 'contact_submissions'), submission);
+      
+      // Show success message
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for contacting us. We'll get back to you within 24 hours.",
+      });
+      
+      // Reset form
+      setFormData({ name: "", email: "", phone: "", message: "" });
+      
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      
+      // Show error message
+      toast({
+        title: "Submission Failed",
+        description: "There was a problem sending your message. Please try again or contact us directly.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -141,24 +225,25 @@ const Contact: FC = () => {
             <CardHeader>
               <CardTitle className="text-3xl font-bold text-slate-800">Send us a Message</CardTitle>
               <CardDescription className="text-slate-600">
-                Share your travel plans or questions and we’ll craft the perfect itinerary for you.
+                Share your travel plans or questions and we'll craft the perfect itinerary for you.
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="grid gap-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <motion.div whileHover={{ scale: 1.02 }}>
-                    <Label className="text-sm font-medium">Full Name</Label>
+                    <Label className="text-sm font-medium">Full Name *</Label>
                     <Input
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
                       required
                       className="border-slate-300 focus:border-sky-500"
+                      placeholder="Your full name"
                     />
                   </motion.div>
                   <motion.div whileHover={{ scale: 1.02 }}>
-                    <Label className="text-sm font-medium">Email</Label>
+                    <Label className="text-sm font-medium">Email *</Label>
                     <Input
                       type="email"
                       name="email"
@@ -166,6 +251,7 @@ const Contact: FC = () => {
                       onChange={handleChange}
                       required
                       className="border-slate-300 focus:border-sky-500"
+                      placeholder="your@email.com"
                     />
                   </motion.div>
                 </div>
@@ -176,10 +262,11 @@ const Contact: FC = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     className="border-slate-300 focus:border-sky-500"
+                    placeholder="+94 70 123 4567"
                   />
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.01 }}>
-                  <Label className="text-sm font-medium">Message</Label>
+                  <Label className="text-sm font-medium">Message *</Label>
                   <Textarea
                     name="message"
                     rows={5}
@@ -191,9 +278,23 @@ const Contact: FC = () => {
                   />
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button type="submit" size="lg" className="bg-sky-600 hover:bg-sky-700 text-white w-full md:w-auto gap-2">
-                    <Send className="w-4 h-4" />
-                    Send Message
+                  <Button 
+                    type="submit" 
+                    size="lg" 
+                    className="bg-sky-600 hover:bg-sky-700 text-white w-full md:w-auto gap-2"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        Send Message
+                      </>
+                    )}
                   </Button>
                 </motion.div>
               </form>
@@ -263,9 +364,40 @@ const Contact: FC = () => {
                 </div>
                 <p className="text-sm text-slate-600 mb-4">Based on 500+ reviews</p>
                 <blockquote className="border-l-2 border-amber-500 pl-4 text-sm italic text-slate-700">
-                  “Authentic experience with incredible hospitality!”
+                  "Authentic experience with incredible hospitality!"
                   <span className="block not-italic mt-2 text-slate-600">– Sarah M., Australia</span>
                 </blockquote>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Contact Info */}
+          <motion.div variants={slideUp(0.4)}>
+            <Card className="bg-white border-slate-200 rounded-2xl shadow-md">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-3">
+                  <IconWrapper icon={MapPin} />
+                  <span>Location Details</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4 text-sm text-slate-600">
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 text-sky-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-slate-800">Address</p>
+                    <p>123 Heritage Road</p>
+                    <p>Anuradhapura, Sri Lanka</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Clock className="w-4 h-4 text-sky-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-slate-800">Distance to Sites</p>
+                    <p>Sacred City: 5 minutes</p>
+                    <p>Mihintale: 15 minutes</p>
+                    <p>Sigiriya: 1.5 hours</p>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </motion.div>
@@ -287,7 +419,7 @@ const Contact: FC = () => {
               <span>Find Us</span>
             </CardTitle>
             <CardDescription className="text-slate-600">
-              Centrally located in the cultural triangle – minutes away from Anuradhapura’s UNESCO sites.
+              Centrally located in the cultural triangle – minutes away from Anuradhapura's UNESCO sites.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -305,6 +437,68 @@ const Contact: FC = () => {
             </div>
           </CardContent>
         </Card>
+      </motion.section>
+
+      {/* ADDITIONAL CONTACT OPTIONS ---------------------------- */}
+      <motion.section
+        className="bg-slate-50 py-16"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
+      >
+        <div className="container mx-auto px-4">
+          <motion.div className="text-center mb-12" variants={slideUp()}>
+            <h2 className="text-3xl font-bold text-slate-800 mb-4">Other Ways to Reach Us</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              Choose the method that works best for you. We're here to help plan your perfect Sri Lankan experience.
+            </p>
+          </motion.div>
+          
+          <motion.div 
+            className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+            variants={stagger}
+          >
+            <motion.div variants={scaleIn} className="text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <MessageCircle className="w-8 h-8 text-green-600" />
+              </div>
+              <h3 className="font-semibold text-lg mb-2">WhatsApp</h3>
+              <p className="text-slate-600 text-sm mb-4">Instant messaging for quick questions</p>
+              <a href="https://wa.me/94701306430" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
+                  Chat Now
+                </Button>
+              </a>
+            </motion.div>
+
+            <motion.div variants={scaleIn} className="text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Phone className="w-8 h-8 text-blue-600" />
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Phone Call</h3>
+              <p className="text-slate-600 text-sm mb-4">Speak directly with our team</p>
+              <a href="tel:+94701306430">
+                <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
+                  Call +94 70 130 6430
+                </Button>
+              </a>
+            </motion.div>
+
+            <motion.div variants={scaleIn} className="text-center">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Mail className="w-8 h-8 text-purple-600" />
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Email</h3>
+              <p className="text-slate-600 text-sm mb-4">Detailed inquiries and planning</p>
+              <a href="mailto:info@anuradhapurahomestay.com">
+                <Button variant="outline" className="border-purple-600 text-purple-600 hover:bg-purple-50">
+                  Send Email
+                </Button>
+              </a>
+            </motion.div>
+          </motion.div>
+        </div>
       </motion.section>
     </div>
   );
