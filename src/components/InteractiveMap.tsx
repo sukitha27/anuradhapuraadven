@@ -62,33 +62,33 @@ const InteractiveMap = () => {
 const galleryImages = [
     {
       src: '/images/gallery/G1.png',
-      alt: 'Traditional Sri Lankan temple architecture',
-      title: 'Ancient Temples'
+      alt: '',
+      title: 'Villa Front View'
     },
     {
       src: '/images/gallery/G11.png',
-      alt: 'Beautiful Sri Lankan landscape',
-      title: 'Natural Beauty'
+      alt: '',
+      title: 'Traditional Buffet'
     },
     {
       src: '/images/gallery/G12.png',
-      alt: 'Wildlife safari experience',
-      title: 'Wildlife Adventures'
+      alt: '',
+      title: 'Luxurious Accommodation'
     },
     {
       src: '/images/gallery/G10.png',
-      alt: 'Traditional Sri Lankan cuisine',
-      title: 'Local Cuisine'
+      alt: '',
+      title: 'Bathroom Amenities'
     },
     {
       src: '/images/gallery/G13.png',
-      alt: 'Tropical forest scenery',
-      title: 'Tropical Paradise'
+      alt: '',
+      title: 'Happy Guests'
     },
     {
       src: '/images/gallery/G14.png',
-      alt: 'Comfortable homestay accommodation',
-      title: 'Cozy Stays'
+      alt: '',
+      title: 'Happy Guests 2'
     }
   ];
 
