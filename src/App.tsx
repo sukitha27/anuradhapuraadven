@@ -18,6 +18,7 @@ import AllGallery from "./pages/AllGallery";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Sitemap from "./pages/Sitemap";
+import AdminContacts from "./pages/admin/ContactsDashboard"; // Add this import
 import path from "path";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const routes = [
   { path: "/privacy-policy", element: <PrivacyPolicy /> },
   { path: "/terms-of-service", element: <TermsOfService /> },
   { path: "/sitemap", element: <Sitemap /> },
+  { path: "/admin/contacts", element: <AdminContacts /> }, // Add this route
 ];
 
 const AppContent = () => {
