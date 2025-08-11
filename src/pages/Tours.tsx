@@ -46,7 +46,7 @@ const Tours = () => {
       description: 'Embark on an unforgettable cycling journey through the ancient capital of Sri Lanka. This eco-friendly tour takes you off the beaten path to discover hidden temples, traditional villages, and breathtaking landscapes that have remained unchanged for centuries.',
       itinerary: [
         'Start at Anuradhapura Archaeological Museum',
-        'Cycle through Mahameghavana Gardens',
+        'Cycle through Mahamewna Uyana',
         'Visit Ruwanwelisaya Stupa',
         'Explore local village and meet craftsmen',
         'Sacred Bo Tree (Jaya Sri Maha Bodhi)',
@@ -54,7 +54,7 @@ const Tours = () => {
         'Thuparamaya Temple complex',
         'Return via scenic countryside routes'
       ],
-      included: ['Professional guide', 'High-quality bicycle', 'Safety equipment', 'Traditional lunch', 'Entrance fees', 'Refreshments'],
+      included: ['Professional guide', 'High-quality bicycle', 'Safety equipment', 'Traditional lunch', 'Refreshments'],
       notIncluded: ['Personal expenses', 'Tips', 'Transportation to starting point'],
       bestTime: 'Early morning (6:00 AM) or late afternoon (2:00 PM)',
       bookingInfo: 'Book 24 hours in advance. Free cancellation up to 12 hours before the tour.'
@@ -76,15 +76,14 @@ const Tours = () => {
         'Early morning pickup from Anuradhapura',
         'Enter Wilpattu National Park',
         'First game drive - Leopard territory',
-        'Visit to Kali Villu (Black Lake)',
         'Breakfast in the wilderness',
         'Continue safari - Bird watching hotspots',
-        'Lunch at park restaurant',
+        'Lunch at inside park',
         'Afternoon game drive',
         'Visit natural pools (Villus)',
         'Return journey with sunset viewing'
       ],
-      included: ['4WD safari vehicle', 'Experienced naturalist guide', 'Park entrance fees', 'Breakfast & lunch', 'Binoculars', 'Bottled water'],
+      included: ['4WD safari vehicle', 'Experienced naturalist guide','Breakfast & lunch','Bottled water'],
       notIncluded: ['Personal expenses', 'Alcoholic beverages', 'Tips for guide'],
       bestTime: 'Early morning departure (5:30 AM) for best wildlife viewing',
       bookingInfo: 'Advance booking required. Weather dependent - alternative dates offered for cancellations.'
@@ -113,7 +112,7 @@ const Tours = () => {
         'Scenic route through old city',
         'Sunset viewing at sacred site'
       ],
-      included: ['TukTuk with driver', 'Local guide', 'Street food tastings', 'Temple entrance fees', 'Cooking demo', 'Traditional tea'],
+      included: ['TukTuk with driver', 'Local guide', 'Cooking demo', 'Traditional tea'],
       notIncluded: ['Additional meals', 'Personal shopping', 'Tips'],
       bestTime: 'Late afternoon (3:00 PM) for best market experience and sunset',
       bookingInfo: 'Flexible booking. Can accommodate dietary restrictions with advance notice.'
@@ -253,7 +252,7 @@ const Tours = () => {
                     <Button className="flex-1">
                       Book Now
                     </Button>
-                    <Button variant="outline" size="icon">
+                    <Button variant="outline" size="sm" className="w-9 p-0">
                       <Camera className="w-4 h-4" />
                     </Button>
                   </div>

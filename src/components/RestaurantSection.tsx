@@ -11,7 +11,7 @@ const RestaurantSection = () => {
     {
       name: 'Traditional Rice & Curry',
       image: '/images/riceandcurry.jpg',
-      price: '$0',
+      price: '',
       popularity: 95,
       description: 'Authentic Sri Lankan rice and curry with 5 different curries',
       spiceLevel: 'Medium'
@@ -19,7 +19,7 @@ const RestaurantSection = () => {
     {
       name: 'Fish Ambul Thiyal',
       image: '/images/fisham.jpg',
-      price: '$0',
+      price: '',
       popularity: 88,
       description: 'Traditional sour fish curry with gotukola',
       spiceLevel: 'Hot'
@@ -27,7 +27,7 @@ const RestaurantSection = () => {
     {
       name: 'Kottu Roti',
       image: '/images/kottu.jpg',
-      price: '$0',
+      price: '',
       popularity: 92,
       description: 'Chopped flatbread stir-fried with vegetables and egg',
       spiceLevel: 'Mild'
@@ -35,7 +35,7 @@ const RestaurantSection = () => {
     {
       name: 'Hoppers with Coconut Sambol',
       image: '/images/egghop.webp',
-      price: '$0',
+      price: '',
       popularity: 90,
       description: 'Bowl-shaped pancakes with spicy coconut relish',
       spiceLevel: 'Medium'

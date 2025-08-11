@@ -18,7 +18,7 @@ const HomestaySection = () => {
   const amenities = [
     { icon: Wifi, name: 'Free WiFi' },
     { icon: Car, name: 'Free Parking' },
-    { icon: Coffee, name: 'Breakfast Included' },
+    /*{ icon: Coffee, name: 'Breakfast Included' },*/
     { icon: Star, name: 'Garden View' }
   ];
 
@@ -152,8 +152,8 @@ const HomestaySection = () => {
                 <span className="text-gray-600 font-medium">4.9/5 (127 reviews)</span>
               </div>
               <div className="text-right">
-                <div className="text-3xl font-bold text-emerald-600">$35</div>
-                <div className="text-gray-500">per night</div>
+                <div className="text-3xl font-bold text-emerald-600"></div>
+                <div className="text-gray-500"></div>
               </div>
             </div>
 

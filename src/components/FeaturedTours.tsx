@@ -11,9 +11,9 @@ const FeaturedTours = () => {
       title: 'Bicycle Adventure Tour',
       image: '/images/bicycle-tour-lg.jpg',
       duration: '6 hours',
-      groupSize: '2-8 people',
+      groupSize: '1 Person',
       rating: 4.9,
-      price: '$45',
+      price: '$10',
       highlights: ['Ancient Ruins', 'Local Villages', 'Sacred Gardens'],
       description: 'Cycle through ancient pathways and discover hidden temples'
     },
@@ -24,7 +24,7 @@ const FeaturedTours = () => {
       duration: '8 hours',
       groupSize: '4-10 people',
       rating: 4.8,
-      price: '$65',
+      price: '$85(F/D)- $46(H/D)',
       highlights: ['Leopard Spotting', 'Bird Watching', 'Natural Pools'],
       description: 'Experience Sri Lanka\'s premier wildlife sanctuary'
     },
@@ -35,7 +35,7 @@ const FeaturedTours = () => {
       duration: '4 hours',
       groupSize: '1-3 people',
       rating: 4.7,
-      price: '$35',
+      price: 'Price depends on distance',
       highlights: ['Local Markets', 'Temples', 'Street Food'],
       description: 'Authentic local experience in a traditional TukTuk'
     }

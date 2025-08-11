@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Clock, Users, ChefHat, Star, Calendar, MapPin } from 'lucide-react';
 import { FaGoogle, FaWhatsapp, FaTripadvisor } from 'react-icons/fa'; // Importing icons
@@ -37,22 +36,6 @@ const CookerySection = () => {
         { time: '6:00 PM', activity: 'Hopper Making' },
         { time: '7:00 PM', activity: 'Kottu Preparation' },
         { time: '8:30 PM', activity: 'Feast Time' }
-      ]
-    },
-    {
-      title: 'Desserts & Sweets Workshop',
-      image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      duration: '2 hours',
-      participants: '2-10 people',
-      price: '$30',
-      nextAvailable: 'Started soon...',
-      description: 'Create delicious Sri Lankan sweets and desserts including watalappan and kokis',
-      includes: ['Dessert making', 'Decoration techniques', 'Sweet treats', 'Gift box'],
-      schedule: [
-        { time: '3:00 PM', activity: 'Sweet Introduction' },
-        { time: '3:30 PM', activity: 'Watalappan Making' },
-        { time: '4:00 PM', activity: 'Kokis & Others' },
-        { time: '4:45 PM', activity: 'Tasting & Packaging' }
       ]
     }
   ];
