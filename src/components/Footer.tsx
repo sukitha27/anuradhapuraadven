@@ -27,7 +27,7 @@ const Footer = () => {
     { icon: FaFacebook, href: '#', color: 'hover:text-blue-500' },
     { icon: FaInstagram, href: '#', color: 'hover:text-pink-500' },
     { icon: FaTwitter, href: '#', color: 'hover:text-blue-400' },
-    { icon: FaWhatsapp, href: 'https://wa.me/94701234567', color: 'hover:text-green-500' }
+    { icon: FaWhatsapp, href: 'https://wa.me/94701306430', color: 'hover:text-green-500' }
   ];
 
   const quickLinks = [
@@ -142,7 +142,7 @@ const Footer = () => {
                 <div className="flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-emerald-400" />
                   <a href="tel:+94701234567" className="text-white/80 hover:text-emerald-300 transition-colors duration-300">
-                    +94 70 1306430
+                    +94 77 2687753
                   </a>
                 </div>
 

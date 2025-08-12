@@ -23,19 +23,22 @@ const CookerySection = () => {
       ]
     },
     {
-      title: 'Pol Sambol and Coconut Rottie(SPECIAL)',
-      image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      title: 'Pol Sambol and Coconut Rottie',
+      image: '/images/Pol Sambol and Coconut Rottie.webp',
       duration: '2.5 hours',
-      participants: '2-6 people',
-      price: '$35',
+      participants: '2-10 people',
+      price: '',
+      isSpecial: true, // Add this flag
       nextAvailable: 'Tomorrow 5:00 PM',
-      description: 'Master the art of popular Sri Lankan street foods including kottu, hoppers, and rotis',
+      description: 'Master the art of popular Sri Lankan street foods including and rotis',
       includes: ['Hands-on cooking', 'Technique training', 'Tasting session', 'Take-home snacks'],
       schedule: [
-        { time: '5:00 PM', activity: 'Street Food History' },
-        { time: '6:00 PM', activity: 'Hopper Making' },
-        { time: '7:00 PM', activity: 'Kottu Preparation' },
-        { time: '8:30 PM', activity: 'Feast Time' }
+        { time: '5:00 PM', activity: 'Introduction to Sri Lankan Coconut Cuisine' },
+        { time: '5:30 PM', activity: 'Coconut Roti Making (mixing dough, rolling, cooking on griddle)' },
+        { time: '6:30 PM', activity: 'Fresh Coconut Preparation (grating, extracting milk)' },
+        { time: '7:00 PM', activity: 'Pol Sambol Making (grinding coconut, adding chilies, onions, lime)' },
+        { time: '8:00 PM', activity: 'Plating & Presentation Techniques' },
+        { time: '8:30 PM', activity: 'Feast Time with Pol Sambol & Coconut Roti' }
       ]
     }
   ];
@@ -116,9 +119,19 @@ const CookerySection = () => {
                     </div>
                   </div>
                 </div>
-                <div className="absolute top-4 right-4 bg-emerald-500 text-white px-4 py-2 rounded-full font-bold text-lg">
-                  {classes[selectedClass].price}
-                </div>
+                {/* Price/Special Badge */}
+                  {classes[selectedClass].isSpecial ? (
+                    <div className="absolute top-4 right-4 bg-amber-500 text-white px-4 py-2 rounded-full font-bold text-lg">
+                      SPECIAL
+                    </div>
+                  ) : (
+                    classes[selectedClass].price && (
+                      <div className="absolute top-4 right-4 bg-emerald-500 text-white px-4 py-2 rounded-full font-bold text-lg">
+                        {classes[selectedClass].price}
+                      </div>
+                    )
+                  )}
+                
               </div>
 
               {/* Class Content */}
@@ -141,29 +154,27 @@ const CookerySection = () => {
                   </div>
                 </div>
 
-                {/* Interactive Timeline */}
-                <div className="mb-8">
-                  <h4 className="text-xl font-bold text-gray-800 mb-6">Class Schedule</h4>
-                  <div className="space-y-4">
-                    {classes[selectedClass].schedule.map((item, index) => (
-                      <div
-                        key={index}
-                        className="group flex items-center space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-colors duration-300 cursor-pointer"
-                      >
-                        <div className="flex-shrink-0 w-16 h-16 bg-emerald-500 text-white rounded-full flex items-center justify-center font-bold group-hover:scale-110 transition-transform duration-300">
-                          {index + 1}
-                        </div>
-                        <div className="flex-1">
-                          <div className="font-semibold text-emerald-600 mb-1">{item.time}</div>
-                          <div className="text-gray-700">{item.activity}</div>
-                        </div>
-                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="w-4 h-4 border-2 border-emerald-500 rounded-full bg-white"></div>
+                
+                {/* Simplified Timeline */}
+                    <div className="mb-8">
+                        <h4 className="text-xl font-bold text-gray-800 mb-6">Class Schedule</h4>
+                        <div className="space-y-2">
+                          {classes[selectedClass].schedule.map((item, index) => (
+                            <div 
+                              key={index} 
+                              className="flex items-start space-x-4 p-3 rounded-lg transition-all duration-200 hover:bg-emerald-50 hover:shadow-sm"
+                            >
+                              <div className="flex-shrink-0 w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center font-bold transition-all duration-200 group-hover:bg-emerald-200">
+                                {index + 1}
+                              </div>
+                              <div>
+                                <div className="font-semibold text-emerald-600">{item.time}</div>
+                                <div className="text-gray-700">{item.activity}</div>
+                              </div>
+                            </div>
+                          ))}
                         </div>
                       </div>
-                    ))}
-                  </div>
-                </div>
 
                 {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">

@@ -120,7 +120,7 @@ const RestaurantSection = () => {
                 <span>Google</span>
               </a>
               <a
-                href="https://wa.me/94701234567"
+                href="https://wa.me/94701306430"
                 className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
               >
                 <FaWhatsapp className="w-4 h-4" />

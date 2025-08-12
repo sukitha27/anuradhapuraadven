@@ -22,9 +22,10 @@ const FeaturedTours = () => {
       title: 'Wilpattu Safari Tour',
       image: '/images/wilpattu-safari-lg.jpg',
       duration: '8 hours',
-      groupSize: '4-10 people',
+      groupSize: '4 people',
       rating: 4.8,
-      price: '$85(F/D)- $46(H/D)',
+      price: 'From $65',
+      priceDetails: 'Full Day: $95 | Half Day: $65',
       highlights: ['Leopard Spotting', 'Bird Watching', 'Natural Pools'],
       description: 'Experience Sri Lanka\'s premier wildlife sanctuary'
     },
@@ -88,9 +89,17 @@ const FeaturedTours = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 
                 {/* Price Badge */}
-                <div className="absolute top-4 right-4 bg-emerald-500 text-white px-3 py-1 rounded-full font-bold">
-                  {tour.price}
-                </div>
+                  <div className="absolute top-4 right-4 bg-emerald-500 text-white px-3 py-1 rounded-full font-bold">
+                    {tour.price}
+                    {tour.priceDetails && (
+                      <span 
+                        className="absolute hidden group-hover:block bg-white text-emerald-600 text-xs px-2 py-1 rounded shadow-lg whitespace-nowrap mt-2 -right-2"
+                        style={{ transform: 'translateX(-50%)' }}
+                      >
+                        {tour.priceDetails}
+                      </span>
+                    )}
+                  </div>
 
                 {/* Rating */}
                 <div className="absolute top-4 left-4 flex items-center space-x-1 bg-white/20 backdrop-blur-md rounded-full px-2 py-1">

@@ -160,7 +160,7 @@ const Navigation = () => {
               isScrolled ? 'text-gray-600' : 'text-white/80'
             }`}>
               <Phone size={16} />
-              <span>+94 70 130 6430</span>
+              <span>+94 77 2687753</span>
             </div>
           </div>
 
