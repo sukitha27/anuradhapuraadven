@@ -8,7 +8,7 @@ const CookerySection = () => {
   const classes = [
     {
       title: 'Traditional Rice & Curry Workshop',
-      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: '/images/sri-lankan-authentic.webp',
       duration: '3.30 hours',
       participants: '2-10 people',
       price: '$16',
