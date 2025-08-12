@@ -34,10 +34,19 @@
 
     <!-- Favicons (generated via https://realfavicongenerator.net/) -->
     <!-- Replace your current favicon section with this: -->
+     <!-- Modern browsers (SVG preferred) -->
 <link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml" />
-<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+
+<!-- Fallback for older browsers -->
+<link rel="icon" href="/favicon/favicon-32x32.png" type="image/png" sizes="32x32" />
+<link rel="icon" href="/favicon/favicon-16x16.png" type="image/png" sizes="16x16" />
+
+<!-- Apple Touch Icon (for Safari/iOS) -->
+<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" sizes="180x180" />
+
+<!-- Web App Manifest -->
 <link rel="manifest" href="/favicon/site.webmanifest" />
-<meta name="theme-color" content="#f59e0b" />
+
 
     <!-- Preload Critical Resources -->
     <link rel="preload" href="/src/main.tsx" as="script" />
