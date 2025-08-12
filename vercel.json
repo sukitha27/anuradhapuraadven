@@ -1,5 +1,23 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { 
+      "source": "/(.*)", 
+      "destination": "/index.html",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "text/html.*"
+        }
+      ]
+    },
+    {
+      "source": "/favicon.ico",
+      "destination": "/favicon/favicon.ico"
+    },
+    {
+      "source": "/favicon/:path*",
+      "destination": "/favicon/:path*"
+    }
   ]
 }
