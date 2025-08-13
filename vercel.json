@@ -1,24 +1,23 @@
 {
   "version": 2,
- "builds": [
+  "builds": [
     {
-      "src": "vite.config.ts",
+      "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist",
-        "outputDirectory": "dist"
+        "distDir": "dist"
       }
     }
   ],
   "routes": [
     {
-      "src": "/assets/.*",
+      "src": "/assets/(.*)",
       "headers": {
         "Cache-Control": "public, max-age=31536000, immutable"
       }
     },
     {
-      "src": "/images/.*",
+      "src": "/images/(.*)",
       "headers": {
         "Cache-Control": "public, max-age=31536000, immutable"
       }
@@ -32,11 +31,8 @@
       "dest": "/favicon/$1"
     },
     {
-      "src": "/(.*)", 
-      "dest": "/index.html",
-      "headers": {
-        "Cache-Control": "no-cache"
-      }
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
