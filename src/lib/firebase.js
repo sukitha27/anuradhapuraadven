@@ -1,17 +1,17 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getFunctions } from 'firebase/functions'; // <-- new
+import { getFunctions } from 'firebase/functions';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDkS2adh5f3XjD-jn2rekqDiZYCf8GP38E",
-  authDomain: "anuradhapura-adventures-review.firebaseapp.com",
-  projectId: "anuradhapura-adventures-review",
-  storageBucket: "anuradhapura-adventures-review.firebasestorage.app",
-  messagingSenderId: "178894625426",
-  appId: "1:178894625426:web:12def83ec93048035b244b",
-  measurementId: "G-CTKHY8V093"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
-export const functions = getFunctions(app);      // <-- export
+export const functions = getFunctions(app);
