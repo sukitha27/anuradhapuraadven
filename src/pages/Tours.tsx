@@ -161,7 +161,7 @@ const Tours = () => {
         "@type": "ListItem",
         "position": index + 1,
         "item": {
-          "@type": "TouristAttraction", // Changed from "TouristAttraction" to "Tour"
+          "@type": "Tour",
           "name": tour.title,
           "description": tour.description,
           "image": tour.image,
@@ -174,9 +174,10 @@ const Tours = () => {
             "@type": "AggregateRating",
             "ratingValue": tour.rating,
             "reviewCount": tour.reviews,
-            "itemReviewed": { // Added proper itemReviewed
+            "itemReviewed": {
               "@type": "Tour",
-              "name": tour.title
+              "name": tour.title,
+              "description": tour.description
             }
           }
         }
