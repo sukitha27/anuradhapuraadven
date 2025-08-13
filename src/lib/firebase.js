@@ -1,20 +1,17 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getFunctions } from 'firebase/functions';
+import { getFunctions } from 'firebase/functions'; // <-- new
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+  apiKey: "AIzaSyDkS2adh5f3XjD-jn2rekqDiZYCf8GP38E",
+  authDomain: "anuradhapura-adventures-review.firebaseapp.com",
+  projectId: "anuradhapura-adventures-review",
+  storageBucket: "anuradhapura-adventures-review.firebasestorage.app",
+  messagingSenderId: "178894625426",
+  appId: "1:178894625426:web:12def83ec93048035b244b",
+  measurementId: "G-CTKHY8V093"
 };
-
-// Debugging
-console.log("Firebase Config:", firebaseConfig);
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
-export const functions = getFunctions(app);
+export const functions = getFunctions(app);      // <-- export
