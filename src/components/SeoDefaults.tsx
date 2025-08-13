@@ -71,7 +71,7 @@ export const SeoDefaults = ({
       <meta name="DC.identifier" content={url} />
       
       {/* Apple/Safari specific */}
-      <meta name="apple-mobile-web-app-title" content={siteName} />
+      <meta name="apple-mobile-web-app-title" content="yes" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       

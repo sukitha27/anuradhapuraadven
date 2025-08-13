@@ -146,41 +146,44 @@ const Tours = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-      <title>Anuradhapura Tours - Explore Ancient Sri Lanka</title>
-      <meta 
-        name="description" 
-        content="Discover our best Anuradhapura tours including bicycle adventures, Wilpattu safaris, and cultural TukTuk experiences. Book your authentic Sri Lankan journey today."
-      />
-      <link rel="canonical" href="https://www.anuradhapurahomesday.com/tours" />
+  <title>Anuradhapura Tours - Explore Ancient Sri Lanka</title>
+  <meta 
+    name="description" 
+    content="Discover our best Anuradhapura tours including bicycle adventures, Wilpattu safaris, and cultural TukTuk experiences. Book your authentic Sri Lankan journey today."
+  />
+  <link rel="canonical" href="https://www.anuradhapurahomesday.com/tours" />
 
-      // Add this inside your Helmet component
-<script type="application/ld+json">
-  {JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": tours.map((tour, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "item": {
-        "@type": "TouristAttraction",
-        "name": tour.title,
-        "description": tour.description,
-        "image": tour.image,
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": tour.rating,
-          "reviewCount": tour.reviews
-        },
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock"
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": tours.map((tour, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "TouristAttraction", // Changed from "TouristAttraction" to "Tour"
+          "name": tour.title,
+          "description": tour.description,
+          "image": tour.image,
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": tour.rating,
+            "reviewCount": tour.reviews,
+            "itemReviewed": { // Added proper itemReviewed
+              "@type": "Tour",
+              "name": tour.title
+            }
+          }
         }
-      }
-    }))
-  })}
-</script>
-    </Helmet>
+      }))
+    })}
+  </script>
+</Helmet>
       {/* Header */}
       <header className="bg-gradient-to-r from-primary/10 to-primary/5 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
