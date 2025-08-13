@@ -47,7 +47,7 @@ const GoogleAnalyticsTracker = () => {
 
   useEffect(() => {
     if (typeof window.gtag === 'function') {
-      window.gtag('config', 'YOUR_GA_ID', {
+      window.gtag('config', 'G-XPTRVPZKM8', {
         page_path: location.pathname + location.search,
       });
     }
