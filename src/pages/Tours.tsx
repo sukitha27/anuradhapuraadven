@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Clock, Users, Star, MapPin, ArrowLeft, Calendar, Camera, Utensils, Shield, ChevronDown, ChevronUp } from 'lucide-react';
@@ -144,6 +145,42 @@ const Tours = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+      <title>Anuradhapura Tours - Explore Ancient Sri Lanka</title>
+      <meta 
+        name="description" 
+        content="Discover our best Anuradhapura tours including bicycle adventures, Wilpattu safaris, and cultural TukTuk experiences. Book your authentic Sri Lankan journey today."
+      />
+      <link rel="canonical" href="https://www.anuradhapurahomesday.com/tours" />
+
+      // Add this inside your Helmet component
+<script type="application/ld+json">
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": tours.map((tour, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "TouristAttraction",
+        "name": tour.title,
+        "description": tour.description,
+        "image": tour.image,
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": tour.rating,
+          "reviewCount": tour.reviews
+        },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    }))
+  })}
+</script>
+    </Helmet>
       {/* Header */}
       <header className="bg-gradient-to-r from-primary/10 to-primary/5 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -162,7 +199,18 @@ const Tours = () => {
             Discover the rich heritage and natural beauty of Anuradhapura through our expertly crafted experiences
           </p>
         </div>
+
+          {/* Breadcrumb Navigation */}
+          <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 text-sm">
+            <ol className="flex items-center space-x-2">
+              <li><Link to="/" className="text-primary hover:underline">Home</Link></li>
+              <li>/</li>
+              <li className="text-muted-foreground">Tours</li>
+            </ol>
+          </nav>
       </header>
+
+      
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
