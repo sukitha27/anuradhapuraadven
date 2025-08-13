@@ -66,13 +66,13 @@ const EMAIL_TEMPLATES = {
 
 Thank you for reaching out to us about your Anuradhapura Homestay! We're excited to help you create an unforgettable experience.
 
-I've received your message and will get back to you within 24 hours with detailed information tailored to your specific interests and requirements.
+We've received your message and will get back to you within 24 hours with detailed information tailored to your specific interests and requirements.
 
 In the meantime, feel free to browse our website for inspiration, and don't hesitate to reach out if you have any immediate questions.
 
 Best regards,
 [Your Name]
-Sri Lanka Tours Team`
+Anuradhapura Homestay Team`
   },
   custom: {
     subject: 'Re: Your inquiry about Anuradhapura Homestay',
