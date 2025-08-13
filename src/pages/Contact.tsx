@@ -190,7 +190,7 @@ const Contact: FC = () => {
         variants={stagger}
       >
         {[
-          { icon: MapPin, title: "Visit Us", lines: ["123 Heritage Road", "Anuradhapura, Sri Lanka"] },
+          { icon: MapPin, title: "Visit Us", lines: ["Vinandharama mawatha", "Pothanegama , Anuradhapura, Sri Lanka"] },
           { icon: Phone, title: "Call Us", lines: ["+94 70 130 6430", "+94 25 222 3456"] },
           { icon: Mail, title: "Email Us", lines: ["info@anuradhapurahomestay.com", "tours@anuradhapurahomestay.com"] },
           { icon: Clock, title: "Open Hours", lines: ["Daily: 6 AM – 10 PM", "Tours: 5 AM – 9 PM"] },
@@ -385,8 +385,9 @@ const Contact: FC = () => {
                   <MapPin className="w-4 h-4 text-sky-600 mt-1 flex-shrink-0" />
                   <div>
                     <p className="font-medium text-slate-800">Address</p>
-                    <p>123 Heritage Road</p>
-                    <p>Anuradhapura, Sri Lanka</p>
+                    <p>Vinandharama mawatha</p>
+                    <p>Pothanegama , Anuradhapura</p> 
+                    <p>Sri Lanka</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
