@@ -1,13 +1,13 @@
+import { useEffect } from 'react';  // Add this import
 import { lazy, Suspense } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { MaintenanceProvider, useMaintenanceMode } from "./contexts/MaintenanceContext";
 import ErrorBoundary from './ErrorBoundary';
-import { useGoogleAnalytics } from './hooks/useGoogleAnalytics';
 import { SeoDefaults } from '@/components/SeoDefaults';
 
 // Lazy-loaded components
@@ -38,11 +38,25 @@ const routes = [
   { path: "/privacy-policy", element: <PrivacyPolicy /> },
   { path: "/terms-of-service", element: <TermsOfService /> },
   { path: "/sitemap", element: <Sitemap /> },
-  { path: "/admin/contacts", element: <AdminContacts /> }, // Add this route
+  { path: "/admin/contacts", element: <AdminContacts /> },
 ];
 
+// Fixed: Moved useGoogleAnalytics inside router context
+const GoogleAnalyticsTracker = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (typeof window.gtag === 'function') {
+      window.gtag('config', 'YOUR_GA_ID', {
+        page_path: location.pathname + location.search,
+      });
+    }
+  }, [location]);
+
+  return null;
+};
+
 const AppContent = () => {
-  useGoogleAnalytics();
   const { isMaintenanceMode } = useMaintenanceMode();
 
   if (isMaintenanceMode) {
@@ -52,16 +66,15 @@ const AppContent = () => {
   return (
     <>
       <SeoDefaults />
-      <BrowserRouter>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
-            {routes.map((route) => (
-              <Route key={route.path} path={route.path} element={route.element} />
-            ))}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
+      <GoogleAnalyticsTracker />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          {routes.map((route) => (
+            <Route key={route.path} path={route.path} element={route.element} />
+          ))}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </>
   );
 };
@@ -74,7 +87,9 @@ const App = () => (
           <Toaster />
           <Sonner />
           <MaintenanceProvider>
-            <AppContent />
+            <BrowserRouter>
+              <AppContent />
+            </BrowserRouter>
           </MaintenanceProvider>
         </TooltipProvider>
       </QueryClientProvider>

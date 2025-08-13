@@ -21,9 +21,18 @@ class ErrorBoundary extends Component<Props, State> {
 
   public render() {
     if (this.state.hasError) {
-      return <h1>Sorry.. there was an error</h1>;
+      return (
+        <div className="p-4 bg-red-50 text-red-600">
+          <h2>Something went wrong</h2>
+          <button 
+            onClick={() => window.location.reload()}
+            className="mt-2 px-4 py-2 bg-red-100 hover:bg-red-200"
+          >
+            Reload Page
+          </button>
+        </div>
+      );
     }
-
     return this.props.children;
   }
 }
