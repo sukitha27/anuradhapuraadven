@@ -16,8 +16,8 @@ import emailjs from '@emailjs/browser';
 // EmailJS configuration - Direct values (replace with your actual credentials)
 const EMAILJS_CONFIG = {
   publicKey: '-O6hkDshkSmTs6Nfe',    // Replace with your EmailJS public key
-  serviceId: 'service_qrwu3v9',    // Replace with your EmailJS service ID  
-  templateId: 'template_8387om4'   // Replace with your EmailJS template ID
+  serviceId: 'service_5x9n0db',    // Replace with your EmailJS service ID  
+  templateId: 'template_9uxxn29'   // Replace with your EmailJS template ID
 };
 
 // Initialize EmailJS
@@ -236,7 +236,7 @@ const AdminDashboard = () => {
         subject: emailData.subject,
         message: emailData.body,
         from_name: 'Anuradhapura Homestay', // Your business name
-        reply_to: 'sukithabandara13@gmail.com', // Your email address
+        reply_to: 'admin@anuradhapurahomestay.com', // Your email address
         original_name: selectedSubmission.name,
         original_email: selectedSubmission.email,
         original_date: new Date(selectedSubmission.timestamp).toLocaleString(),
@@ -404,7 +404,7 @@ const AdminDashboard = () => {
 
           <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
             <p className="text-sm text-yellow-800">
-              <strong>Demo Password:</strong> admin2024
+              <strong>Demo Password:</strong>
             </p>
           </div>
         </div>
