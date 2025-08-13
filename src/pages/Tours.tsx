@@ -151,7 +151,7 @@ const Tours = () => {
     name="description" 
     content="Discover our best Anuradhapura tours including bicycle adventures, Wilpattu safaris, and cultural TukTuk experiences. Book your authentic Sri Lankan journey today."
   />
-  <link rel="canonical" href="https://www.anuradhapurahomesday.com/tours" />
+  <link rel="canonical" href="https://www.anuradhapurahomestay.com/tours" />
 
   <script type="application/ld+json">
     {JSON.stringify({

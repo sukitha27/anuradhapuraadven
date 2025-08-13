@@ -9,14 +9,14 @@ interface SeoDefaultsProps {
 }
 
 export const SeoDefaults = ({
-  title = 'Anuradhapura Homes Day - Authentic Sri Lankan Experiences',
+  title = 'Anuradhapura Homestay - Authentic Sri Lankan Experiences',
   description = 'Discover authentic Sri Lankan tours, cultural experiences, and luxury accommodations in the ancient city of Anuradhapura.',
-  image = 'https://www.anuradhapurahomesday.com/images/og-default.jpg',
-  url = typeof window !== 'undefined' ? window.location.href : 'https://www.anuradhapurahomesday.com',
+  image = 'https://www.anuradhapurahomestay.com/images/og-default.jpg',
+  url = typeof window !== 'undefined' ? window.location.href : 'https://www.anuradhapurahomestay.com',
   type = 'website'
 }: SeoDefaultsProps) => {
-  const siteName = 'Anuradhapura Homes Day';
-  const twitterHandle = '@AnuradhapuraHomes'; // Replace with your actual handle
+  const siteName = 'Anuradhapura Homestay';
+  const twitterHandle = '@AnuradhapuraHomestay'; // Replace with your actual handle
 
   return (
     <Helmet>
@@ -24,7 +24,7 @@ export const SeoDefaults = ({
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content="Sri Lanka, Anuradhapura, tours, travel, culture, heritage, vacation" />
-      <meta name="author" content="Anuradhapura Homes Day" />
+      <meta name="author" content="Anuradhapura Homestay" />
       <meta name="robots" content="index, follow" />
       <meta name="revisit-after" content="7 days" />
       <meta name="language" content="English" />
