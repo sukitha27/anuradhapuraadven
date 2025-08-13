@@ -22,10 +22,10 @@ const FeaturedTours = () => {
       title: 'Wilpattu Safari Tour',
       image: '/images/wilpattu-safari-lg.jpg',
       duration: '8 hours',
-      groupSize: '4 people',
+      groupSize: '4-6 people',
       rating: 4.8,
-      price: 'From $65',
-      priceDetails: 'Full Day: $95 | Half Day: $65',
+      price: 'From $69',
+      priceDetails: 'Full Day: $137 | Half Day: $69',
       highlights: ['Leopard Spotting', 'Bird Watching', 'Natural Pools'],
       description: 'Experience Sri Lanka\'s premier wildlife sanctuary'
     },
