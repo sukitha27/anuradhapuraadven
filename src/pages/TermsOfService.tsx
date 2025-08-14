@@ -163,15 +163,15 @@ const TermsOfService = () => {
                 If you have any questions about these Terms of Service, please contact us at:
               </p>
               <p className="mb-2">
-                <a href="mailto:info@anuradhapura-adventures.com" className="text-primary hover:underline">
-                  info@anuradhapura-adventures.com
+                <a href="mailto:info@anuradhapurahomestay.com" className="text-primary hover:underline">
+                  info@anuradhapurahomestay.com
                 </a>
               </p>
               <p>
                 Vinandharama mawatha<br />
                       Pothanegama , Anuradhapura<br />
                       Sri Lanka<br />
-                +94 70 123 4567
+                +94 77 2687753
               </p>
             </section>
           </div>

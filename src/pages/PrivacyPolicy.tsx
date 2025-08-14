@@ -123,8 +123,8 @@ const PrivacyPolicy = () => {
               <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
               <p className="mb-2">
                 If you have any questions about this Privacy Policy, please contact us at:
-                <a href="mailto:privacy@anuradhapura-adventures.com" className="text-primary hover:underline ml-1">
-                  privacy@anuradhapura-adventures.com
+                <a href="mailto:admin@anuradhapurahomestay.com" className="text-primary hover:underline ml-1">
+                  admin@anuradhapurahomestay.com
                 </a>
               </p>
               <address className="not-italic">

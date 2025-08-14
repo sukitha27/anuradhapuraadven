@@ -76,7 +76,7 @@ const Maintenance = () => {
                 href="mailto:support@anuradhapuraadventures.com"
                 className="text-sm font-medium text-foreground active:text-primary transition-colors cursor-pointer touch-manipulation"
               >
-                support@anuradhapuraadventures.com
+                support@anuradhapurahomestay.com
               </a>
             </div>
           </div>
