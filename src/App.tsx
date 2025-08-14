@@ -26,6 +26,7 @@ const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const Sitemap = lazy(() => import('./pages/Sitemap'));
 const AdminContacts = lazy(() => import('./pages/admin/ContactsDashboard'));
 const BookNow = lazy(() => import('./pages/BookNow'));
+const HomeIntro = lazy(() => import('./components/HomeIntro'));
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const routes = [
   { path: "/sitemap", element: <Sitemap /> },
   { path: "/admin/contacts", element: <AdminContacts /> },
   {path: "/book-now", element: <BookNow /> },
+  {path: "/home-intro", element: <HomeIntro /> },
   
 ];
 
