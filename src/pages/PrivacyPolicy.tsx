@@ -131,7 +131,7 @@ const PrivacyPolicy = () => {
                     Vinandharama mawatha<br />
                     Pothanegama, Anuradhapura<br />
                     Sri Lanka<br />
-                    +94 70 123 4567
+                    +94 77 2687753
                   </address>
             </section>
           </div>
