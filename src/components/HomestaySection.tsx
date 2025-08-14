@@ -201,7 +201,7 @@ const HomestaySection = () => {
                   Check Availability
                 </button>
                 <a 
-                  href="https://wa.me/94701234567" 
+                  href="https://wa.me/94701306430" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center w-full bg-emerald-500 text-white py-3 px-4 rounded-xl font-semibold hover:bg-emerald-600 transition-all duration-300 transform hover:scale-105"

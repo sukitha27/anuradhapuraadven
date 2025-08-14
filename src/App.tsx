@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { MaintenanceProvider, useMaintenanceMode } from "./contexts/MaintenanceContext";
 import ErrorBoundary from './ErrorBoundary';
 import { SeoDefaults } from '@/components/SeoDefaults';
+import path from 'path';
 
 // Lazy-loaded components
 const Index = lazy(() => import('./pages/Index'));
@@ -24,6 +25,7 @@ const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const Sitemap = lazy(() => import('./pages/Sitemap'));
 const AdminContacts = lazy(() => import('./pages/admin/ContactsDashboard'));
+const BookNow = lazy(() => import('./pages/BookNow'));
 
 const queryClient = new QueryClient();
 
@@ -39,6 +41,8 @@ const routes = [
   { path: "/terms-of-service", element: <TermsOfService /> },
   { path: "/sitemap", element: <Sitemap /> },
   { path: "/admin/contacts", element: <AdminContacts /> },
+  {path: "/book-now", element: <BookNow /> },
+  
 ];
 
 // Delayed Loading Component - Only shows for slow connections
