@@ -145,6 +145,17 @@ const Tours = () => {
         />
         <link rel="canonical" href="https://www.anuradhapurahomestay.com/tours" />
 
+        {/* Google Tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XPTRVPZKM8"></script>
+        <script>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XPTRVPZKM8');
+          `}
+        </script>
+
         <script type="application/ld+json">
           {JSON.stringify([
             // Tour listing
