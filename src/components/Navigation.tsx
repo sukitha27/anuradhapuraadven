@@ -157,7 +157,7 @@ const Navigation = () => {
 
             {/* Book Now Button */}
             <a
-              href="https://www.booking.com"
+              href="https://www.booking.com/Share-KzsPpdF"
               target="_blank"
               rel="noopener noreferrer"
               className={`px-4 py-2 rounded-md font-medium transition-colors duration-300 ${
@@ -230,7 +230,7 @@ const Navigation = () => {
             
             {/* Mobile Book Now Button */}
             <a
-              href="https://www.booking.com"
+              href="https://www.booking.com/Share-KzsPpdF"
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full text-center bg-emerald-500 text-white py-2 rounded-md font-medium hover:bg-emerald-600 transition-colors duration-300"
