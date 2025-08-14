@@ -94,7 +94,7 @@ const Navigation = () => {
             {/* Logo Image */}
             <img 
               src="/images/logo.png" // Replace with your logo path
-              alt="Logo"
+              alt="Homestay Logo"
               className="w-16 h-16 object-contain rounded-full" // Adjust size as needed
             />
             {/* Brand Name */}
