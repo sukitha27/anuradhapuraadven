@@ -132,7 +132,7 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Weather Widget & Contact Info */}
+          {/* Weather Widget & Book Now Button */}
           <div className="hidden lg:flex items-center space-x-6">
             {/* Weather Widget */}
             <div className={`flex items-center space-x-2 px-3 py-1 rounded-full border transition-colors duration-300 ${
@@ -155,13 +155,19 @@ const Navigation = () => {
               )}
             </div>
 
-            {/* Contact Info */}
-            <div className={`flex items-center space-x-1 text-sm ${
-              isScrolled ? 'text-gray-600' : 'text-white/80'
-            }`}>
-              <Phone size={16} />
-              <span>+94 77 2687753</span>
-            </div>
+            {/* Book Now Button */}
+            <a
+              href="https://www.booking.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`px-4 py-2 rounded-md font-medium transition-colors duration-300 ${
+                isScrolled 
+                  ? 'bg-emerald-500 text-white hover:bg-emerald-600'
+                  : 'bg-white text-emerald-600 hover:bg-white/90'
+              }`}
+            >
+              Book Now
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -222,10 +228,15 @@ const Navigation = () => {
               </div>
             )}
             
-            <div className="flex items-center space-x-2 text-gray-600">
-              <Phone size={16} />
-              <span>+94 70 130 6430</span>
-            </div>
+            {/* Mobile Book Now Button */}
+            <a
+              href="https://www.booking.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full text-center bg-emerald-500 text-white py-2 rounded-md font-medium hover:bg-emerald-600 transition-colors duration-300"
+            >
+              Book Now
+            </a>
           </div>
         </div>
       </div>
@@ -233,4 +244,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation; 
+export default Navigation;
