@@ -157,41 +157,41 @@ const Tours = () => {
         </script>
 
         <script type="application/ld+json">
-{JSON.stringify([
-  // Tour listing
-  {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": tours.map((tour, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "item": {
-        "@type": "Product", // Changed from Tour
-        "name": tour.title,
-        "description": tour.description,
-        "image": tour.image,
-        "offers": {
-          "@type": "Offer",
-          "availability": "https://schema.org/InStock",
-          "priceCurrency": "USD", // Change to your currency
-          "price": "50" // Change to actual price
-        }
-      }
-    }))
-  },
-  // Ratings embedded inside each product
-  ...tours.map(tour => ({
-    "@context": "https://schema.org",
-    "@type": "Product", // Changed from AggregateRating root
-    "name": tour.title,
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": tour.rating,
-      "reviewCount": tour.reviews
-    }
-  }))
-])}
-</script>
+          {JSON.stringify([
+            // Tour listing
+            {
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              "itemListElement": tours.map((tour, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                  "@type": "Product", // Changed from Tour
+                  "name": tour.title,
+                  "description": tour.description,
+                  "image": tour.image,
+                  "offers": {
+                    "@type": "Offer",
+                    "availability": "https://schema.org/InStock",
+                    "priceCurrency": "USD", // Change to your currency
+                    "price": "50" // Change to actual price
+                  }
+                }
+              }))
+            },
+            // Ratings embedded inside each product
+            ...tours.map(tour => ({
+              "@context": "https://schema.org",
+              "@type": "Product", // Changed from AggregateRating root
+              "name": tour.title,
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": tour.rating,
+                "reviewCount": tour.reviews
+              }
+            }))
+          ])}
+        </script>
 
       </Helmet>
 
