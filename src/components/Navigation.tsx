@@ -93,7 +93,7 @@ const Navigation = () => {
           <div className="flex items-center space-x-3">
             {/* Logo Image */}
             <img 
-              src="/images/logo.png" // Replace with your logo path
+              src="/images/logo1.png" // Replace with your logo path
               alt="Homestay Logo"
               className="w-16 h-16 object-contain rounded-full" // Adjust size as needed
             />
