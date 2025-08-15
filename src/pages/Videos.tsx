@@ -59,7 +59,7 @@ const Videos = () => {
             youtubeId: 'dQw4w9WgXcQ', // Replace with real IDs
             title: 'Traditional Sri Lankan Rice & Curry Cooking Class',
             description: 'Learn to cook authentic Sri Lankan rice and curry with traditional spices and techniques.',
-            thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
+            thumbnail: '',
             duration: '15:30',
             views: '12.5K',
             uploadDate: '2 weeks ago',
@@ -71,11 +71,11 @@ const Videos = () => {
         const mockPlaylists: Playlist[] = [
           {
             id: '1',
-            youtubePlaylistId: 'PLxyz123', // Replace with real IDs
+            youtubePlaylistId: '', // Replace with real IDs
             title: 'Cooking Classes Complete Series',
             description: 'All our cooking class videos in one playlist',
             videoCount: 12,
-            thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
+            thumbnail: '',
             category: 'Cooking Classes'
           },
           // Add more playlists...
@@ -109,10 +109,10 @@ const Videos = () => {
           const mockPlaylistVideos: Video[] = [
             {
               id: 'p1',
-              youtubeId: 'dQw4w9WgXcQ',
+              youtubeId: '',
               title: 'Playlist Video 1',
               description: 'First video in the playlist',
-              thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
+              thumbnail: '',
               duration: '10:25',
               views: '5.2K',
               uploadDate: '1 month ago',
