@@ -65,8 +65,8 @@ const Footer = () => {
             <div className="space-y-6">
               <div className="flex items-center space-x-3">
                 <img 
-                  src="/images/logo.png" 
-                  alt="Anuradhapura Adventures Logo" 
+                  src="/images/logo1.png" 
+                  alt="Anuradhapura Homestay Logo" 
                   className="w-16 h-16 rounded-full object-cover" 
                 />
                 <div>
