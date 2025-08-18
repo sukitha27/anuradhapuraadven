@@ -9,7 +9,7 @@ interface SeoDefaultsProps {
 }
 
 export const SeoDefaults = ({
-  title = 'Anuradhapura Homestay - Authentic Sri Lankan Experiences',
+  title = 'Anuradhapura Homestay - Best Homestay in Anuradhapura',
   description = 'Discover authentic Sri Lankan tours, cultural experiences, and luxury accommodations in the ancient city of Anuradhapura.',
   image = 'https://www.anuradhapurahomestay.com/images/og-default.jpg',
   url = typeof window !== 'undefined' ? window.location.href : 'https://www.anuradhapurahomestay.com',
