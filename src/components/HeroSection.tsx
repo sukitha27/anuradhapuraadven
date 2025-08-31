@@ -63,7 +63,7 @@ const HeroSection = () => {
     const animateCounters = () => {
       const duration = 2000; // Animation duration in ms
       const stepTime = 20; // Time per step in ms
-      const travelersTarget = 500;
+      const travelersTarget = 1000;
       const toursTarget = 50;
 
       let travelersCount = 0;

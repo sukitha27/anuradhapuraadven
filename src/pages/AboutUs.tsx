@@ -80,10 +80,10 @@ const AboutUs: React.FC = () => {
   }, []);
 
   const milestones = [
-    { year: 2018, title: 'Founded', desc: 'Started with a passion for sharing our beautiful Anuradhapura' },
-    { year: 2019, title: 'First 100 Guests', desc: 'Welcomed travelers from 15 different countries' },
-    { year: 2021, title: 'Expanded Services', desc: 'Added cookery classes and homestay experiences' },
-    { year: 2024, title: '500+ Happy Travelers', desc: 'Continuing to create unforgettable memories' },
+    { year: 2022, title: 'The Beginning', desc: 'Our adventure began on January 21st, 2022 – a date that marked the start of something truly special. What started as a simple dream has now blossomed into three incredible years of shared experiences, cultural exchange, and unforgettable memories.' },
+    { year: 2022, title: 'Early Success & Global Connections', desc: 'Within just three months of opening our doors, we welcomed our first 100 guests – an achievement that exceeded our wildest expectations. These early travelers came from 10 different countries, bringing with them diverse stories, traditions, and perspectives that enriched our community from the very beginning.' },
+    { year: 2023, title: 'Evolution & Growth', desc: '2023 marked a pivotal year in our journey with the launch of The Green Chilli Restaurant – a natural extension of our passion for sharing authentic local cuisine.This wasnt just about serving food, it was about creating a bridge between cultures through the universal language of cooking.' },
+    { year: 2024, title: 'Celebrating Milestones', desc: 'By 2024, we had the privilege of hosting over 1,000 happy travelers from around the world. Each guest brought their own unique energy, and together we created a tapestry of shared experiences that continues to inspire us every day.' },
   ];
 
   const services = [
@@ -198,11 +198,11 @@ const AboutUs: React.FC = () => {
           <aside className="bg-card/80 backdrop-blur-sm border border-border rounded-2xl p-6 lg:ml-auto shadow-lg">
             <div className="grid grid-cols-2 gap-6">
               <div>
-                <div className="text-3xl font-bold text-foreground">500+</div>
+                <div className="text-3xl font-bold text-foreground">1000+</div>
                 <div className="text-muted-foreground">Happy Travelers</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-foreground">6</div>
+                <div className="text-3xl font-bold text-foreground">3</div>
                 <div className="text-muted-foreground">Years Experience</div>
               </div>
               <div>
