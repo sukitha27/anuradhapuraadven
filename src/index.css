@@ -435,3 +435,37 @@ a:focus {
     display: none !important;
   }
 }
+
+/* Override floating whatsapp position */
+.fw {
+  left: 20px !important;
+  right: auto !important;
+  bottom: 20px !important;
+}
+
+/* Glass-morphism + neon ring for the launcher button */
+.floating-whatsapp-button {
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  background-color: rgba(18, 140, 126, 0.75); /* WhatsApp green @ 75 % */
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  box-shadow:
+    0 0 0 2px rgba(18, 140, 126, 0.5),   /* inner neon halo */
+    0 8px 32px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floating-whatsapp-button:hover {
+  transform: scale(1.08);
+  box-shadow:
+    0 0 0 4px rgba(18, 140, 126, 0.4),
+    0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* Ensure the ring on keyboard-focus is still visible */
+.floating-whatsapp-button:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(34, 197, 94, 1), /* Tailwind green-500 */
+    0 0 0 6px rgba(34, 197, 94, 0.35);
+}

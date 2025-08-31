@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "dev": "vite",
-  "build": "vite build && cp vercel.json dist/",
-  "preview": "vite preview",
-  "vercel-build": "npm run build"
-},
+    "dev": "vite",
+    "build": "vite build && cp vercel.json dist/",
+    "preview": "vite preview",
+    "vercel-build": "npm run build"
+  },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@hookform/resolvers": "^3.9.0",
@@ -66,6 +66,7 @@
     "react-countup": "^6.5.3",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",
+    "react-floating-whatsapp": "^5.0.8",
     "react-helmet": "^6.1.0",
     "react-helmet-async": "^2.0.5",
     "react-hook-form": "^7.53.0",
@@ -78,6 +79,7 @@
     "react-snap": "^1.23.0",
     "react-tilt": "^1.0.2",
     "react-type-animation": "^3.2.0",
+    "react-whatsapp-widget": "^2.2.0",
     "recharts": "^2.12.7",
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.2",
