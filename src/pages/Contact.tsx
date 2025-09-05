@@ -191,7 +191,7 @@ const Contact: FC = () => {
       >
         {[
           { icon: MapPin, title: "Visit Us", lines: ["Vinandharama mawatha", "Pothanegama , Anuradhapura, Sri Lanka"] },
-          { icon: Phone, title: "Call Us", lines: ["+94 70 130 6430", "+94 25 222 3456"] },
+          { icon: Phone, title: "Call Us", lines: ["+94 70 130 6430"] },
           { icon: Mail, title: "Email Us", lines: ["info@anuradhapurahomestay.com", "admin@anuradhapurahomestay.com"] },
           { icon: Clock, title: "Open Hours", lines: ["Daily: 6 AM – 10 PM", "Tours: 5 AM – 9 PM"] },
         ].map(({ icon, title, lines }, idx) => (
