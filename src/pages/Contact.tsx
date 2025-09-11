@@ -22,7 +22,12 @@ import { useToast } from "@/hooks/use-toast";
 // Firebase imports
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase'; // Your firebase.js file
+import { SeoDefaults } from "@/components/SeoDefaults";
 
+<SeoDefaults 
+  title="Contact Us | Anuradhapura Sri Lanka Explorer" 
+  description="Get in touch with Anuradhapura Sri Lanka Explorer. Contact us by phone, email, WhatsApp, or our online form to plan your authentic Sri Lankan adventure." 
+/>
 /* ------------------------------------------------------------------ */
 /*  Types                                                             */
 /* ------------------------------------------------------------------ */
@@ -223,7 +228,7 @@ const Contact: FC = () => {
         <motion.div id="contact-form" variants={slideUp()} className="lg:col-span-2">
           <Card className="bg-white border-slate-200 rounded-2xl shadow-md">
             <CardHeader>
-              <CardTitle className="text-3xl font-bold text-slate-800">Send us a Message</CardTitle>
+              <CardTitle className="text-3xl font-bold text-slate-800"><h2 className="text-3xl font-bold text-slate-800">Send us a Message</h2></CardTitle>
               <CardDescription className="text-slate-600">
                 Share your travel plans or questions and we'll craft the perfect itinerary for you.
               </CardDescription>
@@ -417,7 +422,7 @@ const Contact: FC = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-3">
               <IconWrapper icon={MapPin} />
-              <span>Find Us</span>
+              <span><h2>Find Us</h2></span>
             </CardTitle>
             <CardDescription className="text-slate-600">
               Centrally located in the cultural triangle – minutes away from Anuradhapura's UNESCO sites.
@@ -455,8 +460,8 @@ const Contact: FC = () => {
               Choose the method that works best for you. We're here to help plan your perfect Sri Lankan experience.
             </p>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
             variants={stagger}
           >
@@ -501,7 +506,12 @@ const Contact: FC = () => {
           </motion.div>
         </div>
       </motion.section>
+      <p className="text-sm">
+  Looking for trip ideas? Explore our <a href="/tours" className="text-sky-600 underline">Tours</a> or read <a href="/reviews" className="text-sky-600 underline">Guest Reviews</a>.
+</p>
+
     </div>
+    
   );
 };
 
