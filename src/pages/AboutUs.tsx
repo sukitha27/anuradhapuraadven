@@ -16,28 +16,11 @@ import {
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { SeoDefaults } from "@/components/SeoDefaults";
 
 const AboutUs: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const counterRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (counterRef.current) {
-      observer.observe(counterRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   // Auto-rotate testimonials
   useEffect(() => {
@@ -47,42 +30,32 @@ const AboutUs: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // Schema.org - Organization / TouristAccommodation
   const orgSchema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Anuradhapura Homestay",
-    url: typeof window !== 'undefined' ? window.location.origin : 'https://example.com',
-    logo: typeof window !== 'undefined' ? `${window.location.origin}/favicon.ico` : '/favicon.ico',
-    sameAs: [] as string[],
+    "@type": "TouristAccommodation",
+    "name": "Anuradhapura Homestay",
+    "image": "https://yourdomain.com/images/family.jpg",
+    "url": "https://yourdomain.com/about",
+    "logo": "https://yourdomain.com/favicon.ico",
+    "telephone": "+94 77 2687753",
+    "email": "info@anuradhapurahomestay.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Vinandharama mawatha, Pothanegama",
+      "addressLocality": "Anuradhapura",
+      "addressCountry": "Sri Lanka"
+    },
+    "sameAs": [
+      "https://facebook.com/yourpage",
+      "https://instagram.com/yourpage"
+    ]
   };
-
-  // SEO: title, meta description, canonical
-  useEffect(() => {
-    document.title = "About Anuradhapura Homestay | Authentic Tours";
-    const description =
-      "Learn about Anuradhapura Homestay – local experts in bicycle tours, safaris, cookery classes, and homestays in Sri Lanka.";
-
-    let meta = document.querySelector('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement('meta');
-      meta.setAttribute('name', 'description');
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute('content', description);
-
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute('href', `${window.location.origin}/about`);
-  }, []);
 
   const milestones = [
     { year: 2022, title: 'The Beginning', desc: 'Our adventure began on January 21st, 2022 – a date that marked the start of something truly special. What started as a simple dream has now blossomed into three incredible years of shared experiences, cultural exchange, and unforgettable memories.' },
     { year: 2022, title: 'Early Success & Global Connections', desc: 'Within just three months of opening our doors, we welcomed our first 100 guests – an achievement that exceeded our wildest expectations. These early travelers came from 10 different countries, bringing with them diverse stories, traditions, and perspectives that enriched our community from the very beginning.' },
-    { year: 2023, title: 'Evolution & Growth', desc: '2023 marked a pivotal year in our journey with the launch of The Green Chilli Restaurant – a natural extension of our passion for sharing authentic local cuisine.This wasnt just about serving food, it was about creating a bridge between cultures through the universal language of cooking.' },
+    { year: 2023, title: 'Evolution & Growth', desc: '2023 marked a pivotal year in our journey with the launch of The Green Chilli Restaurant – a natural extension of our passion for sharing authentic local cuisine. This wasn’t just about serving food, it was about creating a bridge between cultures through the universal language of cooking.' },
     { year: 2024, title: 'Celebrating Milestones', desc: 'By 2024, we had the privilege of hosting over 1,000 happy travelers from around the world. Each guest brought their own unique energy, and together we created a tapestry of shared experiences that continues to inspire us every day.' },
   ];
 
@@ -155,24 +128,68 @@ const AboutUs: React.FC = () => {
     }
   ];
 
+  const faqs = [
+    {
+      q: "When was Anuradhapura Homestay founded?",
+      a: "We began our journey in January 2022, welcoming travelers from around the world to experience authentic Sri Lankan hospitality."
+    },
+    {
+      q: "What kind of tours do you offer?",
+      a: "We provide bicycle tours, wildlife safaris in Wilpattu, cultural experiences, cookery classes, and homestay accommodations."
+    },
+    {
+      q: "Can I book directly with you?",
+      a: "Yes, you can book directly with us via our website, email, or phone for a personalized experience."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-accent/10">
+      {/* SEO Defaults */}
+      <SeoDefaults
+        title="About Anuradhapura Homestay | Authentic Sri Lankan Tours & Hospitality"
+        description="Discover Anuradhapura Homestay – your trusted local partner for bicycle tours, wildlife safaris, cookery classes, and homestays in Sri Lanka."
+      />
+
+      {/* Structured Data */}
+      <script type="application/ld+json">
+        {JSON.stringify(orgSchema)}
+      </script>
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(f => ({
+            "@type": "Question",
+            "name": f.q,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": f.a
+            }
+          }))
+        })}
+      </script>
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "1000"
+        })}
+      </script>
 
       {/* Hero Section */}
       <header className="relative min-h-[80vh] md:min-h-[90vh] flex items-stretch overflow-hidden pt-20" aria-label="About Anuradhapura Homestay hero">
         <img
           src="/images/family.jpg"
-          alt="Anuradhapura Adventures – welcoming travelers in the ancient city"
+          alt="Family welcoming travelers to Anuradhapura Homestay"
           className="absolute inset-0 w-full h-full object-cover"
           loading="eager"
           fetchPriority="high"
-          onError={(e) => {
-            e.currentTarget.src = '/images/story.jpg';
-          }}
+          onError={(e) => { e.currentTarget.src = '/images/story.jpg'; }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/70 to-transparent"></div>
         <div className="relative z-10 max-w-7xl mx-auto w-full px-4 grid lg:grid-cols-2 gap-8 items-center">
-          {/* Copy */}
           <div className="py-16">
             <h1 className="text-4xl md:text-6xl font-bold text-foreground">About Anuradhapura Homestay</h1>
             <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-2xl">
@@ -193,44 +210,20 @@ const AboutUs: React.FC = () => {
               </Button>
             </div>
           </div>
-
-          {/* Stats card */}
-          <aside className="bg-card/80 backdrop-blur-sm border border-border rounded-2xl p-6 lg:ml-auto shadow-lg">
-            <div className="grid grid-cols-2 gap-6">
-              <div>
-                <div className="text-3xl font-bold text-foreground">1000+</div>
-                <div className="text-muted-foreground">Happy Travelers</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-foreground">3</div>
-                <div className="text-muted-foreground">Years Experience</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-foreground">25+</div>
-                <div className="text-muted-foreground">Countries Served</div>
-              </div>
-              <div>
-                <div className="flex items-center gap-1 text-3xl font-bold text-foreground">
-                  4.9 <Star className="w-6 h-6 fill-yellow-400 text-yellow-400" />
-                </div>
-                <div className="text-muted-foreground">Average Rating</div>
-              </div>
-            </div>
-          </aside>
         </div>
       </header>
 
-      {/* Our Story Section */}
+      {/* Our Story */}
       <section className="max-w-7xl mx-auto px-4 py-24">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Our Story</h2>
             <div className="space-y-6 text-lg text-muted-foreground">
               <p>
-                Chipmunk Homestay was born from a deep love for our ancient city and a desire to share its wonders with the world. Founded in 2018 by local guide Rajesh Bandara, we started with simple bicycle tours through the sacred ruins.
+                Anuradhapura Homestay was born from a deep love for our ancient city and a desire to share its wonders with the world. Founded by local guide Rajesh Bandara, we started with simple <Link to="/tours" className="text-primary underline">bicycle tours</Link> through the sacred ruins.
               </p>
               <p>
-                What began as a small family business has grown into a comprehensive experience provider, offering everything from wildlife safaris to authentic homestays. Yet we've never lost sight of our core mission: creating genuine connections between travelers and our rich cultural heritage.
+                What began as a small family business has grown into a comprehensive experience provider, offering everything from <Link to="/tours/safari" className="text-primary underline">wildlife safaris</Link> to authentic homestays. Yet we've never lost sight of our core mission: creating genuine connections between travelers and our rich cultural heritage.
               </p>
               <p>
                 Every tour, every meal, every story we share comes from the heart. We believe that travel should be transformative - not just for the places you see, but for the people you meet and the memories you create together.
@@ -241,11 +234,10 @@ const AboutUs: React.FC = () => {
             <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
               <img 
                 src="/images/story.jpg" 
-                alt="Our Story" 
+                alt="Anuradhapura Homestay story – family sharing cultural experiences" 
+                loading="lazy"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                onError={(e) => {
-                  e.currentTarget.src = '/placeholder.svg';
-                }}
+                onError={(e) => { e.currentTarget.src = '/placeholder.svg'; }}
               />
             </div>
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center text-white font-bold text-lg shadow-xl">
@@ -255,7 +247,7 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-      {/* Timeline Section */}
+      {/* Timeline */}
       <section className="max-w-6xl mx-auto px-4 py-24">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Our Journey</h2>
@@ -282,7 +274,7 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Services */}
       <section className="bg-secondary/30 py-24">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
@@ -316,7 +308,7 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-      {/* Team Section */}
+      {/* Team */}
       <section className="max-w-7xl mx-auto px-4 py-24">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Meet Our Team</h2>
@@ -329,11 +321,10 @@ const AboutUs: React.FC = () => {
               <div className="aspect-square overflow-hidden">
                 <img 
                   src={member.image} 
-                  alt={member.name}
+                  alt={`${member.name} – ${member.role}`}
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  onError={(e) => {
-                    e.currentTarget.src = '/placeholder.svg';
-                  }}
+                  onError={(e) => { e.currentTarget.src = '/placeholder.svg'; }}
                 />
               </div>
               <CardContent className="p-6 text-center">
@@ -346,7 +337,7 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Testimonials */}
       <section ref={counterRef} className="bg-gradient-to-r from-primary to-accent py-24">
         <div className="max-w-4xl mx-auto text-center px-4">
           <h2 className="text-4xl font-bold text-primary-foreground mb-12">What Our Travelers Say</h2>
@@ -370,53 +361,63 @@ const AboutUs: React.FC = () => {
               </CardContent>
             </Card>
             
-            <div className="flex justify-center mt-6 space-x-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentTestimonial ? 'bg-white' : 'bg-white/50'
-                  }`}
-                />
-              ))}
-            </div>
+            {/* Structured Data: Review */}
+            <script type="application/ld+json">
+              {JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Review",
+                "author": {
+                  "@type": "Person",
+                  "name": testimonials[currentTestimonial].name
+                },
+                "reviewBody": testimonials[currentTestimonial].text,
+                "reviewRating": {
+                  "@type": "Rating",
+                  "ratingValue": testimonials[currentTestimonial].rating,
+                  "bestRating": "5"
+                }
+              })}
+            </script>
           </div>
         </div>
       </section>
 
-      {/* Contact CTA Section */}
-      <section className="py-24">
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Ready for Your Adventure?
-          </h2>
-          <p className="text-xl text-muted-foreground mb-8">
-            Let us create an unforgettable experience tailored just for you
+      {/* FAQ Section */}
+      <section className="max-w-4xl mx-auto px-4 py-24">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-foreground mb-4">Frequently Asked Questions</h2>
+          <p className="text-lg text-muted-foreground">Answers to the most common questions about our homestay and tours</p>
+        </div>
+        <div className="space-y-6">
+          {faqs.map((faq, index) => (
+            <Card key={index} className="hover:shadow-md transition-shadow">
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold text-foreground mb-3">{faq.q}</h3>
+                <p className="text-muted-foreground">{faq.a}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative py-24 bg-accent/10">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Ready for Your Adventure?</h2>
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Join us for an unforgettable experience in Anuradhapura. From ancient ruins to local hospitality, your journey awaits.
           </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Phone className="w-5 h-5" />
-              <span>+94 77 2687753</span>
-            </div>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Mail className="w-5 h-5" />
-              <span>info@anuradhapurahomestay.com</span>
-            </div>
-          </div>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button asChild size="lg" className="group">
               <Link to="/tours" className="inline-flex items-center gap-2">
-                Explore Tours
+                Book Your Experience
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="group">
-              <Link to="/videos" className="inline-flex items-center gap-2">
-                Watch Videos
-                <Camera className="w-4 h-4 group-hover:scale-110 transition-transform" />
+            <Button asChild variant="outline" size="lg">
+              <Link to="/contact" className="inline-flex items-center gap-2">
+                Contact Us
+                <Mail className="w-4 h-4" />
               </Link>
             </Button>
           </div>
