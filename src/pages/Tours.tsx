@@ -135,6 +135,24 @@ const Tours = () => {
     }));
   };
 
+  // Function to redirect to WhatsApp with tour booking message
+  const redirectToWhatsApp = (tour: Tour) => {
+    // WhatsApp phone number (replace with your actual number)
+    const phoneNumber = '+940701306430';
+    
+    // Create the message with tour details
+    const message = `Hello! I would like to book the ${tour.title}. Please provide more information about availability and pricing.`;
+    
+    // Encode the message for URL
+    const encodedMessage = encodeURIComponent(message);
+    
+    // Create the WhatsApp URL
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    
+    // Open WhatsApp in a new tab
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
@@ -303,7 +321,10 @@ const Tours = () => {
 
                   {/* Action Buttons */}
                   <div className="flex gap-3">
-                    <Button className="flex-1">
+                    <Button 
+                      className="flex-1" 
+                      onClick={() => redirectToWhatsApp(tour)}
+                    >
                       Book Now
                     </Button>
                     <Button variant="outline" size="sm" className="w-9 p-0">
@@ -410,7 +431,11 @@ const Tours = () => {
             Book your tour today and create memories that will last a lifetime.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="gap-2">
+            <Button 
+              size="lg" 
+              className="gap-2"
+              onClick={() => redirectToWhatsApp(tours[0])}
+            >
               <Calendar className="w-4 h-4" />
               Book Any Tour
             </Button>
