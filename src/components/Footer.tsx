@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowUp, Phone, Mail, MapPin, Facebook, Instagram, Twitter, MessageCircle, Star } from 'lucide-react';
-import { FaGoogle, FaWhatsapp, FaTripadvisor, FaTwitter, FaInstagram, FaFacebook, FaStar, FaPhone } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { ArrowUp, Phone, Mail, MapPin } from "lucide-react";
+import { FaWhatsapp, FaFacebook, FaInstagram, FaTwitter, FaPhone } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -12,210 +12,173 @@ const Footer = () => {
       setShowScrollTop(window.scrollY > 300);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
   const socialLinks = [
-    { icon: FaFacebook, href: '#', color: 'hover:text-blue-500' },
-    { icon: FaInstagram, href: '#', color: 'hover:text-pink-500' },
-    { icon: FaTwitter, href: '#', color: 'hover:text-blue-400' },
-    { icon: FaWhatsapp, href: 'https://wa.me/94701306430', color: 'hover:text-green-500' }
-  ];
-
-  const quickLinks = [
-    { name: 'Tours', href: '#tours' },
-    { name: 'Restaurant', href: '#restaurant' },
-    { name: 'Homestay', href: '#homestay' },
-    { name: 'Cookery Classes', href: '#cookery' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Contact', href: '#contact' }
-  ];
-
-  const services = [
-    'Bicycle Adventures',
-    'Wilpattu Safari',
-    'Cultural Tours',
-    'TukTuk Hire',
-    'Authentic Dining',
-    'Homestay Experience'
+    { icon: FaFacebook, href: "#" },
+    { icon: FaInstagram, href: "#" },
+    { icon: FaTwitter, href: "#" },
+    { icon: FaWhatsapp, href: "https://wa.me/94701306430" },
   ];
 
   return (
-    <footer id="contact" className="relative bg-gradient-to-br from-gray-900 via-emerald-900 to-teal-900 text-white">
-      {/* Decorative Background */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-20 h-20 border border-white/20 rounded-full animate-pulse"></div>
-        <div className="absolute top-32 right-20 w-16 h-16 border border-white/20 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-20 left-1/3 w-12 h-12 border border-white/20 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
-      </div>
-
+    <footer
+      id="contact"
+      className="relative bg-gradient-to-br from-gray-900 via-emerald-900 to-teal-900 text-white"
+    >
       <div className="relative z-10">
-        {/* Main Footer Content */}
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Company Info */}
+
+            {/* Company */}
             <div className="space-y-6">
               <div className="flex items-center space-x-3">
-                <img 
-                  src="/images/logo1.png" 
-                  alt="Anuradhapura Homestay Logo" 
-                  className="w-16 h-16 rounded-full object-cover" 
+                <img
+                  src="/images/logo1.png"
+                  alt="logo"
+                  className="w-16 h-16 rounded-full object-cover"
                 />
                 <div>
                   <h3 className="text-xl font-bold">Anuradhapura</h3>
                   <p className="text-white/80">Homestay</p>
                 </div>
-              </div> 
-              <p className="text-white/80 leading-relaxed">
-                Discover the ancient wonders of Anuradhapura through authentic experiences, 
-                delicious cuisine, and warm Sri Lankan hospitality.
+              </div>
+
+              <p className="text-white/80">
+                Discover the ancient wonders of Anuradhapura through authentic
+                experiences and warm Sri Lankan hospitality.
               </p>
 
-              {/* Social Media */}
               <div className="flex space-x-4">
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.href}
-                    className={`w-10 h-10 bg-white/10 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 ${social.color} group`}
-                  >
-                    <social.icon className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
-                  </a>
-                ))}
+                {socialLinks.map((social, index) => {
+                  const Icon = social.icon;
+                  return (
+                    <a key={index} href={social.href}>
+                      <Icon className="w-5 h-5 hover:text-emerald-400" />
+                    </a>
+                  );
+                })}
               </div>
             </div>
 
-            {/* Quick Links */}
+            {/* Links */}
             <div>
               <h4 className="text-lg font-bold mb-6">Quick Links</h4>
-              <ul className="space-y-3">
-                {quickLinks.map((link, index) => (
-                  <li key={index}>
-                    <a
-                      href={link.href}
-                      className="text-white/80 hover:text-emerald-300 transition-colors duration-300 relative group"
-                    >
-                      {link.name}
-                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-300 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                  </li>
-                ))}
+              <ul className="space-y-3 text-white/80">
+                <li>
+                  <a href="#tours">Tours</a>
+                </li>
+                <li>
+                  <a href="#restaurant">Restaurant</a>
+                </li>
+                <li>
+                  <a href="#homestay">Homestay</a>
+                </li>
+                <li>
+                  <Link to="/about">About</Link>
+                </li>
               </ul>
             </div>
 
             {/* Services */}
             <div>
-              <h4 className="text-lg font-bold mb-6">Our Services</h4>
-              <ul className="space-y-3">
-                {services.map((service, index) => (
-                  <li key={index} className="flex items-center space-x-2 text-white/80">
-                    <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
-                    <span>{service}</span>
-                  </li>
-                ))}
+              <h4 className="text-lg font-bold mb-6">Services</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>Bicycle Adventures</li>
+                <li>Wilpattu Safari</li>
+                <li>Cultural Tours</li>
+                <li>TukTuk Hire</li>
               </ul>
             </div>
 
-            {/* Contact Info */}
+            {/* Contact */}
             <div>
-              <h4 className="text-lg font-bold mb-6">Get in Touch</h4>
-              <div className="space-y-4">
+              <h4 className="text-lg font-bold mb-6">Contact</h4>
+
+              <div className="space-y-4 text-white/80">
+
                 <div className="flex items-start space-x-3">
-                  <MapPin className="w-5 h-5 text-emerald-400 mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="text-white/80">
-                      Vinandharama mawatha<br />
-                      Pothanegama , Anuradhapura<br />
-                      Sri Lanka
-                    </p>
-                  </div>
+                  <MapPin className="w-5 h-5 text-emerald-400" />
+                  <p>
+                    Vinandharama Mawatha
+                    <br />
+                    Pothanegama, Anuradhapura
+                  </p>
                 </div>
 
                 <div className="flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-emerald-400" />
-                  <a href="tel:+94701234567" className="text-white/80 hover:text-emerald-300 transition-colors duration-300">
-                    +94 77 2687753
-                  </a>
+                  <a href="tel:+94772687753">+94 77 2687753</a>
                 </div>
 
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-emerald-400" />
-                  <a href="mailto:info@anuradhapurahomestay.com" className="text-white/80 hover:text-emerald-300 transition-colors duration-300">
+                  <a href="mailto:info@anuradhapurahomestay.com">
                     info@anuradhapurahomestay.com
                   </a>
                 </div>
+
               </div>
 
-              {/* Action Buttons */}
-              <div className="mt-6 space-y-3">
+              <div className="mt-6">
                 <a
                   href="https://wa.me/94701306430"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 w-full justify-center"
+                  className="inline-flex items-center space-x-2 bg-green-500 px-4 py-2 rounded-lg"
                 >
-                  <FaWhatsapp className="w-4 h-4" />
-                  <span>WhatsApp Us</span>
+                  <FaWhatsapp />
+                  <span>WhatsApp</span>
                 </a>
-                
-                <button
-                  onClick={() => navigate('/contact')}
-                  className="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 w-full justify-center text-white font-semibold"
-                >
-                  <FaPhone className="w-4 h-4" />
-                  <span>Contact Us</span>
-                </button>
               </div>
+
             </div>
+
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-              <p className="text-white/60 text-sm text-center md:text-left">
-                © 2025 Anuradhapura Homestay. All rights reserved. Developed by Velora Technologies.
-              </p>
-              
-              <div className="flex items-center space-x-6 text-sm text-white/60">
-                <Link 
-                  to="/privacy-policy" 
-                  className="hover:text-primary transition-colors duration-300"
-                >
-                  Privacy Policy
-                </Link>
-                <Link 
-                  to="/terms-of-service" 
-                  className="hover:text-primary transition-colors duration-300"
-                >
-                  Terms of Service
-                </Link>
-                <Link 
-                  to="/sitemap" 
-                  className="hover:text-primary transition-colors duration-300"
-                >
-                  Sitemap
-                </Link>
-              </div>
+          <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center">
+
+            <p className="text-white/60 text-sm">
+              © 2026 Anuradhapura Homestay. All rights reserved. Developed by
+              <a
+                href="https://www.veloratech.com.lk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-1 text-emerald-300 hover:text-emerald-400"
+              >
+                Velora Technologies
+              </a>
+            </p>
+
+            <div className="flex space-x-6 text-sm text-white/60">
+              <Link to="/privacy-policy">Privacy Policy</Link>
+              <Link to="/terms-of-service">Terms</Link>
+              <Link to="/sitemap">Sitemap</Link>
             </div>
+
           </div>
         </div>
+
       </div>
 
-      {/* Scroll to Top Button */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-28 right-8 w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-110 hover:rotate-12 z-50 animate-bounce"
+          className="fixed bottom-28 right-8 w-12 h-12 bg-emerald-500 text-white rounded-full"
         >
           <ArrowUp className="w-6 h-6 mx-auto" />
         </button>
