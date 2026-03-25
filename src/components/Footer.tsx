@@ -179,39 +179,37 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-<div className="border-t border-white/10">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-    <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-
-      <p className="text-white/60 text-sm text-center md:text-left">
-        © 2026 Anuradhapura Homestay. All rights reserved. Developed by
-        <a
-          href="https://www.veloratech.com.lk/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="ml-1 font-semibold text-emerald-300 hover:text-emerald-400 transition-colors duration-300"
-        >
-          Velora Technologies
-        </a>
-      </p>
-
-      <div className="flex items-center space-x-6 text-sm text-white/60">
-        <Link to="/privacy-policy" className="hover:text-primary transition-colors duration-300">
-          Privacy Policy
-        </Link>
-
-        <Link to="/terms-of-service" className="hover:text-primary transition-colors duration-300">
-          Terms of Service
-        </Link>
-
-        <Link to="/sitemap" className="hover:text-primary transition-colors duration-300">
-          Sitemap
-        </Link>
+        <div className="border-t border-white/10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+              <p className="text-white/60 text-sm text-center md:text-left">
+                © 2025 Anuradhapura Homestay. All rights reserved. Developed by Velora Technologies.
+              </p>
+              
+              <div className="flex items-center space-x-6 text-sm text-white/60">
+                <Link 
+                  to="/privacy-policy" 
+                  className="hover:text-primary transition-colors duration-300"
+                >
+                  Privacy Policy
+                </Link>
+                <Link 
+                  to="/terms-of-service" 
+                  className="hover:text-primary transition-colors duration-300"
+                >
+                  Terms of Service
+                </Link>
+                <Link 
+                  to="/sitemap" 
+                  className="hover:text-primary transition-colors duration-300"
+                >
+                  Sitemap
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-    </div>
-  </div>
-</div>
 
       {/* Scroll to Top Button */}
       {showScrollTop && (
