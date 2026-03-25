@@ -196,24 +196,15 @@ const Footer = () => {
       </p>
 
       <div className="flex items-center space-x-6 text-sm text-white/60">
-        <Link
-          to="/privacy-policy"
-          className="hover:text-primary transition-colors duration-300"
-        >
+        <Link to="/privacy-policy" className="hover:text-primary transition-colors duration-300">
           Privacy Policy
         </Link>
 
-        <Link
-          to="/terms-of-service"
-          className="hover:text-primary transition-colors duration-300"
-        >
+        <Link to="/terms-of-service" className="hover:text-primary transition-colors duration-300">
           Terms of Service
         </Link>
 
-        <Link
-          to="/sitemap"
-          className="hover:text-primary transition-colors duration-300"
-        >
+        <Link to="/sitemap" className="hover:text-primary transition-colors duration-300">
           Sitemap
         </Link>
       </div>
