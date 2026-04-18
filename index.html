@@ -1,82 +1,40 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" prefix="og: https://ogp.me/ns#">
   <head>
-    <!-- Primary Meta Tags -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#f59e0b" />
+
+    <!-- Fallback title (each page overrides via react-helmet-async) -->
     <title>Anuradhapura Homestay | Best Homestay in Anuradhapura</title>
-    <meta name="description" content="Immerse yourself in Sri Lankan culture with our heritage homestay, bicycle tours, wildlife safaris, and traditional cooking classes in historic Anuradhapura." />
-    <meta name="author" content="Anuradhapura Homestay" />
-    <meta name="keywords" content="Anuradhapura homestay, Sri Lanka cultural tour, ancient city stay, bicycle tours Sri Lanka, wildlife safari, traditional cooking classes" />
-    <meta name="robots" content="index, follow" />
+
+    <!-- Search Console verification -->
     <meta name="google-site-verification" content="JWkrnzd8yUgtfe4iIXcpWnCIe3IIJsuLJJz71pxueGc" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:title" content="Anuradhapura Homestay | Best Homestay in Anuradhapura" />
-    <meta property="og:description" content="Immerse yourself in Sri Lankan culture with our heritage homestay, bicycle tours, wildlife safaris, and traditional cooking classes." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.anuradhapurahomestay.com/" />
-    <meta property="og:image" content="https://www.anuradhapurahomestay.com/images/social-preview.webp" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Traditional Sri Lankan homestay in Anuradhapura" />
-    <meta property="og:site_name" content="Anuradhapura Homestay" />
-    <meta property="og:locale" content="en_US" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@AnuradhapuraHomestay" />
-    <meta name="twitter:creator" content="@AnuradhapuraHomestay" />
-    <meta name="twitter:title" content="Anuradhapura Homestay | Best Homestay in Anuradhapura" />
-    <meta name="twitter:description" content="Immerse yourself in Sri Lankan culture with our heritage homestay and unique experiences." />
-    <meta name="twitter:image" content="https://www.anuradhapurahomestay.com/images/social-preview.webp" />
-    <meta name="twitter:image:alt" content="Traditional Sri Lankan homestay courtyard" />
-
-  
     <!-- Favicons -->
-    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/favicon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/favicon-512x512.png" />
+    <link rel="icon" href="/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
 
-    <!-- Standard PNG sizes -->
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/favicon-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/favicon-512x512.png">
-
-    <!-- ICO fallback -->
-    <link rel="icon" href="/favicon/favicon.ico">
-
-    <!-- Apple Touch Icon (must be 180x180 PNG) -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-
-    <!-- Web App Manifest -->
-    <link rel="manifest" href="/favicon/site.webmanifest">
-
-    <!-- Theme color -->
-    <meta name="theme-color" content="#f59e0b">
-
-
-
-
-
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="/src/main.tsx" as="script" />
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" />
+    <!-- Preload critical hero image -->
     <link rel="preload" href="/images/hero1.webp" as="image" />
 
-    <!-- Preconnect to External Domains -->
+    <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://maps.googleapis.com" />
 
-    <!-- Google Fonts (with font-display: swap) -->
+    <!-- Google Fonts -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.anuradhapurahomestay.com/" />
-
-    <!-- Structured Data -->
+    <!-- Structured Data: LodgingBusiness (global, applies site-wide) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -136,15 +94,14 @@
     }
     </script>
 
-          <!-- Google tag (gtag.js) -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XPTRVPZKM8"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XPTRVPZKM8', { send_page_view: false });
-      </script>
-
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XPTRVPZKM8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-XPTRVPZKM8', { send_page_view: false });
+    </script>
   </head>
 
   <body>
@@ -154,15 +111,12 @@
     </noscript>
 
     <div id="root">
-    <noscript>
-      <h1>Welcome to Anuradhapura Homestay</h1>
-      <p>Experience authentic Sri Lankan hospitality in the heart of Anuradhapura. Cozy rooms, local meals, and easy access to heritage sites.</p>
-    </noscript>
-  </div>
-    
-    <!-- Preload the Webpack runtime first -->
-    <script src="/src/main.tsx" type="module" defer></script>
-    
-    
+      <noscript>
+        <h1>Welcome to Anuradhapura Homestay</h1>
+        <p>Experience authentic Sri Lankan hospitality in the heart of Anuradhapura. Cozy rooms, local meals, and easy access to heritage sites.</p>
+      </noscript>
+    </div>
+
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
