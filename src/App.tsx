@@ -9,7 +9,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { MaintenanceProvider, useMaintenanceMode } from "./contexts/MaintenanceContext";
 import ErrorBoundary from './ErrorBoundary';
 import { SeoDefaults } from '@/components/SeoDefaults';
-import path from 'path';
+
 
 // Lazy-loaded components
 const Index = lazy(() => import('./pages/Index'));

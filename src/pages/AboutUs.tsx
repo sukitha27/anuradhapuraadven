@@ -35,9 +35,9 @@ const AboutUs: React.FC = () => {
     "@context": "https://schema.org",
     "@type": "TouristAccommodation",
     "name": "Anuradhapura Homestay",
-    "image": "https://yourdomain.com/images/family.jpg",
-    "url": "https://yourdomain.com/about",
-    "logo": "https://yourdomain.com/favicon.ico",
+    "image": "https://www.anuradhapurahomestay.com/images/family.jpg",
+    "url": "https://www.anuradhapurahomestay.com/about",
+    "logo": "https://www.anuradhapurahomestay.com/favicon.ico",
     "telephone": "+94 77 2687753",
     "email": "info@anuradhapurahomestay.com",
     "address": {
